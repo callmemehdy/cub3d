@@ -1,4 +1,5 @@
-FILES	=	main.c ft_free.c malloc.c
+FILES	=	main.c ft_free.c malloc.c get_next_line.c \
+			get_next_line_utils.c
 SRCS	=	$(addprefix srcs/, $(FILES))
 OBJS	=	$(addprefix objs/, $(FILES:.c=.o))
 NAME	=	cub3D

@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/05 10:25:09 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/05 11:08:32 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,8 @@ void	*ft_malloc(size_t size);
 t_addr	**get_list(void);
 void	destroy_addr(t_addr *list);
 void	delete_node(t_addr **list, void *data);
+
+// file handling shit ...
+char	*get_next_line(int fd);
 
 #endif
