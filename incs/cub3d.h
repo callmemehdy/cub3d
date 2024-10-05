@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/05 11:08:32 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/05 11:44:53 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define ARG_STT 42
 
 # define ALLOC_ERR "memory allocation problem occured\nmalloc function failed"
-# define ALLOC_STT
+# define ALLOC_STT 37
 
 typedef struct s_addr
 {
@@ -40,5 +40,13 @@ void	delete_node(t_addr **list, void *data);
 
 // file handling shit ...
 char	*get_next_line(int fd);
+
+// cubeThings
+
+typedef	struct	s_data
+{
+	char	*title;
+	int		map_fd;
+}				t_data;
 
 #endif
