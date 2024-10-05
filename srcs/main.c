@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/05 14:20:11 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/05 16:04:28 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	ft_error(char *message, int ex_stt)
 t_data	*parse_map(char *game_name, char *map_path)
 {
 	t_data	*data;
+	char	**map;
 
 	data = ft_malloc(sizeof(t_data));
 	if (!data)
@@ -46,6 +47,9 @@ t_data	*parse_map(char *game_name, char *map_path)
 	data->map_fd = open(map_path, O_RDONLY);
 	if (data->map_fd < 0)
 		ft_error(FILE_ERR, FILE_STT);
+	map = get_map(data);
+	if (!map)
+		ft_error(MAP_ERR, MAP_STT);
 	return (data);
 }
 
