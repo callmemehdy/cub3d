@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/05 11:51:23 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:19:00 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 
 # define ALLOC_ERR "memory allocation problem occured\nmalloc function failed"
 # define ALLOC_STT 37
+
+# define FILE_ERR "invalid file descriptor\nopen function failed"
+# define FILE_STT 21
 
 typedef struct s_addr
 {
