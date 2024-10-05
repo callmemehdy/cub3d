@@ -6,11 +6,26 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/05 14:17:27 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/05 14:20:11 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*
+	◦ The map must be closed/surrounded by walls, if not the program must return
+	an error.
+	◦ Except for the map content, each type of element can be separated by one or
+	more empty line(s).
+	◦ Except for the map content which always has to be the last, each type of
+	element can be set in any order in the file.
+	◦ Except for the map, each type of information from an element can be separated
+	by one or more space(s).
+	◦ The map must be parsed as it looks in the file. Spaces are a valid part of the
+	map and are up to you to handle. You must be able to parse any kind of map,
+	as long as it respects the rules of the map.
+*/
+
 
 void	ft_error(char *message, int ex_stt)
 {
