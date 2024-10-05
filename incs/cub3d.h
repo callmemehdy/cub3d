@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/05 10:10:42 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/05 10:25:09 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@
 # include <fcntl.h>
 
 # define ARG_ERR "invalid program input\nUsage: ./cub3d [map's path]"
-# define ARG_EX_STT 42
+# define ARG_STT 42
+
+# define ALLOC_ERR "memory allocation problem occured\nmalloc function failed"
+# define ALLOC_STT
 
 typedef struct s_addr
 {
