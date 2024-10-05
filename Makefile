@@ -5,9 +5,7 @@ OBJS	=	$(addprefix objs/, $(FILES:.c=.o))
 NAME	=	cub3D
 CFLAGS	=	-Wall -Wextra -Werror -Iincs
 
-all:	$(NAME)
-
--include $(OBJS:.o=.d)
+all:		$(NAME)
 
 $(NAME):	$(OBJS)
 	cc $(CFLAGS) $(OBJS) -o $@
@@ -25,4 +23,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean
+.PHONY: fclean all clean re 
+
+-include	$(OBJS:.o=.d)
