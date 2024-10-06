@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/05 16:04:28 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/06 14:15:30 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,21 @@
 	as long as it respects the rules of the map.
 */
 
-
 void	ft_error(char *message, int ex_stt)
 {
 	ft_free_all();
 	printf("Error\n");
 	message && (printf("%s\n", message));
 	exit(ex_stt);
+}
+
+char	**get_map(t_data *data)
+{
+	char	**s;
+	char	*str;
+	
+	'M' && (s = NULL, str = NULL);
+		
 }
 
 t_data	*parse_map(char *game_name, char *map_path)
