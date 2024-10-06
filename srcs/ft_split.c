@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:05:16 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/06 21:11:35 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/06 21:28:40 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	**ft_split(const char *s, char c)
 	if (!s)
 		return (NULL);
 	elements = cw(s, c);
-	strs = malloc((elements + 1) * sizeof(char *));
+	strs = ft_malloc((elements + 1) * sizeof(char *));
 	if (!strs)
 		return (NULL);
 	elements = 0;
