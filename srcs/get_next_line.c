@@ -6,13 +6,14 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 06:08:04 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/10/06 16:35:02 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/06 20:50:50 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_updaterest(char *rest)
+static
+char	*ft_updaterest(char *rest)
 {
 	size_t	i;
 	size_t	j;
@@ -34,7 +35,8 @@ static char	*ft_updaterest(char *rest)
 	return (free(rest), rest = NULL, new_rest);
 }
 
-static char	*ft_getline(char *rest)
+static
+char	*ft_getline(char *rest)
 {
 	size_t	i;
 	char	*line;
@@ -54,7 +56,8 @@ static char	*ft_getline(char *rest)
 	return (line);
 }
 
-static char	*ft_getrest(int fd, char *rest)
+static
+char	*ft_getrest(int fd, char *rest)
 {
 	ssize_t	rdata;
 	char	*buffer;
