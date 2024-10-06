@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:40:59 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/05 11:27:09 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/06 17:14:29 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ t_addr	**get_list(void)
 	return (&list);
 }
 
-static void	merging(t_addr **list, void *data)
+static
+void	merging(t_addr **list, void *data)
 {
 	t_addr		*node;
 
-	node = malloc(sizeof(node));
+	node = malloc(sizeof(t_addr));
 	if (!node)
 		return ;
 	node -> addr = data;

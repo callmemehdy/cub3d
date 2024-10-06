@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/06 14:15:30 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/06 17:17:39 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ char	**get_map(t_data *data)
 	char	*str;
 	
 	'M' && (s = NULL, str = NULL);
-		
+
+
+	return (s);
 }
 
 t_data	*parse_map(char *game_name, char *map_path)
@@ -67,6 +69,14 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		ft_error(ARG_ERR, ARG_STT);
-	data = parse_map(av[0], av[1]);
+	// data = parse_map(av[0], av[1]);
+	ft_malloc(1337);
+	ft_malloc(1337);
+	ft_malloc(1337);
+	ft_malloc(1337);
+	ft_malloc(1337);
+	ft_malloc(1337);
+	ft_malloc(1337);
+	// ft_free_all();
 	return (0);
 }

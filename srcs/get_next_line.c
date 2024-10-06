@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 06:08:04 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/10/05 11:08:52 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/06 16:35:02 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*rest;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	rest = ft_getrest(fd, rest);
 	if (!rest)

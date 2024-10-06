@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 06:09:23 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/10/05 11:09:43 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/06 16:34:43 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 // char	*ft_updaterest(char *rest);
 // char	*ft_getline(char *rest);
 // char	*ft_getrest(int fd, char *rest);
-char	*get_next_line(int fd);
+// char	*get_next_line(int fd);
 
 size_t	ft_strlen(char *str);
 // void	ft_bzero(char *str);
