@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/06 17:17:39 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/06 20:30:47 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,5 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		ft_error(ARG_ERR, ARG_STT);
 	// data = parse_map(av[0], av[1]);
-	ft_malloc(1337);
-	ft_malloc(1337);
-	ft_malloc(1337);
-	ft_malloc(1337);
-	ft_malloc(1337);
-	ft_malloc(1337);
-	ft_malloc(1337);
-	// ft_free_all();
 	return (0);
 }
