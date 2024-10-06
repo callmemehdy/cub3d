@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/06 20:57:56 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/06 21:20:25 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	ft_error(char *message, int ex_stt)
 
 char	**get_map(t_data *data)
 {
-	// char	**s;
+	char	**s;
 	char	*str;
 	char	*buff;
 	
-	'M' && (buff = NULL);
+	'M' && (buff = NULL, s = NULL);
 	str = get_next_line(data->map_fd);
 	if (!str)
 		ft_error(MAP_ERR, MAP_STT);
@@ -54,8 +54,8 @@ char	**get_map(t_data *data)
 			break ;
 		}
 	}
-	printf("%s\n", buff);
-	return (char **)1337;
+	s = ft_split(buff, '\n');
+	return (free(buff), s);
 }
 
 t_data	*parse_map(char *game_name, char *map_path)
@@ -73,6 +73,8 @@ t_data	*parse_map(char *game_name, char *map_path)
 	map = get_map(data);
 	if (!map)
 		ft_error(MAP_ERR, MAP_STT);
+	for (int i = 0; map[i]; i++)
+		printf("%s\n", map[i]);
 	return (data);
 }
 
