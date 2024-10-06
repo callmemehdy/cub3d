@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/06 21:36:14 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/06 23:27:02 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 	◦ The map must be parsed as it looks in the file. Spaces are a valid part of the
 	map and are up to you to handle. You must be able to parse any kind of map,
 	as long as it respects the rules of the map.
+	mehdy's notes:
+			-check the first element if its a boolean
 */
 
 void	ft_error(char *message, int ex_stt)
@@ -71,7 +73,6 @@ t_data	*parse_map(char *game_name, char *map_path)
 	map = get_map(data);
 	if (!map)
 		ft_error(MAP_ERR, MAP_STT);
-	
 	return (data);
 }
 
