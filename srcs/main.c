@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/07 08:42:05 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/07 09:40:06 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 	map and are up to you to handle. You must be able to parse any kind of map,
 	as long as it respects the rules of the map.
 	mehdy's notes:
-			-check the first element if its a boolean
+			> check until i found a line that contains only spaces and ones or EOF
 */
 
 void	ft_error(char *message, int ex_stt)
@@ -58,7 +58,12 @@ char	**get_map(t_data *data)
 	return (free(buff), s);
 }
 
-t_data	*parse_map(char *game_name, char *map_path)
+void	content_parse(t_data *data)
+{
+	
+}
+
+t_data	*load_and_parse(char *game_name, char *map_path)
 {
 	t_data	*data;
 	char	**map;
@@ -73,6 +78,7 @@ t_data	*parse_map(char *game_name, char *map_path)
 	map = get_map(data);
 	if (!map)
 		ft_error(MAP_ERR, MAP_STT);
+	'P' && (data->map = map, content_parse(data), '!');
 	return (data);
 }
 
@@ -82,7 +88,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		ft_error(ARG_ERR, ARG_STT);
-	// data = parse_map(av[0], av[1]);
+	data = load_and_parse(av[0], av[1]);
 	ft_free_all();
 	(void)data;
 	(void)av;

@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/07 08:20:32 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/07 10:19:10 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,18 @@ char	*get_next_line(int fd);
 
 // cubeThings
 
-typedef	struct	s_data
+typedef	struct		s_data
 {
-	char	*title;
-	int		map_fd;
-	char	*no_path;
-	char	*so_path;
-	char	*ea_path;
-	char	*we_path;
-}				t_data;
+	char			*title;
+	int				map_fd;
+	char			**map;
+	char			*no_path;
+	char			*so_path;
+	char			*ea_path;
+	char			*we_path;
+	unsigned int	frgb;
+	unsigned int	crgb;
+}					t_data;
 
 // some useful utils
 char	**ft_split(char const *str, char c);
