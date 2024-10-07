@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/07 10:19:10 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:09:28 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdbool.h>
 # include <math.h>
 # include "get_next_line.h"
 
@@ -59,6 +60,8 @@ typedef	struct		s_data
 	char			*title;
 	int				map_fd;
 	char			**map;
+	char			**config;
+	size_t			confsize;
 	char			*no_path;
 	char			*so_path;
 	char			*ea_path;

@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/07 09:40:06 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:11:35 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,27 @@ char	**get_map(t_data *data)
 	return (free(buff), s);
 }
 
+bool is_map(char *s)
+{
+	int		i;
+
+	i = -1;
+	while (s[++i])
+		if (s[i] != ' ' && s[i] != '1')
+			return (false);
+	return (true);
+}
+
 void	content_parse(t_data *data)
 {
-	
+	char	**s;
+	int		i;
+
+	'M' && (s = data->map, i = -1);
+	data->config = data->map;
+	while (!is_map(s[++i]));
+	data->map = data->map + i;
+	data->confsize = i;
 }
 
 t_data	*load_and_parse(char *game_name, char *map_path)
@@ -71,6 +89,7 @@ t_data	*load_and_parse(char *game_name, char *map_path)
 	data = ft_malloc(sizeof(t_data));
 	if (!data)
 		ft_error(ALLOC_ERR, ALLOC_STT);
+	*data = (t_data){0};
 	data->title = game_name;
 	data->map_fd = open(map_path, O_RDONLY);
 	if (data->map_fd < 0)
@@ -78,7 +97,7 @@ t_data	*load_and_parse(char *game_name, char *map_path)
 	map = get_map(data);
 	if (!map)
 		ft_error(MAP_ERR, MAP_STT);
-	'P' && (data->map = map, content_parse(data), '!');
+	'P' && (data->map = map, content_parse(data), data->map = map);
 	return (data);
 }
 
@@ -92,6 +111,6 @@ int	main(int ac, char **av)
 	ft_free_all();
 	(void)data;
 	(void)av;
-	printf("%d\n", ft_strncmp("EA", "EA 11111111111", 2));
+	// printf("%d\n", ft_strncmp("EA", "EA 11111111111", 2));
 	return (0);
 }
