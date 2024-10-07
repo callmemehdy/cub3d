@@ -6,6 +6,9 @@ OBJS	=	$(addprefix objs/, $(FILES:.c=.o))
 NAME	=	cub3D
 CFLAGS	=	-Iincs -Wall -Wextra -Werror
 
+testing: all clean
+	clear
+
 all:		$(NAME)
 
 $(NAME):	$(OBJS)

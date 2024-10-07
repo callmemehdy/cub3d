@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/07 13:11:35 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:19:40 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ void	content_parse(t_data *data)
 	while (!is_map(s[++i]));
 	data->map = data->map + i;
 	data->confsize = i;
+	// for (int c = 0; c < i; c++)
+	// 	printf("%s\n", data->config[c]);
+	for (int c = 0; data->map[c]; c++)
+		printf("%s\n", data->map[c]);
 }
 
 t_data	*load_and_parse(char *game_name, char *map_path)

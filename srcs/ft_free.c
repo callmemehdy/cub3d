@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:54:38 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/05 10:11:22 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:07:13 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ void	ft_free_all(void)
 
 	list = get_list();
 	destroy_addr(*list);
+	list = NULL;
 }
