@@ -9,7 +9,7 @@ CFLAGS	=	-Iincs -Wall -Wextra -Werror
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-	cc $(CFLAGS) $(OBJS) -o $@
+	cc $(filter-out -Iincs, $(CFLAGS)) $(OBJS) -o $@
 
 objs/%.o:	srcs/%.c
 	mkdir -p objs

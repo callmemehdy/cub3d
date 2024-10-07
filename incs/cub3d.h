@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/06 23:27:56 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/07 08:20:32 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,14 @@ typedef	struct	s_data
 	char	*title;
 	int		map_fd;
 	char	*no_path;
-	char	*no_path;
+	char	*so_path;
+	char	*ea_path;
+	char	*we_path;
 }				t_data;
 
 // some useful utils
 char	**ft_split(char const *str, char c);
 void	ft_bzero(void *buffer, size_t n);
 char	*ft_strdup(char *s);
-
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 #endif

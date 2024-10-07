@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:12:11 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/06 21:18:31 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/07 08:40:42 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,21 @@ char	*ft_strdup(char *s)
 	return (p);
 }
 
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned char	*csts1;
+	unsigned char	*csts2;
 
+	csts1 = (unsigned char *)s1;
+	csts2 = (unsigned char *)s2;
+	if (!s1 || !s2)
+		return (-1);
+	while (--n && *csts1 && *csts2)
+	{
+		if (*csts1 != *csts2)
+			break;
+		csts1++;
+		csts2++;
+	}
+	return ((int)(*csts1 - *csts2));
+}

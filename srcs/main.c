@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/06 23:27:02 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/07 08:42:05 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,10 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		ft_error(ARG_ERR, ARG_STT);
-	data = parse_map(av[0], av[1]);
+	// data = parse_map(av[0], av[1]);
 	ft_free_all();
 	(void)data;
+	(void)av;
+	printf("%d\n", ft_strncmp("EA", "EA 11111111111", 2));
 	return (0);
 }
