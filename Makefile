@@ -13,8 +13,8 @@ OBJS	=	$(addprefix objs/, $(FILES:.c=.o))
 NAME	=	cub3D
 CFLAGS	=	-Iincs -Wall -Wextra -Werror
 
-print:
-	echo $(MLXLIB)
+# print:
+# 	echo $(MLXLIB)
 
 testing: all clean
 	clear

@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/08 18:12:20 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/08 22:30:23 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ char	*get_next_line(int fd);
 typedef	struct		s_data
 {
 	char			*title;
+	// boolean map things
 	int				map_fd;
 	char			**map;
+	// textures , colors things	
 	char			**config;
 	size_t			confsize;
 	char			*no_path;
