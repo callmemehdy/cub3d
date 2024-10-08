@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/07 13:09:28 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:12:20 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@
 // map content errors
 # define MAP_ERR "invalid map content"
 # define MAP_STT 255
+
+// enumslike string
+# define EA "EA"
+# define WE "WE"
+# define SO "SO"
+# define NO "NO"
+
 typedef struct s_addr
 {
 	void			*addr;
@@ -75,4 +82,8 @@ char	**ft_split(char const *str, char c);
 void	ft_bzero(void *buffer, size_t n);
 char	*ft_strdup(char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void	ft_error(char *message, int ex_stt);
+// map parsing bruh 
+t_data	*load_and_parse(char *game_name, char *map_path);
+
 #endif
