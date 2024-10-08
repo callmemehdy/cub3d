@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:12:11 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/07 08:40:42 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/08 22:55:09 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,15 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		csts2++;
 	}
 	return ((int)(*csts1 - *csts2));
+}
+
+char	*line2path(char *s)
+{
+	int		i;
+
+	i = -1;
+	while (s[++i])
+	{
+		// todo
+	}
 }
