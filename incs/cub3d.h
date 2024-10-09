@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/09 12:05:09 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:05:41 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	ft_error(char *message, int ex_stt);
 char	*line2path(char *s);
 char	*skip(char *s);
 unsigned 
-int		rgbshifter(char *s, t_data *data);
+int		rgbshifter(char *s, int level);
 t_data	*load_and_parse(char *game_name, char *map_path);
 
 #endif

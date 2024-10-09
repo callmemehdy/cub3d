@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:12:11 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/09 13:22:36 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:26:01 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,11 @@ byte	atob(char *s)
 }
 
 unsigned
-int	rgbshifter(char *s, t_data *data)
+int	rgbshifter(char *s, int level)
 {
-	(void)data;
 	unsigned int rgb;
 
-	if (!s || !*s)
+	if (!s || !*s || !level)
 		return (0);
 	while (*s && *s >= 'A' && *s <= 'Z')
 		s++;
@@ -112,5 +111,5 @@ int	rgbshifter(char *s, t_data *data)
 		s++;
 	s = skip(s);
 	*s == ',' && (s++); 
-	return  (rgb | rgbshifter(s, data) << 8);
+	return  ((rgbshifter(s, level - 1) << 8) | rgb);
 }

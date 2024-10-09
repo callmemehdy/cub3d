@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/09 13:03:29 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:03:14 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,10 @@ void	content_parse(t_data *data)
 		else if (!ft_strncmp(skip(s[i]), NO, 2))
 			data -> no_path = line2path(s[i]);
 		else if (!ft_strncmp(skip(s[i]), F, 1))
-			data -> frgb = rgbshifter(s[i], data);
+			data -> frgb = rgbshifter(s[i], 3);
 		else if (!ft_strncmp(skip(s[i]), C, 1))
-			data -> crgb = rgbshifter(s[i], data);
+			data -> crgb = rgbshifter(s[i], 3);
 	}
-	printf("%u\n", data->crgb);
-	printf("%u\n", data->frgb);
 }
 
 char	**get_map(t_data *data)
