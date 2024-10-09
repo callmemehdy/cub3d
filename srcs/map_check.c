@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/09 09:00:58 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:03:29 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	content_parse(t_data *data)
 	char	**s;
 	int		i;
 
-	'M' && (s = data->map, i = -1);
-	data->config = data->map;
+	'M' && (s = data -> map, i = -1);
+	data -> config = data -> map;
 	while (!is_map(s[++i]));
-	data->map = data->map + i;
-	'A' && (data->confsize = i, i = -1);
+	data -> map = data -> map + i;
+	'A' && (data -> confsize = i, i = -1);
 	while (*(s + ++i) && i < data -> confsize)
 	{
 		if (!ft_strncmp(skip(s[i]), EA, 2))
@@ -44,11 +44,12 @@ void	content_parse(t_data *data)
 		else if (!ft_strncmp(skip(s[i]), NO, 2))
 			data -> no_path = line2path(s[i]);
 		else if (!ft_strncmp(skip(s[i]), F, 1))
-			data -> frgb = rgbshifter(s[i]);
+			data -> frgb = rgbshifter(s[i], data);
 		else if (!ft_strncmp(skip(s[i]), C, 1))
-			data -> crgb = rgbshifter(s[i]);
+			data -> crgb = rgbshifter(s[i], data);
 	}
-	printf("%s\n", data->ea_path);
+	printf("%u\n", data->crgb);
+	printf("%u\n", data->frgb);
 }
 
 char	**get_map(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:12:11 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/09 08:45:36 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:22:36 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,38 @@ char	*skip(char *s)
 	while (*s && ft_isspace(*s))
 		s++;
 	return (s);
+}
+
+byte	atob(char *s)
+{
+	int		i;
+	int		res;
+
+	'M' && (res = 0, i = -1);
+	// if (!(s[i] >= '0' && s[i] <= '9'))
+	// 	ft_error(MAP_ERR, MAP_STT);
+	while (s[++i] >= '0' && s[i] <= '9')
+		res = (res * 10) + (s[i] - 48);
+	if (res > UCHAR_MAX)
+		ft_error(MAP_ERR, MAP_STT);
+	return ((byte)res);
+}
+
+unsigned
+int	rgbshifter(char *s, t_data *data)
+{
+	(void)data;
+	unsigned int rgb;
+
+	if (!s || !*s)
+		return (0);
+	while (*s && *s >= 'A' && *s <= 'Z')
+		s++;
+	's' && (rgb = 0, s = skip(s)); 
+	rgb = atob(s);
+	while (*s && *s >= '0' && *s <= '9')
+		s++;
+	s = skip(s);
+	*s == ',' && (s++); 
+	return  (rgb | rgbshifter(s, data) << 8);
 }

@@ -6,21 +6,23 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/09 08:59:14 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:05:09 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <limits.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdbool.h>
 # include <math.h>
+# include <ctype.h>
 # include "get_next_line.h"
-
+typedef uint8_t byte;
 // cli arguments error
 # define ARG_ERR "invalid program input\nUsage: ./cub3d [map's path]"
 # define ARG_STT 42
@@ -44,6 +46,8 @@
 # define NO "NO"
 # define F	"F"
 # define C	"C"
+
+# define __
 
 typedef struct s_addr
 {
@@ -90,7 +94,8 @@ void	ft_error(char *message, int ex_stt);
 // map parsing bruh 
 char	*line2path(char *s);
 char	*skip(char *s);
-
+unsigned 
+int		rgbshifter(char *s, t_data *data);
 t_data	*load_and_parse(char *game_name, char *map_path);
 
 #endif

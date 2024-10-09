@@ -16,7 +16,7 @@ CFLAGS	=	-Iincs -Wall -Wextra -Werror
 # print:
 # 	echo $(MLXLIB)
 
-testing: all clean
+ultimate: all clean
 	clear
 
 all:		$(NAME)
