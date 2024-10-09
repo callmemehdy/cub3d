@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:12:11 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/09 14:26:01 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:09:17 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ byte	atob(char *s)
 	int		res;
 
 	'M' && (res = 0, i = -1);
-	// if (!(s[i] >= '0' && s[i] <= '9'))
-	// 	ft_error(MAP_ERR, MAP_STT);
+	if (!(*s >= '0' && *s <= '9'))
+		ft_error(MAP_ERR, MAP_STT);
 	while (s[++i] >= '0' && s[i] <= '9')
 		res = (res * 10) + (s[i] - 48);
 	if (res > UCHAR_MAX)

@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/09 15:03:14 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:12:53 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ bool is_map(char *s)
 	return (true);
 }
 
+bool	half1_validity(t_data *data)
+{
+	bool boolean;
+
+	boolean = data->no_path && data->so_path &&
+			  data->we_path && data->ea_path;
+	return (boolean);
+}
+
 void	content_parse(t_data *data)
 {
 	char	**s;
@@ -35,8 +44,14 @@ void	content_parse(t_data *data)
 	'A' && (data -> confsize = i, i = -1);
 	while (*(s + ++i) && i < data -> confsize)
 	{
+		/*
+			make a struct named check and its members
+			are eac and soc and noc ...
+			to count the occurence of the required 
+			configs ... it will check the dup either 
+		*/
 		if (!ft_strncmp(skip(s[i]), EA, 2))
-			data -> ea_path = line2path(s[i]);
+			 data -> ea_path = line2path(s[i]);
 		else if (!ft_strncmp(skip(s[i]), WE, 2))
 			data -> we_path = line2path(s[i]);
 		else if (!ft_strncmp(skip(s[i]), SO, 2))
@@ -44,10 +59,12 @@ void	content_parse(t_data *data)
 		else if (!ft_strncmp(skip(s[i]), NO, 2))
 			data -> no_path = line2path(s[i]);
 		else if (!ft_strncmp(skip(s[i]), F, 1))
-			data -> frgb = rgbshifter(s[i], 3);
+			data -> frgb = rgbshifter(skip(s[i]), 3);
 		else if (!ft_strncmp(skip(s[i]), C, 1))
-			data -> crgb = rgbshifter(s[i], 3);
+			data -> crgb = rgbshifter(skip(s[i]), 3);
 	}
+	if (!half1_validity(data))
+		ft_error(MAP_ERR, MAP_STT);
 }
 
 char	**get_map(t_data *data)
@@ -69,7 +86,7 @@ char	**get_map(t_data *data)
 			break ;
 	}
 	s = ft_split(buff, '\n');
-	return (free(buff), s);
+	return (free(buff), close(data->map_fd),s);
 }
 
 t_data	*load_and_parse(char *game_name, char *map_path)
