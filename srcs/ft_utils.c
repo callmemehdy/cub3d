@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:12:11 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/08 22:55:09 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/09 08:45:36 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ void	ft_bzero(void *buffer, size_t n)
 	p = (unsigned char *)buffer;
 	while (i < n)
 		p[i++] = 0;
+}
+
+bool	ft_isspace(char c)
+{
+	return ((c >= 9 && c <= 13) || c == 32);
 }
 
 char	*ft_strdup(char *s)
@@ -62,11 +67,16 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 char	*line2path(char *s)
 {
-	int		i;
+	while (*s && ft_isspace(*s))
+		s++;
+	while (*s && !ft_isspace(*s))
+		s++;
+	return (ft_strdup(s));
+}
 
-	i = -1;
-	while (s[++i])
-	{
-		// todo
-	}
+char	*skip(char *s)
+{
+	while (*s && ft_isspace(*s))
+		s++;
+	return (s);
 }

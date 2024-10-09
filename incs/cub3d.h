@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/08 22:30:23 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/09 08:59:14 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 # define WE "WE"
 # define SO "SO"
 # define NO "NO"
+# define F	"F"
+# define C	"C"
 
 typedef struct s_addr
 {
@@ -70,7 +72,7 @@ typedef	struct		s_data
 	char			**map;
 	// textures , colors things	
 	char			**config;
-	size_t			confsize;
+	int				confsize;
 	char			*no_path;
 	char			*so_path;
 	char			*ea_path;
@@ -86,6 +88,9 @@ char	*ft_strdup(char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_error(char *message, int ex_stt);
 // map parsing bruh 
+char	*line2path(char *s);
+char	*skip(char *s);
+
 t_data	*load_and_parse(char *game_name, char *map_path);
 
 #endif

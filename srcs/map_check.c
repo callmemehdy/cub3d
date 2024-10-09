@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/08 22:36:27 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/09 09:00:58 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,22 @@ void	content_parse(t_data *data)
 	while (!is_map(s[++i]));
 	data->map = data->map + i;
 	'A' && (data->confsize = i, i = -1);
-	// printf("%s\n", data->no_path);
-	while (*(s + ++i))
+	while (*(s + ++i) && i < data -> confsize)
 	{
-		if (!ft_strncmp(s[i], EA, 2))
-			data -> ea_path = s[i];
-		else if (!ft_strncmp(s[i], WE, 2))
-			data -> we_path = s[i];
-		else if (!ft_strncmp(s[i], SO, 2))
-			data -> so_path = s[i];
-		else if (!ft_strncmp(s[i], NO, 2))
-			data -> no_path = s[i];
-		/*
-			make some stdrulike function that will cut
-			the first field per ex: 'EA' and trim spaces
-		*/	
+		if (!ft_strncmp(skip(s[i]), EA, 2))
+			data -> ea_path = line2path(s[i]);
+		else if (!ft_strncmp(skip(s[i]), WE, 2))
+			data -> we_path = line2path(s[i]);
+		else if (!ft_strncmp(skip(s[i]), SO, 2))
+			data -> so_path = line2path(s[i]);
+		else if (!ft_strncmp(skip(s[i]), NO, 2))
+			data -> no_path = line2path(s[i]);
+		else if (!ft_strncmp(skip(s[i]), F, 1))
+			data -> frgb = rgbshifter(s[i]);
+		else if (!ft_strncmp(skip(s[i]), C, 1))
+			data -> crgb = rgbshifter(s[i]);
 	}
+	printf("%s\n", data->ea_path);
 }
 
 char	**get_map(t_data *data)
