@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/09 14:05:41 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:32:44 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,10 @@ typedef	struct		s_data
 	// boolean map things
 	int				map_fd;
 	char			**map;
-	// textures , colors things	
+	// 1st half of the map
 	char			**config;
 	int				confsize;
+	// textures , colors things	
 	char			*no_path;
 	char			*so_path;
 	char			*ea_path;
@@ -84,6 +85,16 @@ typedef	struct		s_data
 	unsigned int	frgb;
 	unsigned int	crgb;
 }					t_data;
+
+typedef struct		s_check
+{
+	int			ea_c;
+	int			we_c;
+	int			so_c;
+	int			no_c;
+	int			f_c;
+	int			c_c;
+}					t_check;
 
 // some useful utils
 char	**ft_split(char const *str, char c);

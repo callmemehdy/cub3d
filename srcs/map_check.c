@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/09 16:12:53 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:28:44 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,37 +34,39 @@ bool	half1_validity(t_data *data)
 
 void	content_parse(t_data *data)
 {
-	char	**s;
-	int		i;
+	t_check		c;
+	char		**s;
+	int			i;
 
 	'M' && (s = data -> map, i = -1);
 	data -> config = data -> map;
 	while (!is_map(s[++i]));
 	data -> map = data -> map + i;
 	'A' && (data -> confsize = i, i = -1);
+	c = (t_check){0};
 	while (*(s + ++i) && i < data -> confsize)
 	{
-		/*
-			make a struct named check and its members
-			are eac and soc and noc ...
-			to count the occurence of the required 
-			configs ... it will check the dup either 
-		*/
-		if (!ft_strncmp(skip(s[i]), EA, 2))
+		if (!ft_strncmp(skip(s[i]), EA, 2) && ++c.ea_c)
 			 data -> ea_path = line2path(s[i]);
-		else if (!ft_strncmp(skip(s[i]), WE, 2))
+		else if (!ft_strncmp(skip(s[i]), WE, 2) && ++c.we_c)
 			data -> we_path = line2path(s[i]);
-		else if (!ft_strncmp(skip(s[i]), SO, 2))
+		else if (!ft_strncmp(skip(s[i]), SO, 2) && ++c.so_c)
 			data -> so_path = line2path(s[i]);
-		else if (!ft_strncmp(skip(s[i]), NO, 2))
+		else if (!ft_strncmp(skip(s[i]), NO, 2) && ++c.no_c)
 			data -> no_path = line2path(s[i]);
-		else if (!ft_strncmp(skip(s[i]), F, 1))
+		else if (!ft_strncmp(skip(s[i]), F, 1) && ++c.f_c)
 			data -> frgb = rgbshifter(skip(s[i]), 3);
-		else if (!ft_strncmp(skip(s[i]), C, 1))
+		else if (!ft_strncmp(skip(s[i]), C, 1) && ++c.c_c)
 			data -> crgb = rgbshifter(skip(s[i]), 3);
 	}
-	if (!half1_validity(data))
-		ft_error(MAP_ERR, MAP_STT);
+	printf("ceiling count==>[%d]\n", c.c_c);
+	printf("floor count==>\t[%d]\n", c.f_c);
+	printf("east count==>\t[%d]\n", c.ea_c);
+	printf("west count==>\t[%d]\n", c.we_c);
+	printf("south count==>\t[%d]\n", c.so_c);
+	printf("north count==>\t[%d]\n", c.no_c);
+	// if (!half1_validity(data))
+	// 	ft_error(MAP_ERR, MAP_STT);
 }
 
 char	**get_map(t_data *data)
