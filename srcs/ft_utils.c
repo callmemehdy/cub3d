@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:12:11 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/10 11:54:26 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:15:46 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*skip(char *s)
 	return (s);
 }
 
-byte	atob(char *s)
+byte_t	atob(char *s)
 {
 	int		i;
 	int		res;
@@ -98,7 +98,7 @@ byte	atob(char *s)
 		res = (res * 10) + (s[i] - 48);
 	if (res > UCHAR_MAX)
 		ft_error(MAP_ERR, MAP_STT);
-	return ((byte)res);
+	return ((byte_t)res);
 }
 
 unsigned

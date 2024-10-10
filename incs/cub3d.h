@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/10 11:55:01 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:28:31 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <math.h>
 # include <ctype.h>
 # include "get_next_line.h"
-typedef uint8_t byte;
 // cli arguments error
 # define ARG_ERR "invalid program input\nUsage: ./cub3d [map's path]"
 # define ARG_STT 42
@@ -46,6 +45,8 @@ typedef uint8_t byte;
 # define NO "NO"
 # define F	"F"
 # define C	"C"
+
+typedef	uint8_t	byte_t;
 
 # define __
 

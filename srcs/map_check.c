@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/10 12:09:10 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:28:43 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ bool	half1_validity(t_data *data, t_check *c)
 	int		i;
 
  	'H' && (s = data -> c_path, i = 0x0);
-	boolean = c->c_c + c->ea_c + c->no_c;
-	boolean += c->so_c + c->we_c + c->f_c;
+	boolean = c->c_c ^ 1 + c->ea_c ^ 1 + c->no_c ^ 1;
+	boolean += c->so_c ^ 1 + c->we_c ^ 1 + c->f_c ^ 1;
 	while (*(s + i))
 	{
 		if (ft_isdigit(s[i]) && ++c->fields)
@@ -49,7 +49,7 @@ bool	half1_validity(t_data *data, t_check *c)
 		else
 			i++;
 	}
-	return (boolean == 0x6 && c->fields == 0x3);
+	return (boolean == 0x0 && c->fields == 0x6);
 }
 
 void	content_parse(t_data *data)
@@ -59,11 +59,12 @@ void	content_parse(t_data *data)
 	int			i;
 
 	c = (t_check){0};
-	'M' && (s = data -> map, i = -1);
 	while (!is_map(s[++i]));
+	'A' && (data -> confsize = i);
 	data -> config = data -> map;
+	//
 	data -> map = data -> map + i;
-	'A' && (data -> confsize = i, i = -1);
+	'M' && (s = data -> config, i = -1);
 	while (*(s + ++i) && i < data -> confsize)
 	{
 		if (!ft_strncmp(skip(s[i]), EA, 2) && ++c.ea_c)
