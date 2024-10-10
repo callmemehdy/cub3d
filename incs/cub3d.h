@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/10 10:32:44 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:55:01 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ typedef	struct		s_data
 	char			*so_path;
 	char			*ea_path;
 	char			*we_path;
+	char			*c_path;
+	char			*f_path;
 	unsigned int	frgb;
 	unsigned int	crgb;
 }					t_data;
@@ -94,6 +96,7 @@ typedef struct		s_check
 	int			no_c;
 	int			f_c;
 	int			c_c;
+	int			fields;
 }					t_check;
 
 // some useful utils
@@ -102,6 +105,8 @@ void	ft_bzero(void *buffer, size_t n);
 char	*ft_strdup(char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_error(char *message, int ex_stt);
+bool	ft_isdigit(char c);
+bool	ft_isspace(char c);
 // map parsing bruh 
 char	*line2path(char *s);
 char	*skip(char *s);

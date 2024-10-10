@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:12:11 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/09 16:09:17 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:54:26 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	ft_bzero(void *buffer, size_t n)
 bool	ft_isspace(char c)
 {
 	return ((c >= 9 && c <= 13) || c == 32);
+}
+
+bool	ft_isdigit(char c)
+{
+	return (c >= '0' && c <= '9');
 }
 
 char	*ft_strdup(char *s)

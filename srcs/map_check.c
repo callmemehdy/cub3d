@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/10 10:28:44 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:09:10 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,33 @@ bool is_map(char *s)
 	return (true);
 }
 
-bool	half1_validity(t_data *data)
+bool	half1_validity(t_data *data, t_check *c)
 {
-	bool boolean;
+	int		boolean;
+	char	*s;
+	int		i;
 
-	boolean = data->no_path && data->so_path &&
-			  data->we_path && data->ea_path;
-	return (boolean);
+ 	'H' && (s = data -> c_path, i = 0x0);
+	boolean = c->c_c + c->ea_c + c->no_c;
+	boolean += c->so_c + c->we_c + c->f_c;
+	while (*(s + i))
+	{
+		if (ft_isdigit(s[i]) && ++c->fields)
+			while (ft_isdigit(s[i]))
+				i++;
+		else
+			i++;
+	}
+ 	'H' && (s = data -> f_path, i = 0x0);
+	while (*(s + i))
+	{
+		if (ft_isdigit(s[i]) && ++c->fields)
+			while (ft_isdigit(s[i]))
+				i++;
+		else
+			i++;
+	}
+	return (boolean == 0x6 && c->fields == 0x3);
 }
 
 void	content_parse(t_data *data)
@@ -38,12 +58,12 @@ void	content_parse(t_data *data)
 	char		**s;
 	int			i;
 
+	c = (t_check){0};
 	'M' && (s = data -> map, i = -1);
-	data -> config = data -> map;
 	while (!is_map(s[++i]));
+	data -> config = data -> map;
 	data -> map = data -> map + i;
 	'A' && (data -> confsize = i, i = -1);
-	c = (t_check){0};
 	while (*(s + ++i) && i < data -> confsize)
 	{
 		if (!ft_strncmp(skip(s[i]), EA, 2) && ++c.ea_c)
@@ -55,18 +75,18 @@ void	content_parse(t_data *data)
 		else if (!ft_strncmp(skip(s[i]), NO, 2) && ++c.no_c)
 			data -> no_path = line2path(s[i]);
 		else if (!ft_strncmp(skip(s[i]), F, 1) && ++c.f_c)
+		{
 			data -> frgb = rgbshifter(skip(s[i]), 3);
+			data -> f_path = line2path(s[i]);
+		}
 		else if (!ft_strncmp(skip(s[i]), C, 1) && ++c.c_c)
+		{
 			data -> crgb = rgbshifter(skip(s[i]), 3);
+			data -> c_path = line2path(s[i]);
+		}
 	}
-	printf("ceiling count==>[%d]\n", c.c_c);
-	printf("floor count==>\t[%d]\n", c.f_c);
-	printf("east count==>\t[%d]\n", c.ea_c);
-	printf("west count==>\t[%d]\n", c.we_c);
-	printf("south count==>\t[%d]\n", c.so_c);
-	printf("north count==>\t[%d]\n", c.no_c);
-	// if (!half1_validity(data))
-	// 	ft_error(MAP_ERR, MAP_STT);
+	if (!half1_validity(data, &c))
+		ft_error(MAP_ERR, MAP_STT);
 }
 
 char	**get_map(t_data *data)
