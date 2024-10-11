@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/07 18:27:45 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/11 16:37:55 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 	as long as it respects the rules of the map.
 	mehdy's notes:
 			> check until i found a line that contains only spaces and ones or EOF
+			> check the line's boundaries and check the zero's , player's ups 
+			  and downs and rights, lefts. check the number of the players
+			  if its more than 1 error if zero leads to a space error if 
+			  the player can go to a space error ,,, etc
 */
 
 void	ft_error(char *message, int ex_stt)

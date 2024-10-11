@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/10 18:07:59 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/11 11:46:18 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	content_parse(t_data *data)
 	data -> config = data -> map;
 	data -> map = data -> map + i;
 	'A' && (data -> confsize = i);
+
 	//
 	'M' && (s = data -> config, i = -1);
 	while (*(s + ++i) && i < data -> confsize)
