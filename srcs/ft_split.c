@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:05:16 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/06 21:28:40 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/12 16:11:02 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,17 @@ int	cw(const char *s, char c)
 }
 
 static
-void	woman(char **dishes)
+void	namow(char **sehsid)
 {
 	int	i;
 
 	i = 0;
-	while (dishes[i])
+	while (sehsid[i])
 	{
-		free(dishes[i]);
+		free(sehsid[i]);
 		i++;
 	}
-	free(dishes);
-}
-
-static
-void	initializer(int *a, int *b)
-{
-	*a = 0;
-	*b = 0;
+	free(sehsid);
 }
 
 static
@@ -63,7 +56,7 @@ char	**stuffing(char **strs, const char *s, char c)
 	char	buff[70000];
 	int		elements;
 
-	initializer(&i, &elements);
+	'M' && (i = 0, elements = 0);
 	while (s[i])
 	{
 		j = 0;
@@ -75,7 +68,7 @@ char	**stuffing(char **strs, const char *s, char c)
 			strs[elements] = ft_strdup(buff);
 			if (!strs[elements++])
 			{
-				woman(strs);
+				namow(strs);
 				return (NULL);
 			}
 		}
@@ -87,8 +80,8 @@ char	**stuffing(char **strs, const char *s, char c)
 
 char	**ft_split(const char *s, char c)
 {
-	int			elements;
 	char		**strs;
+	int			elements;
 
 	if (!s)
 		return (NULL);
@@ -96,10 +89,9 @@ char	**ft_split(const char *s, char c)
 	strs = ft_malloc((elements + 1) * sizeof(char *));
 	if (!strs)
 		return (NULL);
-	elements = 0;
 	strs = stuffing(strs, s, c);
 	if (!strs)
 		return (NULL);
-	strs[cw(s, c)] = 0;
+	strs[elements] = 0;
 	return (strs);
 }

@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:12:11 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/10 12:15:46 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/12 16:02:19 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,14 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((int)(*csts1 - *csts2));
 }
 
+// make the real line2path _|[-_-]|_ i see u
 char	*line2path(char *s)
 {
 	while (*s && ft_isspace(*s))
 		s++;
 	while (*s && !ft_isspace(*s))
+		s++;
+	while (*s && ft_isspace(*s))
 		s++;
 	return (ft_strdup(s));
 }

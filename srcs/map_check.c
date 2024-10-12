@@ -6,36 +6,11 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/12 15:25:07 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/12 16:24:10 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-bool is_map(char *s)
-{
-	int		i;
-
-	i = -1;
-	while (s[++i])
-		if (s[i] != ' ' && s[i] != '1')
-			return (false);
-	return (true);
-}
-
-void	ft_sep(t_data *data)
-{
-	char	**s;
-	int		i;
-
-	i = -1;
-	s = data -> map;
-	while (!is_map(s[++i]))
-	{}
-	data -> config = data -> map;
-	data -> map = data -> map + i;
-	data -> confsize = i;
-}
 
 bool	half1_validity(t_data *data, t_check *c)
 {
@@ -95,6 +70,7 @@ void	content_parse(t_data *data)
 			data -> c_path = line2path(s[i]);
 		}
 	}
+	printf("%d\n", data->ea_path[0]);
 	if (!half1_validity(data, &c))
 		ft_error(MAP_ERR, MAP_STT);
 }
@@ -118,6 +94,8 @@ char	**get_map(t_data *data)
 			break ;
 	}
 	s = ft_split(buff, '\n');
+	if (ft_preprocess(buff))
+		ft_error(MAP_ERR, MAP_STT);
 	return (free(buff), close(data->map_fd),s);
 }
 

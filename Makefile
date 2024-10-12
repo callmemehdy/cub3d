@@ -7,7 +7,7 @@ endif
 
 FILES	=	main.c ft_free.c malloc.c get_next_line.c \
 			get_next_line_utils.c ft_split.c ft_utils.c\
-			map_check.c
+			map_check.c map_check_2.c
 SRCS	=	$(addprefix srcs/, $(FILES))
 OBJS	=	$(addprefix objs/, $(FILES:.c=.o))
 NAME	=	cub3D
