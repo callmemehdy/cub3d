@@ -6,21 +6,29 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/12 18:20:01 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/12 21:04:17 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_preprocess(char *s)
+bool	ft_preprocess(char *s)
 {
 	int		i;
 
-	i = 0;
+	i = -1;
 	while (s[++i])
 	{
-		if (s[i] == '1')
-			while (s[i] && s[i] == '\n')
+		if (s[i] == '\n' && is_map(s + i + 1))
+			break ;
+		if (s[i] == '\t')
+			return (true);
+	}
+	i = 0;
+	while (s[i])
+	{
+		// should keep working on this shi2 h h h 
+		// should linked list all the lines either
 	}
 }
 
@@ -32,7 +40,7 @@ bool	half1_validity(t_data *data, t_check *c)
 	int		i;
 
  	'H' && (s = data -> c_path, i = 0x0);
-	boolean = c->c_c ^ 1 + c->ea_c ^ 1 + c->no_c ^ 1;
+	boolean = c->c_c ^ 1 + c->ea_c ^ 1 + c->no_c ^ 1; // the xor sum must be zero 
 	boolean += c->so_c ^ 1 + c->we_c ^ 1 + c->f_c ^ 1;
 	while (*(s + i))
 	{

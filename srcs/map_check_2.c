@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:33:26 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/12 15:34:04 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/12 20:08:18 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool is_map(char *s)
 	int		i;
 
 	i = -1;
-	while (s[++i])
+	while (s[++i] && s[i] != '\n')
 		if (s[i] != ' ' && s[i] != '1')
 			return (false);
 	return (true);
