@@ -6,12 +6,25 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/12 16:24:10 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/12 18:20:01 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int	ft_preprocess(char *s)
+{
+	int		i;
+
+	i = 0;
+	while (s[++i])
+	{
+		if (s[i] == '1')
+			while (s[i] && s[i] == '\n')
+	}
+}
+
+static
 bool	half1_validity(t_data *data, t_check *c)
 {
 	int		boolean;
@@ -41,6 +54,7 @@ bool	half1_validity(t_data *data, t_check *c)
 	return (boolean == 0x0 && c->fields == 0x6);
 }
 
+static
 void	content_parse(t_data *data)
 {
 	t_check		c;
@@ -75,6 +89,7 @@ void	content_parse(t_data *data)
 		ft_error(MAP_ERR, MAP_STT);
 }
 
+static
 char	**get_map(t_data *data)
 {
 	char	**s;
