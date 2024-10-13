@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/13 21:51:27 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/13 22:27:07 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 bool	ft_preprocess(t_line *lines)
 {
 	// 
+	while (lines)
+	{
+		if (is_map(lines->s))
+			break ;
+		lines = lines->next;
+	}
 }
 
 static
