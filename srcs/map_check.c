@@ -6,31 +6,31 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/12 21:04:17 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/13 20:17:00 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	ft_preprocess(char *s)
-{
-	int		i;
+// bool	ft_preprocess(char *s)
+// {
+// 	int		i;
 
-	i = -1;
-	while (s[++i])
-	{
-		if (s[i] == '\n' && is_map(s + i + 1))
-			break ;
-		if (s[i] == '\t')
-			return (true);
-	}
-	i = 0;
-	while (s[i])
-	{
-		// should keep working on this shi2 h h h 
-		// should linked list all the lines either
-	}
-}
+// 	i = -1;
+// 	while (s[++i])
+// 	{
+// 		if (s[i] == '\n' && is_map(s + i + 1))
+// 			break ;
+// 		if (s[i] == '\t')
+// 			return (true);
+// 	}
+// 	i = 0;
+// 	while (s[i])
+// 	{
+// 		// should keep working on this shi2 h h h 
+// 		// should linked list all the lines either
+// 	}
+// }
 
 static
 bool	half1_validity(t_data *data, t_check *c)
@@ -92,7 +92,7 @@ void	content_parse(t_data *data)
 			data -> c_path = line2path(s[i]);
 		}
 	}
-	printf("%d\n", data->ea_path[0]);
+	// printf("%d\n", data->ea_path[0]);
 	if (!half1_validity(data, &c))
 		ft_error(MAP_ERR, MAP_STT);
 }
@@ -111,14 +111,16 @@ char	**get_map(t_data *data)
 	while (str)
 	{
 		buff = ft_strjoin(buff, str);
+		line2list(&data->lines, str);
 		'M' && (free(str), str = NULL);
 		str = get_next_line(data->map_fd);
 		if (!str)
 			break ;
 	}
 	s = ft_split(buff, '\n');
-	if (ft_preprocess(buff))
-		ft_error(MAP_ERR, MAP_STT);
+	printf("%s\n", data->lines->s);
+	// if (ft_preprocess(buff))
+	// 	ft_error(MAP_ERR, MAP_STT);
 	return (free(buff), close(data->map_fd),s);
 }
 

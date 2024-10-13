@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/13 17:32:12 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/13 20:07:27 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,9 @@ char	*get_next_line(int fd);
 typedef	struct		s_data
 {
 	char			*title;
-	// boolean map things
 	int				map_fd;
+	t_line			*lines;
+	// boolean map things
 	char			**map;
 	// 1st half of the map
 	char			**config;
@@ -116,6 +117,7 @@ bool	ft_isdigit(char c);
 bool	ft_isspace(char c);
 // map parsing bruh 
 char	*line2path(char *s);
+void	line2list(t_line **list, char *s);
 char	*skip(char *s);
 unsigned 
 int		rgbshifter(char *s, int level);

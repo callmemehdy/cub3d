@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:33:26 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/13 18:23:06 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/13 20:18:32 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,21 @@ void	line2list(t_line **list, char *s)
 
 	node = NULL;
 	if (!list)
+	{
+		node = malloc(sizeof(t_line));
+		if (!node)
+			ft_error(ALLOC_ERR, ALLOC_STT);
+		node -> s = ft_strdup(s);
+		node -> next = NULL;
+		list = &node; 
 		return ;
+	}
 	else
 	{
 		node = ft_malloc(sizeof(t_line));
 		if (!node)
 			ft_error(ALLOC_ERR, ALLOC_STT);
 		node -> s = ft_strdup(s);
-		if (!node -> s)
-			return ;
 		node -> next = *list;
 		*list = node;
 	}
