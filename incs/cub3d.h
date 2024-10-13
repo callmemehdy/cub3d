@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/12 15:54:30 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/13 17:32:12 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,21 @@
 # define F	"F"
 # define C	"C"
 
-typedef	uint8_t	byte_t;
+typedef	unsigned char	byte_t;
 
-# define __
+// # define __
 
 typedef struct s_addr
 {
 	void			*addr;
 	struct s_addr	*next;
 }				t_addr;
+
+typedef	struct s_line
+{
+	char			*s;
+	struct s_line	*next;
+}				t_line;
 
 // memory management shit ...
 void	ft_free(void *add);
