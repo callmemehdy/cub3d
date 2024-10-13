@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:33:26 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/13 20:18:32 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/13 21:21:56 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,13 @@ void	line2list(t_line **list, char *s)
 		node -> next = *list;
 		*list = node;
 	}
+}
+
+
+void	print_map(t_line *lines)
+{
+	if (!lines)
+		return ;
+	print_map(lines->next);
+	printf("%s", lines->s);
 }

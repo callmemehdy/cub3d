@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/13 20:17:00 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/13 21:22:31 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	content_parse(t_data *data)
 	if (!half1_validity(data, &c))
 		ft_error(MAP_ERR, MAP_STT);
 }
-
+void	print_map(t_line *lines);
 static
 char	**get_map(t_data *data)
 {
@@ -118,8 +118,8 @@ char	**get_map(t_data *data)
 			break ;
 	}
 	s = ft_split(buff, '\n');
-	printf("%s\n", data->lines->s);
-	// if (ft_preprocess(buff))
+	print_map(data->lines);
+	// if (ft_preprocess(buff))a
 	// 	ft_error(MAP_ERR, MAP_STT);
 	return (free(buff), close(data->map_fd),s);
 }
