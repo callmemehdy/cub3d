@@ -1,17 +1,17 @@
 OS		=	$(shell uname)
-ifeq ($(OS), Darwin)
-	MLXLIB	=	blanmac
-else
-	MLXLIB	=	blanlinux
-endif
-
+			ifeq ($(OS), Darwin)
+				MLXLIB	=	blanmac
+			else
+				MLXLIB	=	blanlinux
+			endif
+CMP		=	cc
 FILES	=	main.c ft_free.c malloc.c get_next_line.c \
 			get_next_line_utils.c ft_split.c ft_utils.c\
 			map_check.c map_check_2.c
 SRCS	=	$(addprefix srcs/, $(FILES))
 OBJS	=	$(addprefix objs/, $(FILES:.c=.o))
 NAME	=	cub3D
-CFLAGS	=	-Iincs -Wall -Wextra -Werror
+CFLAGS	=	-g3 -fsanitize=address -Iincs -Wall -Wextra -Werror 
 
 # print:
 # 	echo $(MLXLIB)
@@ -22,11 +22,11 @@ ultimate: all clean
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-	cc $(filter-out -Iincs, $(CFLAGS)) $(OBJS) -o $@
+	$(CMP) $(filter-out -Iincs -g3, $(CFLAGS)) $(OBJS) -o $@
 
 objs/%.o:	srcs/%.c
 	mkdir -p objs
-	cc -c $(CFLAGS) $< -o $@ -MMD
+	$(CMP) -c $(CFLAGS) $< -o $@ -MMD
 
 clean:
 	rm -rf $(OBJS)

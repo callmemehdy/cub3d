@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/13 22:27:07 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:10:30 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 bool	ft_preprocess(t_line *lines)
 {
-	// 
+	while (lines && !is_map(lines->s))
+		lines = lines->next;
+	while (lines && onlynl(lines->s))
+		lines = lines->next;
 	while (lines)
 	{
-		if (is_map(lines->s))
-			break ;
+		if (onlynl(lines->s))
+			return (false);
 		lines = lines->next;
 	}
+	return (true); 
 }
 
 static
@@ -87,7 +91,6 @@ void	content_parse(t_data *data)
 	if (!half1_validity(data, &c))
 		ft_error(MAP_ERR, MAP_STT);
 }
-void	print_map(t_line *lines);
 static
 char	**get_map(t_data *data)
 {
@@ -109,8 +112,8 @@ char	**get_map(t_data *data)
 			break ;
 	}
 	s = ft_split(buff, '\n');
-	// if (ft_preprocess(buff))
-	// 	ft_error(MAP_ERR, MAP_STT);
+	if (!ft_preprocess(data->lines))
+		ft_error(MAP_ERR, MAP_STT);
 	return (free(buff), close(data->map_fd),s);
 }
 

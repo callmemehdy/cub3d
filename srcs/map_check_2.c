@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:33:26 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/13 21:21:56 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:07:19 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,28 @@ bool is_map(char *s)
 	int		i;
 
 	i = -1;
-	while (s[++i] && s[i] != '\n')
-		if (s[i] != ' ' && s[i] != '1')
+	if (!s)
+		return (true);
+	while (s[++i] /* && s[i] != '\n'*/)
+		if (s[i] != ' ' && s[i] != '1' && s[i] != '\n')
 			return (false);
+	return (true);
+}
+
+bool	onlynl(char *s)
+{
+	int		i;
+
+	i = -1;
+	if (!s)
+		return (true);
+	while (s[++i])
+	{
+		if (s[i] == '\n' || s[i] == ' ')
+			continue ;
+		else
+			return (false);
+	}
 	return (true);
 }
 
@@ -30,6 +49,8 @@ void	ft_sep(t_data *data)
 
 	i = -1;
 	s = data -> map;
+	if (!s)
+		return ;
 	while (!is_map(s[++i]))
 	{}
 	data -> config = data -> map;
@@ -41,34 +62,26 @@ void	ft_sep(t_data *data)
 void	line2list(t_line **list, char *s)
 {
 	t_line *node;
+	t_line *tmp;
 
-	node = NULL;
 	if (!list)
+		return ;
+	node = malloc(sizeof(t_line));
+	if (!node)
+		ft_error(ALLOC_ERR, ALLOC_STT);
+	if (list && !*list)
 	{
-		node = malloc(sizeof(t_line));
-		if (!node)
-			ft_error(ALLOC_ERR, ALLOC_STT);
 		node -> s = ft_strdup(s);
 		node -> next = NULL;
-		list = &node; 
-		return ;
+		*list = node; 
 	}
-	else
+	else if (list)
 	{
-		node = ft_malloc(sizeof(t_line));
-		if (!node)
-			ft_error(ALLOC_ERR, ALLOC_STT);
+		tmp = *list;
 		node -> s = ft_strdup(s);
-		node -> next = *list;
-		*list = node;
+		node -> next = NULL;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = node;
 	}
-}
-
-
-void	print_map(t_line *lines)
-{
-	if (!lines)
-		return ;
-	print_map(lines->next);
-	printf("%s", lines->s);
 }

@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/13 20:07:27 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:38:26 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ bool	ft_isspace(char c);
 // map parsing bruh 
 char	*line2path(char *s);
 void	line2list(t_line **list, char *s);
+bool	onlynl(char *s);
 char	*skip(char *s);
 unsigned 
 int		rgbshifter(char *s, int level);
