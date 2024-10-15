@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:12:11 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/12 16:02:19 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:56:38 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,10 @@ int	rgbshifter(char *s, int level)
 	while (*s && *s >= '0' && *s <= '9')
 		s++;
 	s = skip(s);
-	*s == ',' && (s++); 
+	if (*s != ',' && level > 1)
+		ft_error(MAP_ERR, MAP_STT);
+	if ((*s != ' ' && *s != 0 && *s != 10) && level == 1)
+		ft_error(MAP_ERR, MAP_STT);
+	*s == ',' && (s++); // here 
 	return  ((rgbshifter(s, level - 1) << 8) | rgb);
 }

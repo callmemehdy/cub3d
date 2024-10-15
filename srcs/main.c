@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/15 18:21:29 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:48:31 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 			  if its more than 1 error if zero leads to a space error if 
 			  the player can go to a space error ,,, etc
 			> check for an outsider string with the config ,,,
+			> rgb values must be seperated by commas
 */
 
 void	ft_error(char *message, int ex_stt)
