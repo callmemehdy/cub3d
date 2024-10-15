@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:33:26 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/15 17:07:19 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:55:24 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ bool is_map(char *s)
 	if (!s)
 		return (true);
 	while (s[++i] /* && s[i] != '\n'*/)
+	{
+		if (s[i] == '\t')
+			ft_error(MAP_ERR, MAP_STT);
 		if (s[i] != ' ' && s[i] != '1' && s[i] != '\n')
 			return (false);
+	}
 	return (true);
 }
 
