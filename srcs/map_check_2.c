@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:33:26 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/15 18:10:42 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:33:55 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ bool	_edgelines(char *s)
 	if (!s)
 		return (false);
 	s -= 1;
-	while (*(++s))
+	while (*(++s) && *s != 10)
 	{
-		if (*s == '1' || *s == ' ' || *s == 10)
+		if (*s == '1' || *s == ' ')
 			continue ;
 		else
 			return (false);
@@ -64,12 +64,12 @@ void	ft_sep(t_data *data)
 	char	**s;
 	int		i;
 
-	i = -1;
+	i = 0;
 	s = data -> map;
 	if (!s)
 		return ;
-	while (!is_map(s[++i]))
-	{}
+	while (s[i] && !is_map(s[i]))
+		i++;
 	data -> config = data -> map;
 	data -> map = data -> map + i;
 	data -> confsize = i;
@@ -83,7 +83,7 @@ void	line2list(t_line **list, char *s)
 
 	if (!list)
 		return ;
-	node = malloc(sizeof(t_line));
+	node = ft_malloc(sizeof(t_line));
 	if (!node)
 		ft_error(ALLOC_ERR, ALLOC_STT);
 	if (list && !*list)
@@ -100,5 +100,18 @@ void	line2list(t_line **list, char *s)
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = node;
+	}
+}
+
+void	free_lines(t_line *lines)
+{
+	t_line *tmp;
+
+	while (lines)
+	{
+		tmp = lines;
+		lines = lines->next;
+		ft_free(tmp->s);
+		ft_free(tmp);
 	}
 }

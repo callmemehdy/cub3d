@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/15 18:15:59 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:35:45 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,10 @@ bool	ft_preprocess(t_line *lines)
 		lines = lines->next;
 	while (lines && onlynl(lines->s))
 		lines = lines->next;
-	if (lines && !_edgelines(lines->s))
-		return (false);
 	while (lines)
 	{
 		if (onlynl(lines->s))
 			return (false);
-		if (!lines->next)
-			return (_edgelines(lines->s));
 		lines = lines->next;
 	}
 	return (true); 
@@ -90,6 +86,8 @@ void	content_parse(t_data *data)
 			data -> crgb = rgbshifter(skip(s[i]), 3);
 			data -> c_path = line2path(s[i]);
 		}
+		else
+			ft_error(MAP_ERR, MAP_STT);
 	}
 	// printf("%d\n", data->ea_path[0]);
 	if (!half1_validity(data, &c))
@@ -118,6 +116,7 @@ char	**get_map(t_data *data)
 	s = ft_split(buff, '\n');
 	if (!ft_preprocess(data->lines))
 		ft_error(MAP_ERR, MAP_STT);
+	'L' && (free_lines(data->lines), data->lines = 0);
 	return (free(buff), close(data->map_fd),s);
 }
 
