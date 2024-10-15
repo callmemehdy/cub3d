@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:33:26 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/15 17:57:30 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:10:42 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,21 @@ bool	onlynl(char *s)
 	while (s[++i])
 	{
 		if (s[i] == '\n' || s[i] == ' ')
+			continue ;
+		else
+			return (false);
+	}
+	return (true);
+}
+
+bool	_edgelines(char *s)
+{
+	if (!s)
+		return (false);
+	s -= 1;
+	while (*(++s))
+	{
+		if (*s == '1' || *s == ' ' || *s == 10)
 			continue ;
 		else
 			return (false);
