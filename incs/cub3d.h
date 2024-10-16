@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/16 15:47:54 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:54:36 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_error(char *message, int ex_stt);
 bool	ft_isdigit(char c);
 bool	ft_isspace(char c);
+size_t	ft_strlen(char *s);
 // map parsing utils too
 char	*line2path(char *s);
 void	line2list(t_line **list, char *s);

@@ -6,11 +6,23 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:12:11 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/16 15:27:56 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:54:08 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+size_t	ft_strlen(char *s)
+{
+	size_t	len;
+
+	if (!s)
+		return (0x0);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}
 
 void	ft_bzero(void *buffer, size_t n)
 {
