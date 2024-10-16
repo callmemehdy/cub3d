@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/15 19:36:44 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:09:11 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ bool	ft_preprocess(t_line *lines)
 }
 
 static
-bool	half1_validity(t_data *data, t_check *c)
+bool	info_validity(t_data *data, t_check *c)
 {
 	int		boolean;
 	char	*s;
 	int		i;
 
  	'H' && (s = data -> c_path, i = 0x0);
-	boolean = c->c_c ^ 1 + c->ea_c ^ 1 + c->no_c ^ 1; // the xor sum must be zero 
+	boolean = c->c_c ^ 1 + c->ea_c ^ 1 + c->no_c ^ 1;
 	boolean += c->so_c ^ 1 + c->we_c ^ 1 + c->f_c ^ 1;
 	while (*(s + i))
 	{
@@ -58,40 +58,48 @@ bool	half1_validity(t_data *data, t_check *c)
 }
 
 static
+void check_line(t_data *data, char *line, t_check *c)
+{
+	char *parsed;
+	
+	parsed = skip(line);
+	if (!ft_strncmp(parsed, EA, 2) && ++c->ea_c)
+		data->ea_path = line2path(line);
+	else if (!ft_strncmp(parsed, WE, 2) && ++c->we_c)
+		data->we_path = line2path(line);
+	else if (!ft_strncmp(parsed, SO, 2) && ++c->so_c)
+		data->so_path = line2path(line);
+	else if (!ft_strncmp(parsed, NO, 2) && ++c->no_c)
+		data->no_path = line2path(line);
+	else if (!ft_strncmp(parsed, F, 1) && ++c->f_c)
+	{
+		data -> f_path = line2path(line);
+		data -> frgb = rgbshifter(parsed, 3);
+	}
+	else if (!ft_strncmp(parsed, C, 1) && ++c->c_c)
+	{
+		data -> c_path = line2path(line);
+		data -> crgb = rgbshifter(parsed, 3);
+	}
+	else
+		ft_error(MAP_ERR, MAP_STT);
+}
+
+static
 void	content_parse(t_data *data)
 {
-	t_check		c;
 	char		**s;
 	int			i;
+	t_check		c;
 
 	c = (t_check){0};
 	'M' && (s = data -> config, i = -1);
 	while (*(s + ++i) && i < data -> confsize)
-	{
-		if (!ft_strncmp(skip(s[i]), EA, 2) && ++c.ea_c)
-			 data -> ea_path = line2path(s[i]);
-		else if (!ft_strncmp(skip(s[i]), WE, 2) && ++c.we_c)
-			data -> we_path = line2path(s[i]);
-		else if (!ft_strncmp(skip(s[i]), SO, 2) && ++c.so_c)
-			data -> so_path = line2path(s[i]);
-		else if (!ft_strncmp(skip(s[i]), NO, 2) && ++c.no_c)
-			data -> no_path = line2path(s[i]);
-		else if (!ft_strncmp(skip(s[i]), F, 1) && ++c.f_c)
-		{
-			data -> frgb = rgbshifter(skip(s[i]), 3);
-			data -> f_path = line2path(s[i]);
-		}
-		else if (!ft_strncmp(skip(s[i]), C, 1) && ++c.c_c)
-		{
-			data -> crgb = rgbshifter(skip(s[i]), 3);
-			data -> c_path = line2path(s[i]);
-		}
-		else
-			ft_error(MAP_ERR, MAP_STT);
-	}
-	if (!half1_validity(data, &c))
+		check_line(data, s[i], &c);
+	if (!info_validity(data, &c))
 		ft_error(MAP_ERR, MAP_STT);
 }
+
 static
 char	**get_map(t_data *data)
 {
