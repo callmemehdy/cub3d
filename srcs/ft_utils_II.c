@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:33:26 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/16 15:34:33 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:47:54 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	_edgelines(char *s)
 	return (true);
 }
 
-void	ft_sep(t_data *data)
+void	slicemap(t_data *data)
 {
 	char	**s;
 	int		i;
@@ -92,7 +92,7 @@ int	rgbshifter(char *s, int level)
 	return ((rgbshifter(s, level - 1) << 8) | rgb);
 }
 
-byte_t	atob(char *s)
+t_byte	atob(char *s)
 {
 	int		i;
 	int		res;
@@ -104,5 +104,5 @@ byte_t	atob(char *s)
 		res = (res * 10) + (s[i] - 48);
 	if (res > UCHAR_MAX)
 		ft_error(MAP_ERR, MAP_STT);
-	return ((byte_t)res);
+	return ((t_byte)res);
 }

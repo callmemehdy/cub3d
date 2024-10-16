@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/16 15:36:03 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:47:54 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define F	"F"
 # define C	"C"
 
-typedef	unsigned char	byte_t;
+typedef	unsigned char	t_byte;
 
 // # define __
 
@@ -115,7 +115,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_error(char *message, int ex_stt);
 bool	ft_isdigit(char c);
 bool	ft_isspace(char c);
-// map parsing bruh 
+// map parsing utils too
 char	*line2path(char *s);
 void	line2list(t_line **list, char *s);
 bool	onlynl(char *s);
@@ -123,10 +123,11 @@ char	*skip(char *s);
 bool	_edgelines(char *s);
 void	free_lines(t_line *lines);
 bool	ft_preprocess(t_line *lines);
-byte_t	atob(char *s);
+t_byte	atob(char *s);
 unsigned 
 int		rgbshifter(char *s, int level);
 t_data	*load_and_parse(char *game_name, char *map_path);
-void	ft_sep(t_data *data);
+void	slicemap(t_data *data);
 bool	is_map(char *s);
+
 #endif

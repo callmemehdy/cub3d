@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/16 15:33:27 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:06:10 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ void	content_parse(t_data *data)
 		check_line(data, s[i], &c);
 	if (!info_validity(data, &c))
 		ft_error(MAP_ERR, MAP_STT);
+	if (!bool_map(data))
+		ft_error(MAP_ERR, MAP_STT);
+	// will check the bool map 
 }
 
 static
@@ -129,7 +132,7 @@ t_data	*load_and_parse(char *game_name, char *map_path)
 	if (!map)
 		ft_error(MAP_ERR, MAP_STT);
 	data->map = map;
-	ft_sep(data);
+	slicemap(data);
 	content_parse(data);
 	return (data);
 }
