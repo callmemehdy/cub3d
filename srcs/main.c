@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/15 19:48:31 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:31:39 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ int	main(int ac, char **av)
 	ft_free_all();
 	(void)data;
 	(void)av;
-	// printf("%d\n", ft_strncmp("EA", "EA 11111111111", 2));
 	return (0);
 }

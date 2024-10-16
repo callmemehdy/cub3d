@@ -6,26 +6,11 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/16 15:09:11 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:33:27 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-bool	ft_preprocess(t_line *lines)
-{
-	while (lines && !is_map(lines->s))
-		lines = lines->next;
-	while (lines && onlynl(lines->s))
-		lines = lines->next;
-	while (lines)
-	{
-		if (onlynl(lines->s))
-			return (false);
-		lines = lines->next;
-	}
-	return (true); 
-}
 
 static
 bool	info_validity(t_data *data, t_check *c)
@@ -34,7 +19,7 @@ bool	info_validity(t_data *data, t_check *c)
 	char	*s;
 	int		i;
 
- 	'H' && (s = data -> c_path, i = 0x0);
+	'H' && (s = data -> c_path, i = 0x0);
 	boolean = c->c_c ^ 1 + c->ea_c ^ 1 + c->no_c ^ 1;
 	boolean += c->so_c ^ 1 + c->we_c ^ 1 + c->f_c ^ 1;
 	while (*(s + i))
@@ -45,7 +30,7 @@ bool	info_validity(t_data *data, t_check *c)
 		else
 			i++;
 	}
- 	'H' && (s = data -> f_path, i = 0x0);
+	'H' && (s = data -> f_path, i = 0x0);
 	while (*(s + i))
 	{
 		if (ft_isdigit(s[i]) && ++c->fields)
@@ -58,10 +43,10 @@ bool	info_validity(t_data *data, t_check *c)
 }
 
 static
-void check_line(t_data *data, char *line, t_check *c)
+void	check_line(t_data *data, char *line, t_check *c)
 {
-	char *parsed;
-	
+	char	*parsed;
+
 	parsed = skip(line);
 	if (!ft_strncmp(parsed, EA, 2) && ++c->ea_c)
 		data->ea_path = line2path(line);
@@ -106,7 +91,7 @@ char	**get_map(t_data *data)
 	char	**s;
 	char	*str;
 	char	*buff;
-	
+
 	'M' && (buff = NULL, s = NULL);
 	str = get_next_line(data->map_fd);
 	if (!str)
@@ -124,7 +109,7 @@ char	**get_map(t_data *data)
 	if (!ft_preprocess(data->lines))
 		ft_error(MAP_ERR, MAP_STT);
 	'L' && (free_lines(data->lines), data->lines = 0);
-	return (free(buff), close(data->map_fd),s);
+	return (free(buff), close(data->map_fd), s);
 }
 
 t_data	*load_and_parse(char *game_name, char *map_path)

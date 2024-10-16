@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/15 19:34:08 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:36:03 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ bool	onlynl(char *s);
 char	*skip(char *s);
 bool	_edgelines(char *s);
 void	free_lines(t_line *lines);
+bool	ft_preprocess(t_line *lines);
+byte_t	atob(char *s);
 unsigned 
 int		rgbshifter(char *s, int level);
 t_data	*load_and_parse(char *game_name, char *map_path);

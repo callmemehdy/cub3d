@@ -1,48 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check_2.c                                      :+:      :+:    :+:   */
+/*   ft_utils_II.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:33:26 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/16 15:03:02 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:34:33 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-bool is_map(char *s)
-{
-	int		i;
-
-	i = -1;
-	if (!s)
-		return (true);
-	while (s[++i] && s[i] != '\n')
-	{
-		if (s[i] != ' ' && s[i] != '1')
-			return (false);
-	}
-	return (true);
-}
-
-bool	onlynl(char *s)
-{
-	int		i;
-
-	i = -1;
-	if (!s)
-		return (true);
-	while (s[++i])
-	{
-		if (s[i] == '\n' || s[i] == ' ')
-			continue ;
-		else
-			return (false);
-	}
-	return (true);
-}
 
 bool	_edgelines(char *s)
 {
@@ -75,11 +43,10 @@ void	ft_sep(t_data *data)
 	data -> confsize = i;
 }
 
-
 void	line2list(t_line **list, char *s)
 {
-	t_line *node;
-	t_line *tmp;
+	t_line		*node;
+	t_line		*tmp;
 
 	if (!list)
 		return ;
@@ -90,7 +57,7 @@ void	line2list(t_line **list, char *s)
 	{
 		node -> s = ft_strdup(s);
 		node -> next = NULL;
-		*list = node; 
+		*list = node;
 	}
 	else if (list)
 	{
@@ -103,15 +70,39 @@ void	line2list(t_line **list, char *s)
 	}
 }
 
-void	free_lines(t_line *lines)
+unsigned
+int	rgbshifter(char *s, int level)
 {
-	t_line *tmp;
+	unsigned int	rgb;
 
-	while (lines)
-	{
-		tmp = lines;
-		lines = lines->next;
-		ft_free(tmp->s);
-		ft_free(tmp);
-	}
+	if (!s || !*s || !level)
+		return (0);
+	while (*s && *s >= 'A' && *s <= 'Z')
+		s++;
+	's' && (rgb = 0, s = skip(s));
+	rgb = atob(s);
+	while (*s && *s >= '0' && *s <= '9')
+		s++;
+	s = skip(s);
+	if (*s != ',' && level > 1)
+		ft_error(MAP_ERR, MAP_STT);
+	if ((*s != ' ' && *s != 0 && *s != 10) && level == 1)
+		ft_error(MAP_ERR, MAP_STT);
+	*s == ',' && (s++);
+	return ((rgbshifter(s, level - 1) << 8) | rgb);
+}
+
+byte_t	atob(char *s)
+{
+	int		i;
+	int		res;
+
+	'M' && (res = 0, i = -1);
+	if (!(*s >= '0' && *s <= '9'))
+		ft_error(MAP_ERR, MAP_STT);
+	while (s[++i] >= '0' && s[i] <= '9')
+		res = (res * 10) + (s[i] - 48);
+	if (res > UCHAR_MAX)
+		ft_error(MAP_ERR, MAP_STT);
+	return ((byte_t)res);
 }

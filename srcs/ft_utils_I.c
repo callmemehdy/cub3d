@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_utils_I.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:12:11 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/15 20:01:04 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:27:56 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_bzero(void *buffer, size_t n)
 {
 	size_t			i;
 	unsigned char	*p;
-
 
 	i = 0;
 	p = (unsigned char *)buffer;
@@ -46,7 +45,7 @@ char	*ft_strdup(char *s)
 	while (0 <= len)
 	{
 		p[len] = s[len];
-		len--;	
+		len--;
 	}
 	return (p);
 }
@@ -63,65 +62,9 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	while (--n && *csts1 && *csts2)
 	{
 		if (*csts1 != *csts2)
-			break;
+			break ;
 		csts1++;
 		csts2++;
 	}
 	return ((int)(*csts1 - *csts2));
-}
-
-// make the real line2path _|[-_-]|_ i see u
-char	*line2path(char *s)
-{
-	while (*s && ft_isspace(*s))
-		s++;
-	while (*s && !ft_isspace(*s))
-		s++;
-	while (*s && ft_isspace(*s))
-		s++;
-	return (ft_strdup(s));
-}
-
-char	*skip(char *s)
-{
-	while (*s && ft_isspace(*s))
-		s++;
-	return (s);
-}
-
-byte_t	atob(char *s)
-{
-	int		i;
-	int		res;
-
-	'M' && (res = 0, i = -1);
-	if (!(*s >= '0' && *s <= '9'))
-		ft_error(MAP_ERR, MAP_STT);
-	while (s[++i] >= '0' && s[i] <= '9')
-		res = (res * 10) + (s[i] - 48);
-	if (res > UCHAR_MAX)
-		ft_error(MAP_ERR, MAP_STT);
-	return ((byte_t)res);
-}
-
-unsigned
-int	rgbshifter(char *s, int level)
-{
-	unsigned int rgb;
-
-	if (!s || !*s || !level)
-		return (0);
-	while (*s && *s >= 'A' && *s <= 'Z')
-		s++;
-	's' && (rgb = 0, s = skip(s)); 
-	rgb = atob(s);
-	while (*s && *s >= '0' && *s <= '9')
-		s++;
-	s = skip(s);
-	if (*s != ',' && level > 1)
-		ft_error(MAP_ERR, MAP_STT);
-	if ((*s != ' ' && *s != 0 && *s != 10) && level == 1)
-		ft_error(MAP_ERR, MAP_STT);
-	*s == ',' && (s++); // here 
-	return  ((rgbshifter(s, level - 1) << 8) | rgb);
 }
