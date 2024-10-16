@@ -7,7 +7,8 @@ OS		=	$(shell uname)
 CMP		=	cc
 FILES	=	main.c ft_free.c malloc.c get_next_line.c \
 			get_next_line_utils.c ft_split.c ft_utils_I.c\
-			map_check.c ft_utils_II.c ft_utils_III.c
+			map_check.c ft_utils_II.c ft_utils_III.c bool_map.c \
+
 SRCS	=	$(addprefix srcs/, $(FILES))
 OBJS	=	$(addprefix objs/, $(FILES:.c=.o))
 NAME	=	cub3D
