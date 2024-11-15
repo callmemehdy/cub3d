@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:33:26 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/16 15:47:54 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/11/15 22:22:59 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,11 @@ t_byte	atob(char *s)
 	'M' && (res = 0, i = -1);
 	if (!(*s >= '0' && *s <= '9'))
 		ft_error(MAP_ERR, MAP_STT);
-	while (s[++i] >= '0' && s[i] <= '9')
+	while (s[++i] >= '0' && s[i] <= '9' && s[i])
+	{
 		res = (res * 10) + (s[i] - 48);
-	if (res > UCHAR_MAX)
-		ft_error(MAP_ERR, MAP_STT);
+		if (res > UCHAR_MAX)
+			ft_error(MAP_ERR, MAP_STT);
+	}
 	return ((t_byte)res);
 }
