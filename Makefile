@@ -12,7 +12,7 @@ FILES	=	main.c ft_free.c malloc.c get_next_line.c \
 SRCS	=	$(addprefix srcs/, $(FILES))
 OBJS	=	$(addprefix objs/, $(FILES:.c=.o))
 NAME	=	cub3D
-CFLAGS	=	-g3 -fsanitize=address -Iincs -Wall -Wextra -Werror 
+CFLAGS	=	-g3 -fsanitize=address,undefined -Iincs -Wall -Wextra -Werror 
 
 ultimate: all clean
 	clear
