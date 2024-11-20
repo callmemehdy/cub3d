@@ -6,11 +6,11 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/16 15:31:39 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:30:14 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <cub3d.h>
 
 /*
 	◦ The map must be closed/surrounded by walls, if not the program must return
@@ -37,16 +37,23 @@
 void	ft_error(char *message, int ex_stt)
 {
 	ft_free_all();
-	printf("Error\n");
-	message && (printf("%s\n", message));
+	write(2, "Error\n", 6);
+	message && (write(2, message, ft_strlen(message)));
+	message && (write(2, "\n", 1));
 	exit(ex_stt);
+}
+
+t_data	**get_data(void)
+{
+	static t_data	*data;
+
+	return (&data);
 }
 
 int	main(int ac, char **av)
 {
 	t_data	*data;
 
-	// have to delete the testing rule in makefile
 	if (ac != 2)
 		ft_error(ARG_ERR, ARG_STT);
 	data = load_and_parse(av[0], av[1]);

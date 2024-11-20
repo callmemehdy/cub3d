@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/16 19:10:16 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:28:08 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 // map content errors
 # define MAP_ERR "invalid map content"
-# define MAP_STT 255
+# define MAP_STT 1
 
 // enumslike string
 # define EA "EA"
@@ -46,7 +46,7 @@
 # define F	"F"
 # define C	"C"
 
-typedef	unsigned char	t_byte;
+typedef unsigned char	t_byte;
 
 // # define __
 
@@ -56,32 +56,34 @@ typedef struct s_addr
 	struct s_addr	*next;
 }				t_addr;
 
-typedef	struct s_line
+typedef struct s_line
 {
 	char			*s;
 	struct s_line	*next;
 }				t_line;
 
 // memory management shit ...
-void	ft_free(void *add);
-void	ft_free_all(void);
-void	*ft_malloc(size_t size);
-t_addr	**get_list(void);
-void	destroy_addr(t_addr *list);
-void	delete_node(t_addr **list, void *data);
+void			ft_free(void *add);
+void			ft_free_all(void);
+void			*ft_malloc(size_t size);
+t_addr			**get_list(void);
+void			destroy_addr(t_addr *list);
+void			delete_node(t_addr **list, void *data);
 
 // file handling shit ...
-char	*get_next_line(int fd);
+char			*get_next_line(int fd);
 
 // cubeThings
 
-typedef	struct		s_data
+typedef struct s_data
 {
 	char			*title;
 	int				map_fd;
 	t_line			*lines;
 	// boolean map things
 	char			**map;
+	int				x;			// map width
+	int				y;			// map height
 	// 1st half of the map
 	char			**config;
 	int				confsize;
@@ -96,7 +98,7 @@ typedef	struct		s_data
 	unsigned int	crgb;
 }					t_data;
 
-typedef struct		s_check
+typedef struct s_check
 {
 	int			ea_c;
 	int			we_c;
@@ -105,31 +107,39 @@ typedef struct		s_check
 	int			f_c;
 	int			c_c;
 	int			fields;
-}					t_check;
+}				t_check;
 
 // some useful utils
-char	**ft_split(char const *str, char c);
-void	ft_bzero(void *buffer, size_t n);
-char	*ft_strdup(char *s);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	ft_error(char *message, int ex_stt);
-bool	ft_isdigit(char c);
-bool	ft_isspace(char c);
+char			**ft_split(char const *str, char c);
+void			ft_bzero(void *buffer, size_t n);
+char			*ft_strdup(char *s);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+void			ft_error(char *message, int ex_stt);
+bool			ft_isdigit(char c);
+bool			ft_isspace(char c);
 // size_t	ft_strlen(char *s);
 // map parsing utils too
-char	*line2path(char *s);
-void	line2list(t_line **list, char *s);
-bool	onlynl(char *s);
-char	*skip(char *s);
-bool	_edgelines(char *s);
-void	free_lines(t_line *lines);
-bool	ft_preprocess(t_line *lines);
-t_byte	atob(char *s);
-unsigned 
-int		rgbshifter(char *s, int level);
-t_data	*load_and_parse(char *game_name, char *map_path);
-void	slicemap(t_data *data);
-bool	is_map(char *s);
-bool	bool_map(t_data *data);
+char			*line2path(char *s);
+void			line2list(t_line **list, char *s);
+bool			onlynl(char *s);
+char			*skip(char *s);
+char			*revskip(char *s);
+bool			_edgelines(char *s);
+void			free_lines(t_line *lines);
+bool			ft_preprocess(t_line *lines);
+t_byte			atob(char *s);
+
+unsigned int	rgbshifter(char *s, int level);
+t_data			*load_and_parse(char *game_name, char *map_path);
+void			slicemap(t_data *data);
+bool			is_map(char *s);
+bool			bool_map(t_data *data);
+bool			is_safe(char c, int i, int j);
+bool			is_player(char c);
+bool			outsiders(char c);
+bool			check_char(char **map, int *pl, int i, int j);
+
+// global struct
+t_data			**get_data(void);
 
 #endif

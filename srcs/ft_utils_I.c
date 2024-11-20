@@ -6,11 +6,11 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:12:11 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/16 19:09:55 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:24:42 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <cub3d.h>
 
 void	ft_bzero(void *buffer, size_t n)
 {

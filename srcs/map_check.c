@@ -6,11 +6,11 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/10/16 17:06:10 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:30:47 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <cub3d.h>
 
 static
 bool	info_validity(t_data *data, t_check *c)
@@ -85,7 +85,6 @@ void	content_parse(t_data *data)
 		ft_error(MAP_ERR, MAP_STT);
 	if (!bool_map(data))
 		ft_error(MAP_ERR, MAP_STT);
-	// will check the bool map 
 }
 
 static
@@ -124,6 +123,7 @@ t_data	*load_and_parse(char *game_name, char *map_path)
 	if (!data)
 		ft_error(ALLOC_ERR, ALLOC_STT);
 	*data = (t_data){0};
+	(*get_data()) = data;
 	data->title = game_name;
 	data->map_fd = open(map_path, O_RDONLY);
 	if (data->map_fd < 0)

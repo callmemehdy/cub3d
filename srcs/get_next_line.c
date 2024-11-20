@@ -6,11 +6,11 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 06:08:04 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/10/06 21:25:34 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:25:13 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include <get_next_line.h>
 
 static
 char	*ft_updaterest(char *rest)

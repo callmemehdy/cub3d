@@ -8,19 +8,18 @@ CMP		=	cc
 FILES	=	main.c ft_free.c malloc.c get_next_line.c \
 			get_next_line_utils.c ft_split.c ft_utils_I.c\
 			map_check.c ft_utils_II.c ft_utils_III.c bool_map.c \
+			ft_boolean_exp.c                                    \
 
 SRCS	=	$(addprefix srcs/, $(FILES))
 OBJS	=	$(addprefix objs/, $(FILES:.c=.o))
 NAME	=	cub3D
-CFLAGS	=	-g3 -fsanitize=address,undefined -Iincs -Wall -Wextra -Werror 
+CFLAGS	=	-g3 -fsanitize=address,undefined -Iincs -Wall -Wextra -Werror -O3
 
-ultimate: all clean
-	clear
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-	$(CMP) $(filter-out -Iincs -g3, $(CFLAGS)) $(OBJS) -o $@
+	$(CMP) $(filter-out -Iincs, $(CFLAGS)) $(OBJS) -o $@
 
 objs/%.o:	srcs/%.c
 	mkdir -p objs

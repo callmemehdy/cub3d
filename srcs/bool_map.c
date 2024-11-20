@@ -6,31 +6,30 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:06:41 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/11/18 20:58:58 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:28:20 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <cub3d.h>
 
-
-char	*sp_padding(char *s, size_t maxlen)
+char	*sp_padding(char *s, int maxlen)
 {
 	int			len;
 	char		*buff;
 	int			slen;
 
 	'?' && (len = ft_strlen(s), slen = len);
-	len < (int)maxlen && (len = maxlen--);
+	len < maxlen && (len = maxlen--);
 	if (len == slen)
 		return (s);
 	buff = ft_malloc(sizeof(char) * (len + 1));
 	if (!buff)
 		ft_error(ALLOC_ERR, ALLOC_STT);
-	while ((int)maxlen >= 0)
+	while (maxlen >= 0)
 	{
-		if ((int)maxlen >= slen)
-			buff[maxlen] = 'P';
-		else if ((int)maxlen < slen)
+		if (maxlen >= slen)
+			buff[maxlen] = ' ';
+		else if (maxlen < slen)
 			buff[maxlen] = s[--slen];
 		--maxlen;
 	}
@@ -39,11 +38,11 @@ char	*sp_padding(char *s, size_t maxlen)
 	return (buff);
 }
 
-size_t	longest_line(char **s)
+int	longest_line(char **s)
 {
 	int		i;
-	size_t	maxlen;
-	size_t	len;
+	int		maxlen;
+	int		len;
 
 	if (!s)
 		return (0);
@@ -60,14 +59,41 @@ size_t	longest_line(char **s)
 char	**to_rec(char **s)
 {
 	int		i;
-	size_t	maxlen;
+	int		maxlen;
 
 	i = -1;
 	maxlen = longest_line(s);
+	(*get_data())->x = maxlen;
 	while (s[++i])
-		if (ft_strlen(s[i]) < maxlen)
+		if ((int)ft_strlen(s[i]) < maxlen)
 			s[i] = sp_padding(s[i], maxlen);
+	(*get_data())->y = i;
 	return (s);
+}
+
+bool	element_check(char **map)
+{
+	int		i;
+	int		j;
+	int		pl;
+	int		width;
+
+	'^' && (i = 0, j = 0, pl = 0);
+	width = (*get_data())->x;
+	while (map[i])
+	{
+		j = 0;
+		if (skip(map[i])[0] != '1' || revskip(map[i])[0] != '1')
+			return (1);
+		while (map[i][j])
+		{
+			if (check_char(map, &pl, i, j))
+				return (1);
+			++j;
+		}
+		++i;
+	}
+	return (pl != 1);
 }
 
 bool	bool_map(t_data *data)
@@ -78,8 +104,8 @@ bool	bool_map(t_data *data)
 	'v' && (map = data->map, i = -1);
 	if (!map)
 		return (false);
-	if (!_edgelines(*map))
-		return (false);
 	map = to_rec(map);
+	if (element_check(map))
+		ft_error(MAP_ERR, MAP_STT);
 	return (true);
 }
