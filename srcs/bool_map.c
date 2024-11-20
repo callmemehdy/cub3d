@@ -6,12 +6,13 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:06:41 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/11/20 10:28:20 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:32:32 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
+static
 char	*sp_padding(char *s, int maxlen)
 {
 	int			len;
@@ -38,6 +39,7 @@ char	*sp_padding(char *s, int maxlen)
 	return (buff);
 }
 
+static
 int	longest_line(char **s)
 {
 	int		i;
@@ -56,6 +58,7 @@ int	longest_line(char **s)
 	return (maxlen);
 }
 
+static
 char	**to_rec(char **s)
 {
 	int		i;
@@ -71,6 +74,7 @@ char	**to_rec(char **s)
 	return (s);
 }
 
+static
 bool	element_check(char **map)
 {
 	int		i;

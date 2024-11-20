@@ -6,12 +6,13 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:54:38 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/11/20 10:28:36 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:32:53 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
+static
 size_t	list_size(t_addr *list)
 {
 	size_t	size;
