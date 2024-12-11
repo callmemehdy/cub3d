@@ -1,0 +1,7 @@
+/Users/mel-akar/1337CC/Cub3d/MLX42/CMakeFiles/mlx42.dir
+/Users/mel-akar/1337CC/Cub3d/MLX42/CMakeFiles/edit_cache.dir
+/Users/mel-akar/1337CC/Cub3d/MLX42/CMakeFiles/rebuild_cache.dir
+/Users/mel-akar/1337CC/Cub3d/MLX42/CMakeFiles/list_install_components.dir
+/Users/mel-akar/1337CC/Cub3d/MLX42/CMakeFiles/install.dir
+/Users/mel-akar/1337CC/Cub3d/MLX42/CMakeFiles/install/local.dir
+/Users/mel-akar/1337CC/Cub3d/MLX42/CMakeFiles/install/strip.dir
