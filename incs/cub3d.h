@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/11/20 10:28:08 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/11 14:48:12 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <math.h>
 # include <ctype.h>
 # include "get_next_line.h"
+# include <MLX42.h>
+
 // cli arguments error
 # define ARG_ERR "invalid program input\nUsage: ./cub3d [map's path]"
 # define ARG_STT 42
