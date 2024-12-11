@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+         #
+#    By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2024/12/11 14:51:05 by mel-akar         ###   ########.fr        #
+#    Updated: 2024/12/11 15:25:44 by ael-amma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ $(NAME):	$(OBJS)
 	$(CMP) $(filter-out -Iincs, $(CFLAGS)) $(MLXLIB) $(MLXF) $(OBJS) -o $@
 
 $(MLXLIB):
+	cmake CMakeLists.txt -S MLX42/ -B MLX42/
 	make -C MLX42/
 
 objs/%.o:	srcs/%.c
@@ -39,6 +40,7 @@ clean:
 	rm -rf $(OBJS)
 	rm -rf objs
 	make clean -C MLX42/
+	rm -rf MLX42/cmake_install.cmake MLX42/CMakeCache.txt MLX42/Makefile MLX42/CMakeFiles
 
 fclean: clean
 	rm -rf $(NAME)
