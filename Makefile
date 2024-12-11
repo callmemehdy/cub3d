@@ -1,9 +1,16 @@
-OS		=	$(shell uname)
-			ifeq ($(OS), Darwin)
-				MLXLIB	=	blanmac
-			else
-				MLXLIB	=	blanlinux
-			endif
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
+#    Updated: 2024/12/11 14:45:33 by mel-akar         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+MLXLIB	=	MLX42/libmlx42.a
 CMP		=	cc
 FILES	=	main.c ft_free.c malloc.c get_next_line.c \
 			get_next_line_utils.c ft_split.c ft_utils_I.c\
@@ -13,13 +20,16 @@ FILES	=	main.c ft_free.c malloc.c get_next_line.c \
 SRCS	=	$(addprefix srcs/, $(FILES))
 OBJS	=	$(addprefix objs/, $(FILES:.c=.o))
 NAME	=	cub3D
-CFLAGS	=	-g3 -fsanitize=address,undefined -Iincs -Wall -Wextra -Werror -O3
+CFLAGS	=	-g3 -fsanitize=address,undefined -Iincs -IMLX42/include/MLX42 -Wall -Wextra -Werror -O3
+MLXF	=	-framework Cocoa -framework OpenGL -framework IOKit -lglfw -L/Users/$(shell whoami)/.brew/opt/glfw/lib
 
-
-all:		$(NAME)
+all:		$(MLXLIB) $(NAME)
 
 $(NAME):	$(OBJS)
-	$(CMP) $(filter-out -Iincs, $(CFLAGS)) $(OBJS) -o $@
+	$(CMP) $(filter-out -Iincs, $(CFLAGS)) $(MLXLIB) $(MLXF) $(OBJS) -o $@
+
+$(MLXLIB):
+	make -C MLX42/
 
 objs/%.o:	srcs/%.c
 	mkdir -p objs
@@ -28,6 +38,7 @@ objs/%.o:	srcs/%.c
 clean:
 	rm -rf $(OBJS)
 	rm -rf objs
+	make clean -C MLX42/
 
 fclean: clean
 	rm -rf $(NAME)
