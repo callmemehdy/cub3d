@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/11/20 10:30:14 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:42:19 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		ft_error(ARG_ERR, ARG_STT);
 	data = load_and_parse(av[0], av[1]);
+	game();
 	ft_free_all();
-	(void)data;
-	(void)av;
 	return (0);
 }

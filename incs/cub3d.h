@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/11 14:48:12 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:41:34 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,8 @@ bool			check_char(char **map, int *pl, int i, int j);
 
 // global struct
 t_data			**get_data(void);
+
+// ray casting
+void	game(void);
 
 #endif

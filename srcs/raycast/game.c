@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:53:26 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/12 15:54:03 by ael-amma         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:43:04 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,6 @@
 
 void	game(void)
 {
+	mlx_t *mlx = mlx_init((*get_data())->x * 32, (*get_data())->y * 32, (*get_data())->title, 1);
+	mlx_loop(mlx);
 }
