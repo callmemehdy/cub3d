@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/11/20 10:30:14 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:48:49 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,14 @@ t_data	**get_data(void)
 
 int	main(int ac, char **av)
 {
+	void	*mlx;
 	t_data	*data;
 
 	if (ac != 2)
 		ft_error(ARG_ERR, ARG_STT);
 	data = load_and_parse(av[0], av[1]);
+	mlx = mlx_init(1280, 720, "cub3d", 1);
+	mlx_loop(mlx);
 	ft_free_all();
 	(void)data;
 	(void)av;
