@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/12 16:41:34 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:54:50 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct s_data
 	char			**map;
 	int				x;			// map width
 	int				y;			// map height
+	int				px;			// map width
+	int				py;			// map height
 	// 1st half of the map
 	char			**config;
 	int				confsize;
