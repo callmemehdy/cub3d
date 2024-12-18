@@ -1,22 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 15:35:24 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/18 15:54:30 by ael-amma         ###   ########.fr       */
+/*   Created: 2024/12/18 11:35:32 by ael-amma          #+#    #+#             */
+/*   Updated: 2024/12/18 17:57:26 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	game(void)
+t_rdata	**get_rdata(void)
 {
-	initialize();
-	setup();
-	render_minimap();
-	mlx_image_to_window((*get_rdata())->mlx, (*get_rdata())->img, 0, 0);
-	mlx_loop((*get_rdata())->mlx);
+	static t_rdata	*data;
+
+	return (&data);
+}
+
+void	*salloc(void *ptr)
+{
+	if (!ptr)
+	{
+		ft_free_all();
+		perror("Error");
+		exit(1);
+	}
+	return (ptr);
+}
+
+void	free_rdata(t_rdata *data)
+{
+	mlx_close_window(data->mlx);
+	mlx_terminate(data->mlx);
+	free(data->mlx);
 }

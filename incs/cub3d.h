@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/11 14:48:12 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:00:13 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@
 # define NO "NO"
 # define F	"F"
 # define C	"C"
+
+// raycast
+
+//	Size of tiles
+# define TILE_SIZE	32
+
+//	Size of tiles multiplied by the scale factor
+# define SIZE_SCALE	TILE_SIZE * 0.5
 
 typedef unsigned char	t_byte;
 
@@ -111,6 +119,38 @@ typedef struct s_check
 	int			fields;
 }				t_check;
 
+//	*********raycast*********
+
+typedef struct s_rect
+{
+	int	x;
+	int	y;
+	int width;
+	int height;
+}				t_rect;
+
+typedef struct s_player
+{
+	float	x;
+	float	y;
+	float	width;
+	float	height;
+	float	rotation;
+	float	walkspeed;
+	float	turnspeed;
+	int		turndir;
+	int		walkdir;
+}				t_player;
+
+typedef struct s_rdata
+{
+	void		*mlx;
+	mlx_image_t	*img;
+	t_player	*player;
+	int			width;
+	int			height;
+}				t_rdata;
+
 // some useful utils
 char			**ft_split(char const *str, char c);
 void			ft_bzero(void *buffer, size_t n);
@@ -143,5 +183,25 @@ bool			check_char(char **map, int *pl, int i, int j);
 
 // global struct
 t_data			**get_data(void);
+
+//	*********raycast*********
+
+// game.c
+void	game();
+
+// utils.c
+void	drawrect(mlx_image_t *img, t_rect tile, uint32_t color);
+
+// cleaner.c
+t_rdata	**get_rdata(void);
+void	*salloc(void *ptr);
+void	free_rdata(t_rdata *data);
+
+// render.c
+void	render_minimap(void);
+
+// setup.c
+void	initialize(void);
+void	setup(void);
 
 #endif

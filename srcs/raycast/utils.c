@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 15:35:24 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/18 15:54:30 by ael-amma         ###   ########.fr       */
+/*   Created: 2024/12/18 11:34:54 by ael-amma          #+#    #+#             */
+/*   Updated: 2024/12/18 14:26:47 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	game(void)
+void	drawrect(mlx_image_t *img, t_rect tile, uint32_t color)
 {
-	initialize();
-	setup();
-	render_minimap();
-	mlx_image_to_window((*get_rdata())->mlx, (*get_rdata())->img, 0, 0);
-	mlx_loop((*get_rdata())->mlx);
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < tile.height)
+	{
+		j = -1;
+		while (++j < tile.width)
+			mlx_put_pixel(img, tile.x + j, tile.y + i, color);
+	}
 }
