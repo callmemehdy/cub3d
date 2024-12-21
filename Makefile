@@ -45,6 +45,7 @@ $(NAME):	$(OBJS)
 	$(CMP) $(filter-out -Iincs, $(CFLAGS)) $(MLXLIB) $(MLXF) $(OBJS) -o $@
 
 $(MLXLIB):
+	export CXX=/usr/bin/clang
 	cmake CMakeLists.txt -S MLX42/ -B MLX42/
 	make -C MLX42/
 
