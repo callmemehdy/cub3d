@@ -12,6 +12,8 @@
 
 MLXLIB	=	MLX42/libmlx42.a
 
+GLFWLIB	=	# gotta make some changes to build this lib as mlx ... 
+
 CMP		=	cc
 
 PFILES	=	ft_free.c malloc.c get_next_line.c					\
