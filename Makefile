@@ -10,6 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
+
 MLXLIB	=	MLX42/libmlx42.a
 
 GLFWLIB	=	# gotta make some changes to build this lib as mlx ... 

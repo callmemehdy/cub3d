@@ -37,6 +37,7 @@ void	put_square(mlx_image_t	*img, int x, int y, int tile_size)
 		}
 		y++;
 	}
+	return ;
 }
 
 void	game(void)
