@@ -35,14 +35,18 @@ OBJS	+=	$(addprefix objs/, $(RFILES:.c=.o))
 
 NAME	=	cub3D
 
-CFLAGS	=	-g3 -fsanitize=address,undefined -Iincs -IMLX42/include/MLX42 -Wall -Wextra -Werror -O3
+CFLAGS	=	-Iincs -IMLX42/include/MLX42 -g3 #-Wall -Wextra -Werror -O3
 
-MLXF	=	-framework Cocoa -framework OpenGL -framework IOKit -lglfw -L/Users/$(shell whoami)/.brew/opt/glfw/lib
+MLXF	=	$(MLXLIB) libglfw3.a -lm
 
 all:		$(MLXLIB) $(NAME)
 
+# /home/mel-akar/glfw/src/libglfw3.a
+
 $(NAME):	$(OBJS)
-	$(CMP) $(filter-out -Iincs, $(CFLAGS)) $(MLXLIB) $(MLXF) $(OBJS) -o $@
+	$(CMP)  $(filter-out -Iincs, $(CFLAGS)) $(MLXF)  $(OBJS)  $(MLXF) -o $@  
+
+#should add an exporting rule for the cxx var
 
 $(MLXLIB):
 	cmake CMakeLists.txt -S MLX42/ -B MLX42/
@@ -63,8 +67,8 @@ objs/%.o:	srcs/%.c
 clean:
 	rm -rf $(OBJS)
 	rm -rf objs
-	make clean -C MLX42/
-	rm -rf MLX42/cmake_install.cmake MLX42/CMakeCache.txt MLX42/Makefile MLX42/CMakeFiles
+	make clean -C MLX42 > /dev/null
+	# rm -rf MLX42/cmake_install.cmake MLX42/CMakeCache.txt MLX42/Makefile MLX42/CMakeFiles
 
 fclean: clean
 	rm -rf $(NAME)

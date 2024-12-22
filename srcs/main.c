@@ -37,9 +37,12 @@
 void	ft_error(char *message, int ex_stt)
 {
 	ft_free_all();
-	write(2, "Error\n", 6);
-	message && (write(2, message, ft_strlen(message)));
-	message && (write(2, "\n", 1));
+	(void)write(2, "Error\n", 6);
+	if (message)
+	{
+		(void)write(2, message, ft_strlen(message));
+		(void)write(2, "\n", 1);
+	}
 	exit(ex_stt);
 }
 
