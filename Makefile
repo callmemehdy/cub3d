@@ -40,14 +40,12 @@ NAME	=	cub3D
 
 CFLAGS	=	-Iincs -IMLX42/include/MLX42 -g3 #-Wall -Wextra -Werror -O3
 
-MLXF	=	$(MLXLIB) libglfw3.a -lm
+MLXF	=	$(MLXLIB) -lglfw3 -lm -L/home/mel-akar/glfw/src/
 
 all:		$(MLXLIB) $(NAME)
 
-# /home/mel-akar/glfw/src/libglfw3.a
-
 $(NAME):	$(OBJS)
-	$(CMP)  $(filter-out -Iincs, $(CFLAGS)) $(MLXF)  $(OBJS)  $(MLXF) -o $@  
+	$(CMP)  $(filter-out -Iincs, $(CFLAGS)) $(OBJS)  $(MLXF) -o $@  
 
 #should add an exporting rule for the cxx var
 
