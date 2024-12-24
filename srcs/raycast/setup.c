@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:38:41 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/24 18:24:04 by ael-amma         ###   ########.fr       */
+/*   Updated: 2024/12/24 19:04:41 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	setup(void)
 	rdata->player = salloc(malloc(sizeof(t_player)));
 }
 
-void	initialize(t_data *data)
+static void	initialize(t_data *data)
 {
 	t_rdata	*rdata;
 
