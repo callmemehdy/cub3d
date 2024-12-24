@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/18 18:00:13 by ael-amma         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:19:42 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,6 @@ void	free_rdata(t_rdata *data);
 void	render_minimap(void);
 
 // setup.c
-void	initialize(void);
 void	setup(void);
 
 #endif

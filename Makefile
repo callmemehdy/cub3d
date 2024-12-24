@@ -35,14 +35,18 @@ OBJS	+=	$(addprefix objs/, $(RFILES:.c=.o))
 
 NAME	=	cub3D
 
-CFLAGS	=	-Iincs -IMLX42/include/MLX42 -Wall -Wextra -Werror -O3 -g3 -fsanitize=address,undefined
+CFLAGS	=	#-Wall -Wextra #-Werror
 
-MLXF	=	-framework Cocoa -framework OpenGL -framework IOKit -lglfw -L/Users/$(shell whoami)/.brew/opt/glfw/lib
+DFLAGS	=	#-O3 -g3 -fsanitize=address,undefined
+
+FLAGS	=	$(CFLAGS) $(DFLAGS) -Iincs -IMLX42/include/MLX42
+
+MLXF	=	$(MLXLIB) /home/ael-amma/.local/lib/libglfw3.a -lm
 
 all:		$(MLXLIB) $(NAME)
 
 $(NAME):	$(OBJS)
-	$(CMP) $(filter-out -Iincs, $(CFLAGS)) $(MLXLIB) $(MLXF) $(OBJS) -o $@
+	$(CMP) $(filter-out -Iincs, $(FLAGS)) $(OBJS) $(MLXF) -o $@
 
 $(MLXLIB):
 	export CXX=/usr/bin/clang
@@ -51,15 +55,15 @@ $(MLXLIB):
 
 objs/%.o:	srcs/raycast/%.c
 	mkdir -p objs
-	$(CMP) -c $(CFLAGS) $< -o $@ -MMD
+	$(CMP) -c $(FLAGS) $< -o $@ -MMD
 	
 objs/%.o:	srcs/parse/%.c
 	mkdir -p objs
-	$(CMP) -c $(CFLAGS) $< -o $@ -MMD
+	$(CMP) -c $(FLAGS) $< -o $@ -MMD
 	
 objs/%.o:	srcs/%.c
 	mkdir -p objs
-	$(CMP) -c $(CFLAGS) $< -o $@ -MMD
+	$(CMP) -c $(FLAGS) $< -o $@ -MMD
 
 clean:
 	rm -rf $(OBJS)

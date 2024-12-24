@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/18 14:21:46 by ael-amma         ###   ########.fr       */
+/*   Updated: 2024/12/23 17:35:55 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ void	ft_error(char *message, int ex_stt)
 {
 	ft_free_all();
 	write(2, "Error\n", 6);
-	message && (write(2, message, ft_strlen(message)));
-	message && (write(2, "\n", 1));
+	if (message)
+	{
+		write(2, message, ft_strlen(message));
+		write(2, "\n", 1);
+	}
 	exit(ex_stt);
 }
 
@@ -52,11 +55,9 @@ t_data	**get_data(void)
 
 int	main(int ac, char **av)
 {
-	t_data	*data;
-
 	if (ac != 2)
 		ft_error(ARG_ERR, ARG_STT);
-	data = load_and_parse(av[0], av[1]);
+	load_and_parse(av[0], av[1]);
 	game();
 	ft_free_all();
 	(void)av;
