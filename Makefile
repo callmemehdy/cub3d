@@ -6,7 +6,7 @@
 #    By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2024/12/24 18:38:51 by ael-amma         ###   ########.fr        #
+#    Updated: 2024/12/24 19:00:16 by ael-amma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,6 @@ $(NAME):	$(OBJS)
 	$(CMP) $(filter-out -Iincs, $(FLAGS)) $(OBJS) $(MLXF) -o $@
 
 $(MLXLIB):
-	export CXX=/usr/bin/clang
 	cmake CMakeLists.txt -S MLX42/ -B MLX42/
 	make -C MLX42/
 
@@ -77,7 +76,7 @@ clean:
 	rm -rf $(OBJS)
 	rm -rf objs
 	make clean -C MLX42 > /dev/null
-	# rm -rf MLX42/cmake_install.cmake MLX42/CMakeCache.txt MLX42/Makefile MLX42/CMakeFiles
+	rm -rf MLX42/cmake_install.cmake MLX42/CMakeCache.txt MLX42/Makefile MLX42/CMakeFiles
 
 fclean: clean
 	rm -rf $(NAME)
