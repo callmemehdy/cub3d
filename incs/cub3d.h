@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/23 18:19:42 by ael-amma         ###   ########.fr       */
+/*   Updated: 2024/12/24 18:34:58 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ typedef struct s_data
 	char			**map;
 	int				x;			// map width
 	int				y;			// map height
+	int				px;			// map width
+	int				py;			// map height
 	// 1st half of the map
 	char			**config;
 	int				confsize;
@@ -187,7 +189,7 @@ t_data			**get_data(void);
 //	*********raycast*********
 
 // game.c
-void	game();
+void	game(void);
 
 // utils.c
 void	drawrect(mlx_image_t *img, t_rect tile, uint32_t color);

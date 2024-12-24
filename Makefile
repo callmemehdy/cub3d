@@ -6,7 +6,7 @@
 #    By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2024/12/18 18:26:54 by ael-amma         ###   ########.fr        #
+#    Updated: 2024/12/24 18:38:51 by ael-amma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,14 @@ RFILES	=	game.c cleaner.c utils.c render.c setup.c
 SRCS	=	srcs/main.c
 
 SRCS	+=	$(addprefix srcs/parse/, $(PFILES))
+
+SRCS	+=	$(addprefix srcs/raycast/, $(RFILES))
+
+OBJS	=	objs/main.o
+
+OBJS	+=	$(addprefix objs/, $(PFILES:.c=.o))
+
+OBJS	+=	$(addprefix objs/, $(RFILES:.c=.o))
 
 SRCS	+=	$(addprefix srcs/raycast/, $(RFILES))
 
@@ -68,8 +76,8 @@ objs/%.o:	srcs/%.c
 clean:
 	rm -rf $(OBJS)
 	rm -rf objs
-	make clean -C MLX42/
-	rm -rf MLX42/cmake_install.cmake MLX42/CMakeCache.txt MLX42/Makefile MLX42/CMakeFiles
+	make clean -C MLX42 > /dev/null
+	# rm -rf MLX42/cmake_install.cmake MLX42/CMakeCache.txt MLX42/Makefile MLX42/CMakeFiles
 
 fclean: clean
 	rm -rf $(NAME)
