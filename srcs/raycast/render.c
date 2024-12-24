@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/18 14:25:34 by ael-amma         ###   ########.fr       */
+/*   Updated: 2024/12/24 19:48:20 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	render_minimap(void)
 			color = 0x000000FF;
 			if (data->map[i][j] == '0')
 				color = 0xFFFFFFFF;
-			drawrect((*get_rdata())->img, tile, color);
+			drawrect((*get_mata())->img, tile, color);
 		}
 	}
 }

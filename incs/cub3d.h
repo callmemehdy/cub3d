@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/24 18:55:05 by ael-amma         ###   ########.fr       */
+/*   Updated: 2024/12/24 19:40:07 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ typedef struct s_rect
 	int height;
 }				t_rect;
 
-typedef struct s_player
+typedef struct s_player_data
 {
 	float	x;
 	float	y;
@@ -144,14 +144,14 @@ typedef struct s_player
 	int		walkdir;
 }				t_player;
 
-typedef struct s_rdata
+typedef struct s_mlx_data
 {
 	void		*mlx;
 	mlx_image_t	*img;
 	t_player	*player;
 	int			width;
 	int			height;
-}				t_rdata;
+}				t_mata;
 
 // some useful utils
 char			**ft_split(char const *str, char c);
@@ -195,9 +195,9 @@ void	game(void);
 void	drawrect(mlx_image_t *img, t_rect tile, uint32_t color);
 
 // cleaner.c
-t_rdata	**get_rdata(void);
+t_mata	**get_mata(void);
 void	*salloc(void *ptr);
-void	free_rdata(t_rdata *data);
+void	free_mata(t_mata *data);
 
 // render.c
 void	render_minimap(void);

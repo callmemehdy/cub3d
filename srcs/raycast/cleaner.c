@@ -6,15 +6,15 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:35:32 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/18 17:57:26 by ael-amma         ###   ########.fr       */
+/*   Updated: 2024/12/24 19:40:15 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_rdata	**get_rdata(void)
+t_mata	**get_mata(void)
 {
-	static t_rdata	*data;
+	static t_mata	*data;
 
 	return (&data);
 }
@@ -30,7 +30,7 @@ void	*salloc(void *ptr)
 	return (ptr);
 }
 
-void	free_rdata(t_rdata *data)
+void	free_mata(t_mata *data)
 {
 	mlx_close_window(data->mlx);
 	mlx_terminate(data->mlx);
