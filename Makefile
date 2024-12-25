@@ -40,7 +40,7 @@ NAME	=	cub3D
 
 CFLAGS	=	-Iincs -IMLX42/include/MLX42 -g3 #-Wall -Wextra -Werror -O3
 
-MLXF	=	$(MLXLIB) -lglfw3 -lm -L/home/mel-akar/glfw/src/
+MLXF	=	$(MLXLIB) -lglfw -lm -L/home/mel-akar/glfw/src/
 
 all:		$(MLXLIB) $(NAME)
 

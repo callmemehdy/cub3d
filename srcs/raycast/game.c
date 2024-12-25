@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:53:26 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/25 15:56:06 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/25 20:30:53 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 void	put_tile(mlx_image_t *img, int y, int x, unsigned int color)
 {
-	
+
 	for (int i = y; i < y + T_SIZE; i++) {
 		for (int j = x; j < x + T_SIZE; j++) {
-			mlx_put_pixel(img, j, i, color);
+			if (j % T_SIZE == 0 || i % T_SIZE == 0) {
+				mlx_put_pixel(img, j, i, 0xFFFF0012);
+			}
+			else
+				mlx_put_pixel(img, j, i, color);
 		}
 	}
 }
@@ -33,19 +37,21 @@ void	game(void)
 	data = *get_data();
 	mlx = mlx_init(W_WIDTH, W_HEIGHT, data->title, true);
 	img = mlx_new_image(mlx, W_WIDTH, W_HEIGHT);
+	player.p_x = data->px * T_SIZE + (T_SIZE / 2);
+	player.p_y = data->py * T_SIZE + (T_SIZE / 2);
 	for (int i = 0; i < data->y; i++) {
 		for (int j = 0; j < data->x; j++) {
 			if (data->map[i][j] == '1') {
-				put_tile(img, i * T_SIZE, j * T_SIZE, 0xFF0000FF);
+				put_tile(img, i * T_SIZE, j * T_SIZE, 0x000000FF);
 			}
-			else if (data->map[i][j] == '0')
-				put_tile(img, i * T_SIZE, j * T_SIZE, 0x00FF00FF);
-			else if (is_player(data->map[i][j]))
-				put_tile(img, i * T_SIZE, j * T_SIZE, 0x0000FFFF);
+			else if (is_player(data->map[i][j]) || data->map[i][j] == '0')
+				put_tile(img, i * T_SIZE, j * T_SIZE, 0xFFFFFFFF);
 			else		
 				put_tile(img, i * T_SIZE, j * T_SIZE, 0xFF00FFFF);
 		}
 	}
+	// printf("%d\t%d\n", player.p_x, player.p_y);
+	mlx_put_pixel(img, player.p_x, player.p_y, 0x0000FFFF);
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_loop(mlx);
 	// todo
