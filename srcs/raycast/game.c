@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:53:26 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/25 22:05:49 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/25 22:10:01 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,14 @@ void	hooks(mlx_key_data_t key, void *p)
 	player = (t_player *)p;
 	if (key.key == MLX_KEY_W && key.action == MLX_REPEAT) {
 		mlx_put_pixel(player->img, player->p_x, --player->p_y, 0x0000FFFF);		
-	}
-	else if (key.key == MLX_KEY_S && key.action == MLX_REPEAT) {
+	} else if (key.key == MLX_KEY_S && key.action == MLX_REPEAT) {
 		mlx_put_pixel(player->img, player->p_x, ++player->p_y, 0x0000FFFF);		
-	}
-	else if (key.key == MLX_KEY_A && key.action == MLX_REPEAT) {
+	} else if (key.key == MLX_KEY_A && key.action == MLX_REPEAT) {
 		mlx_put_pixel(player->img, --player->p_x, player->p_y, 0x0000FFFF);		
-	}
-	else if (key.key == MLX_KEY_D && key.action == MLX_REPEAT) {
+	} else if (key.key == MLX_KEY_D && key.action == MLX_REPEAT) {
 		mlx_put_pixel(player->img, ++player->p_x, player->p_y, 0x0000FFFF);		
-	}
-	else if (key.key == MLX_KEY_ESCAPE)
-		ft_error(0, 0);
+	} else if (key.key == MLX_KEY_ESCAPE)
+		exit(0);
 }
 
 void	game(void)
