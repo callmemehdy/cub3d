@@ -50,7 +50,35 @@
 
 typedef unsigned char	t_byte;
 
-// # define __
+// RAYCASTING DIRECTIVES
+
+# define FOV 60
+# define T_SIZE 30 
+// resolution
+# define W_WIDTH 2000
+# define W_HEIGHT 1000
+
+typedef struct		s_player
+{
+	int		p_x; // x coordinate of the player
+	int		p_y; // y coordinate of the player
+	double	p_angle;
+	double	fov;
+}			t_player;
+
+
+typedef	struct		s_ray
+{
+	double		r_angle;
+	double		r_distance;
+}					t_ray;
+
+
+
+
+
+
+// parse shit
 
 typedef struct s_addr
 {
