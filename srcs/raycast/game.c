@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:53:26 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/25 20:30:53 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/25 22:05:49 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,27 @@ void	put_tile(mlx_image_t *img, int y, int x, unsigned int color)
 	}
 }
 
+void	hooks(mlx_key_data_t key, void *p)
+{
+	t_player *player;
+
+	player = (t_player *)p;
+	if (key.key == MLX_KEY_W && key.action == MLX_REPEAT) {
+		mlx_put_pixel(player->img, player->p_x, --player->p_y, 0x0000FFFF);		
+	}
+	else if (key.key == MLX_KEY_S && key.action == MLX_REPEAT) {
+		mlx_put_pixel(player->img, player->p_x, ++player->p_y, 0x0000FFFF);		
+	}
+	else if (key.key == MLX_KEY_A && key.action == MLX_REPEAT) {
+		mlx_put_pixel(player->img, --player->p_x, player->p_y, 0x0000FFFF);		
+	}
+	else if (key.key == MLX_KEY_D && key.action == MLX_REPEAT) {
+		mlx_put_pixel(player->img, ++player->p_x, player->p_y, 0x0000FFFF);		
+	}
+	else if (key.key == MLX_KEY_ESCAPE)
+		ft_error(0, 0);
+}
+
 void	game(void)
 {
 	mlx_t		*mlx;
@@ -39,6 +60,9 @@ void	game(void)
 	img = mlx_new_image(mlx, W_WIDTH, W_HEIGHT);
 	player.p_x = data->px * T_SIZE + (T_SIZE / 2);
 	player.p_y = data->py * T_SIZE + (T_SIZE / 2);
+	player.fov = FOV * PI / 180;
+	player.data = data;
+	player.img = img;
 	for (int i = 0; i < data->y; i++) {
 		for (int j = 0; j < data->x; j++) {
 			if (data->map[i][j] == '1') {
@@ -53,6 +77,7 @@ void	game(void)
 	// printf("%d\t%d\n", player.p_x, player.p_y);
 	mlx_put_pixel(img, player.p_x, player.p_y, 0x0000FFFF);
 	mlx_image_to_window(mlx, img, 0, 0);
+	mlx_key_hook(mlx, hooks, &player);
 	mlx_loop(mlx);
 	// todo
 }

@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/18 14:54:50 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/25 21:57:14 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,14 @@ typedef unsigned char	t_byte;
 // RAYCASTING DIRECTIVES
 
 # define FOV 60
-# define T_SIZE 30 
+# define T_SIZE 30
+#define PI 3.14159265
 // resolution
 # define W_WIDTH 2000
 # define W_HEIGHT 1000
+
+// typedefing
+typedef struct s_data t_data;
 
 typedef struct		s_player
 {
@@ -64,6 +68,8 @@ typedef struct		s_player
 	int		p_y; // y coordinate of the player
 	double	p_angle;
 	double	fov;
+	t_data	*data;
+	mlx_image_t *img;
 }			t_player;
 
 
@@ -105,7 +111,7 @@ char			*get_next_line(int fd);
 
 // cubeThings
 
-typedef struct s_data
+struct s_data
 {
 	char			*title;
 	int				map_fd;
@@ -128,7 +134,7 @@ typedef struct s_data
 	char			*f_path;
 	unsigned int	frgb;
 	unsigned int	crgb;
-}					t_data;
+};
 
 typedef struct s_check
 {
