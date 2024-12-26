@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:53:26 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/25 22:10:01 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:47:16 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,42 @@ void	put_tile(mlx_image_t *img, int y, int x, unsigned int color)
 	}
 }
 
+void	render_squares(mlx_image_t *img, t_data *data)
+{
+	for (int i = 0; i < data->y; i++) {
+		for (int j = 0; j < data->x; j++) {
+			if (data->map[i][j] == '1') {
+				put_tile(img, i * T_SIZE, j * T_SIZE, 0x000000FF);
+			}
+			else if (is_player(data->map[i][j]) || data->map[i][j] == '0')
+				put_tile(img, i * T_SIZE, j * T_SIZE, 0xFFFFFFFF);
+			else		
+				put_tile(img, i * T_SIZE, j * T_SIZE, 0xFF00FFFF);
+		}
+	}
+}
+
 void	hooks(mlx_key_data_t key, void *p)
 {
 	t_player *player;
 
 	player = (t_player *)p;
 	if (key.key == MLX_KEY_W && key.action == MLX_REPEAT) {
-		mlx_put_pixel(player->img, player->p_x, --player->p_y, 0x0000FFFF);		
+		player->p_y -= P_SPEED;
+		render_squares(player->img, player->data);
+		mlx_put_pixel(player->img, player->p_x, player->p_y, 0x0000FFFF);		
 	} else if (key.key == MLX_KEY_S && key.action == MLX_REPEAT) {
-		mlx_put_pixel(player->img, player->p_x, ++player->p_y, 0x0000FFFF);		
+		player->p_y += P_SPEED;
+		render_squares(player->img, player->data);
+		mlx_put_pixel(player->img, player->p_x, player->p_y, 0x0000FFFF);		
 	} else if (key.key == MLX_KEY_A && key.action == MLX_REPEAT) {
-		mlx_put_pixel(player->img, --player->p_x, player->p_y, 0x0000FFFF);		
+		player->p_x -= P_SPEED;
+		render_squares(player->img, player->data);
+		mlx_put_pixel(player->img, player->p_x, player->p_y, 0x0000FFFF);		
 	} else if (key.key == MLX_KEY_D && key.action == MLX_REPEAT) {
-		mlx_put_pixel(player->img, ++player->p_x, player->p_y, 0x0000FFFF);		
+		player->p_x += P_SPEED;
+		render_squares(player->img, player->data);
+		mlx_put_pixel(player->img, player->p_x, player->p_y, 0x0000FFFF);		
 	} else if (key.key == MLX_KEY_ESCAPE)
 		exit(0);
 }
@@ -59,18 +82,9 @@ void	game(void)
 	player.fov = FOV * PI / 180;
 	player.data = data;
 	player.img = img;
-	for (int i = 0; i < data->y; i++) {
-		for (int j = 0; j < data->x; j++) {
-			if (data->map[i][j] == '1') {
-				put_tile(img, i * T_SIZE, j * T_SIZE, 0x000000FF);
-			}
-			else if (is_player(data->map[i][j]) || data->map[i][j] == '0')
-				put_tile(img, i * T_SIZE, j * T_SIZE, 0xFFFFFFFF);
-			else		
-				put_tile(img, i * T_SIZE, j * T_SIZE, 0xFF00FFFF);
-		}
-	}
+	render_squares(img, data);
 	// printf("%d\t%d\n", player.p_x, player.p_y);
+	printf ("%f\n", RAYS_NUM);
 	mlx_put_pixel(img, player.p_x, player.p_y, 0x0000FFFF);
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_key_hook(mlx, hooks, &player);

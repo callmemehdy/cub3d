@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/25 21:57:14 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:56:07 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,32 @@
 
 typedef unsigned char	t_byte;
 
-// RAYCASTING DIRECTIVES
-
-# define FOV 60
-# define T_SIZE 30
-#define PI 3.14159265
 // resolution
+
 # define W_WIDTH 2000
 # define W_HEIGHT 1000
+
+// RAYCASTING DIRECTIVES
+
+# define FOV 60 // player field of view
+# define T_SIZE 30 // tile size
+# define PI 3.14159265 //
+# define P_SPEED  3 // movement speed of the player
+# define RAYS_NUM (FOV / (double)W_WIDTH)
+
 
 // typedefing
 typedef struct s_data t_data;
 
 typedef struct		s_player
 {
-	int		p_x; // x coordinate of the player
-	int		p_y; // y coordinate of the player
-	double	p_angle;
-	double	fov;
-	t_data	*data;
-	mlx_image_t *img;
-}			t_player;
-
+	int			p_x; // x coordinate of the player
+	int			p_y; // y coordinate of the player
+	double		p_angle; // player angle 
+	double		fov; // field of view in radian
+	t_data		*data; // data matrice
+	mlx_image_t	*img; // img pointer
+}					t_player;
 
 typedef	struct		s_ray
 {
@@ -120,8 +124,8 @@ struct s_data
 	char			**map;
 	int				x;			// map width
 	int				y;			// map height
-	int				px;			// map width
-	int				py;			// map height
+	int				px;			// player coordinates
+	int				py;			// player coordinates
 	// 1st half of the map
 	char			**config;
 	int				confsize;
