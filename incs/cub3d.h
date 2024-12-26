@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/26 18:51:40 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/26 19:53:14 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ typedef struct		s_player
 
 typedef	struct		s_ray
 {
-	double		r_angle;
-	double		r_distance;
+	double		r_angle; // ray angle which depends on the the player angle and the fov
+	double		r_distance; // its distance from the player cors to the wall hit cors
 }					t_ray;
 
 
@@ -193,5 +193,24 @@ t_data			**get_data(void);
 
 // ray casting
 void	game(void);
+
+/*
+	Key Components of Active Learning Strategies
+	At the heart of active learning are three fundamental components: Engagement,
+	Reflection, and Application. Learners actively engage with the material,
+	reflect on the content’s relevance and meaning,
+	and apply what they’ve learned in practical, often collaborative, situations.
+	Here’s how those three components work in more detail:
+	-Engagement: This aspect describes a mix of concentration and interest.
+	Students focus on the topic in hand because it is taught in a manner that makes it intrinsically interesting.
+	-Reflection: Students are asked to consciously reflect on the subjects they have been learning.
+	This helps personalise and imprint the knowledge, and the repetition of key points helps fix them in memory.
+	-Application: This aspect focuses on the practical use of key pieces of learning. By making the topic practical,
+	students learn how useful the subject can be, motivating them to remember and focus.
+	Another key element of active learning is that it’s frequently collaborative.
+	Not only do learners benefit from interaction with the educator, but they join forces in team exercises,
+	or share their opinions and experiences in group discussion.
+*/
+
 
 #endif
