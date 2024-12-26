@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/24 19:40:07 by ael-amma         ###   ########.fr       */
+/*   Updated: 2024/12/25 15:57:36 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <ctype.h>
 # include "get_next_line.h"
 # include <MLX42.h>
+# include <errno.h>
+# include <string.h>
 
 // cli arguments error
 # define ARG_ERR "invalid program input\nUsage: ./cub3d [map's path]"
@@ -48,13 +50,34 @@
 # define F	"F"
 # define C	"C"
 
-// raycast
+/*********raycast*********/
+
+//	Field of view
+# define FOV (60 *( M_PI / 180))
+
+// Rotation Speed
+# define ROT_SP 0.045
+
+// Player Speed
+# define PL_SP 4
 
 //	Size of tiles
-# define TILE_SIZE	32
+# define TSIZE	64
+
+//	Minimap Scale Factor
+# define SCALE 1
 
 //	Size of tiles multiplied by the scale factor
-# define SIZE_SCALE	TILE_SIZE * 0.5
+# define TSIZE_SCALE (TSIZE * SCALE)
+
+//	Frame Per Second
+# define FPS 30
+
+//	Frame Time Length in ms
+# define FTL (1000 / FPS)
+
+//	Two PI
+# define T_PI (M_PI * 2)
 
 typedef unsigned char	t_byte;
 
@@ -121,7 +144,7 @@ typedef struct s_check
 	int			fields;
 }				t_check;
 
-//	*********raycast*********
+/*********raycast*********/
 
 typedef struct s_rect
 {
@@ -131,27 +154,26 @@ typedef struct s_rect
 	int height;
 }				t_rect;
 
-typedef struct s_player_data
+typedef struct s_player
 {
 	float	x;
 	float	y;
-	float	width;
-	float	height;
-	float	rotation;
-	float	walkspeed;
-	float	turnspeed;
-	int		turndir;
-	int		walkdir;
+	int		turn;
+	int		walk;
+	float	rot;
+	float	angle;
+	float	fov;
 }				t_player;
 
-typedef struct s_mlx_data
+typedef struct s_mlx
 {
-	void		*mlx;
+	mlx_t		*mlxi;
 	mlx_image_t	*img;
 	t_player	*player;
-	int			width;
-	int			height;
-}				t_mata;
+	t_data		*data;
+	int			win_w;
+	int			win_h;
+}				t_mlx;
 
 // some useful utils
 char			**ft_split(char const *str, char c);
@@ -186,23 +208,30 @@ bool			check_char(char **map, int *pl, int i, int j);
 // global struct
 t_data			**get_data(void);
 
-//	*********raycast*********
+/*********raycast*********/
 
 // game.c
 void	game(void);
 
 // utils.c
+void	get_monitor_size(t_mlx *mlx);
+int		get_rgba(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 void	drawrect(mlx_image_t *img, t_rect tile, uint32_t color);
 
 // cleaner.c
-t_mata	**get_mata(void);
-void	*salloc(void *ptr);
-void	free_mata(t_mata *data);
+void	*salloc(void *ptr, bool mlx);
+void	ft_mlxerror(void);
+void	ft_exit(t_mlx *mlx);
 
 // render.c
-void	render_minimap(void);
+void	render_minimap(t_mlx *mlx);
+void	render_player(t_mlx *mlx);
 
 // setup.c
-void	setup(void);
+void	setup(t_data *data);
+
+// keyhooks.c
+void	game_loop(void *vmlx);
+void	key_press(mlx_key_data_t keydata, void *vmlx);
 
 #endif

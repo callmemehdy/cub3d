@@ -6,7 +6,7 @@
 #    By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2024/12/24 19:00:16 by ael-amma         ###   ########.fr        #
+#    Updated: 2024/12/25 15:01:47 by ael-amma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ PFILES	=	ft_free.c malloc.c get_next_line.c					\
 			map_check.c ft_utils_II.c ft_utils_III.c bool_map.c	\
 			ft_boolean_exp.c
 
-RFILES	=	game.c cleaner.c utils.c render.c setup.c
+RFILES	=	game.c cleaner.c utils.c render.c setup.c keyhooks.c
 
 SRCS	=	srcs/main.c
 
@@ -45,11 +45,11 @@ NAME	=	cub3D
 
 CFLAGS	=	#-Wall -Wextra #-Werror
 
-DFLAGS	=	#-O3 -g3 -fsanitize=address,undefined
+DFLAGS	=	-Ofast #-O3 -g3 -fsanitize=address,undefined
 
 FLAGS	=	$(CFLAGS) $(DFLAGS) -Iincs -IMLX42/include/MLX42
 
-MLXF	=	$(MLXLIB) /home/ael-amma/.local/lib/libglfw3.a -lm
+MLXF	=	$(MLXLIB) -ldl -lglfw -pthread -lm
 
 all:		$(MLXLIB) $(NAME)
 

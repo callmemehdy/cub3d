@@ -6,33 +6,42 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:35:32 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/24 19:40:15 by ael-amma         ###   ########.fr       */
+/*   Updated: 2024/12/25 14:52:07 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_mata	**get_mata(void)
-{
-	static t_mata	*data;
-
-	return (&data);
-}
-
-void	*salloc(void *ptr)
+void	*salloc(void *ptr, bool mlx)
 {
 	if (!ptr)
 	{
-		ft_free_all();
-		perror("Error");
-		exit(1);
+		if (mlx)
+			ft_mlxerror();
+		else
+			ft_error(strerror(errno), EXIT_FAILURE);
 	}
 	return (ptr);
 }
 
-void	free_mata(t_mata *data)
+void	ft_mlxerror(void)
 {
-	mlx_close_window(data->mlx);
-	mlx_terminate(data->mlx);
-	free(data->mlx);
+	char	*str;
+
+	str = mlx_strerror(mlx_errno);
+	while (str)
+	{
+		write(2, &str, 1);
+		str++;
+	}
+	exit(EXIT_FAILURE);
+}
+
+void	ft_exit(t_mlx *mlx)
+{
+	mlx_delete_image(mlx->mlxi, mlx->img);
+	mlx_close_window(mlx->mlxi);
+	mlx_terminate(mlx->mlxi);
+	ft_free_all();
+	exit(EXIT_SUCCESS);
 }

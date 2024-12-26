@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/24 18:39:17 by ael-amma         ###   ########.fr       */
+/*   Updated: 2024/12/25 08:28:16 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,6 @@ void	ft_error(char *message, int ex_stt)
 	{
 		(void)write(2, message, ft_strlen(message));
 		(void)write(2, "\n", 1);
-	}
-	write(2, "Error\n", 6);
-	if (message)
-	{
-		write(2, message, ft_strlen(message));
-		write(2, "\n", 1);
 	}
 	exit(ex_stt);
 }
