@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/26 14:56:07 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/26 18:51:40 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ typedef unsigned char	t_byte;
 # define W_HEIGHT 1000
 
 // RAYCASTING DIRECTIVES
+
+// DIRECTION ANGLES
+# define N PI / 2
+# define S (3 * PI) / 2
+# define E PI
+# define W 2 * PI	
+
 
 # define FOV 60 // player field of view
 # define T_SIZE 30 // tile size

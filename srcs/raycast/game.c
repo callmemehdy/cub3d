@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:53:26 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/26 14:47:16 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/26 17:01:57 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	put_tile(mlx_image_t *img, int y, int x, unsigned int color)
 {
-
 	for (int i = y; i < y + T_SIZE; i++) {
 		for (int j = x; j < x + T_SIZE; j++) {
 			if (j % T_SIZE == 0 || i % T_SIZE == 0) {
@@ -45,6 +44,14 @@ void	hooks(mlx_key_data_t key, void *p)
 {
 	t_player *player;
 
+
+	// this is a code for player's movement testing
+	// gotta make some boundries checks
+
+
+	//////////////////////////////
+	//minimpa max width & height//
+	//////////////////////////////
 	player = (t_player *)p;
 	if (key.key == MLX_KEY_W && key.action == MLX_REPEAT) {
 		player->p_y -= P_SPEED;
@@ -84,7 +91,7 @@ void	game(void)
 	player.img = img;
 	render_squares(img, data);
 	// printf("%d\t%d\n", player.p_x, player.p_y);
-	printf ("%f\n", RAYS_NUM);
+	// printf ("%f\n", RAYS_NUM);
 	mlx_put_pixel(img, player.p_x, player.p_y, 0x0000FFFF);
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_key_hook(mlx, hooks, &player);
