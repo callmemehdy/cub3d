@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:53:26 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/28 13:46:51 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:44:42 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,11 @@ void	test_rays(t_player *player)
 
 void	print_line(t_player *player, int xp, int yp)
 {
-	// todo	
+	// todo
+	float slope = (player->p_x - xp) / (player->p_y - yp);
+	for (int x = player->p_x, y = player->p_y; x < xp + 1; x++, y++) {
+		mlx_put_pixel(player->img, x, round(y * slope), 0x0000FFFF);
+	}	
 }
 
 void	game(void)
@@ -120,7 +124,9 @@ void	game(void)
 	player.img = img;
 	render_squares(img, data);
 	// test_rays(&player);
-	print_line(&player, 500, 500);
+	printf("x: %d\n", player.p_x);
+	printf("y: %d\n", player.p_y);
+	print_line(&player, 2000, 500);
 	mlx_put_pixel(img, player.p_x, player.p_y, 0x0000FFFF);
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_key_hook(mlx, hooks, &player);
