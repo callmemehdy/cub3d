@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/26 19:53:14 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/27 20:46:01 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,30 @@ typedef unsigned char	t_byte;
 # define S (3 * PI) / 2
 # define E PI
 # define W 2 * PI	
-
+# define ROTA 0.04
+# define FACT  2
 
 # define FOV 60 // player field of view
-# define T_SIZE 30 // tile size
+# define T_SIZE (30 * FACT) // tile size
 # define PI 3.14159265 //
 # define P_SPEED  3 // movement speed of the player
-# define RAYS_NUM (FOV / (double)W_WIDTH)
+# define RAYS_NUM W_WIDTH
 
 
 // typedefing
 typedef struct s_data t_data;
+
+typedef	enum e_r_l // enum for right or left directions
+{
+	RIGHT,
+	LEFT
+}		t_r_l;
+
+typedef	enum e_u_d // enum for up or down directions
+{
+	UP,
+	DOWN
+}		t_u_d;
 
 typedef struct		s_player
 {
@@ -88,10 +101,11 @@ typedef	struct		s_ray
 {
 	double		r_angle; // ray angle which depends on the the player angle and the fov
 	double		r_distance; // its distance from the player cors to the wall hit cors
+	int			w_hitx;	    // wall intersection x coor
+	int			w_hity;		// wall intersection y coor
+	t_r_l		is_up;	// ray direction: right or left 
+	t_u_d		is_right;	// ray direction: up or down
 }					t_ray;
-
-
-
 
 
 

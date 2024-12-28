@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:53:26 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/26 17:01:57 by mel-akar         ###   ########.fr       */
+/*   Updated: 2024/12/28 13:46:51 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,35 @@ void	hooks(mlx_key_data_t key, void *p)
 		exit(0);
 }
 
+void	cast_single_ray(t_ray	*ray, int ray_id)
+{
+	ray->is_up = ray->r_angle > 0 && ray->r_angle < PI;
+	ray->is_right = ray->r_angle < PI / 2 || ray->r_angle > 3 * PI / 3;
+}
+
+void	test_rays(t_player *player)
+{
+	int		ray_count;
+	double	ray_inc;
+	t_ray	rays[W_WIDTH];
+
+	ray_count = 0;
+	ray_inc = player->fov / W_WIDTH;
+	rays[ray_count].r_angle = player->p_angle - (player->fov / 2);
+	while (ray_count < W_WIDTH)
+	{
+		rays[ray_count] = (t_ray){0};
+		ray_count > 0 && (rays[ray_count].r_angle = rays[ray_count - 1].r_angle + ray_inc);
+		cast_single_ray(&rays[ray_count], ray_count);
+		++ray_count;
+	}
+}
+
+void	print_line(t_player *player, int xp, int yp)
+{
+	// todo	
+}
+
 void	game(void)
 {
 	mlx_t		*mlx;
@@ -90,8 +119,8 @@ void	game(void)
 	player.data = data;
 	player.img = img;
 	render_squares(img, data);
-	// printf("%d\t%d\n", player.p_x, player.p_y);
-	// printf ("%f\n", RAYS_NUM);
+	// test_rays(&player);
+	print_line(&player, 500, 500);
 	mlx_put_pixel(img, player.p_x, player.p_y, 0x0000FFFF);
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_key_hook(mlx, hooks, &player);
