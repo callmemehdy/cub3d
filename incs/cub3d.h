@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/31 15:50:02 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/02 14:29:46 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ typedef unsigned char	t_byte;
 // RAYCASTING DIRECTIVES
 
 // DIRECTION ANGLES
-# define N PI / 2
-# define S (3 * PI) / 2
+# define N 3 * PI / 2
+# define S PI / 2
 # define E PI
 # define W 2 * PI	
 # define ROTA 0.04
