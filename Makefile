@@ -6,7 +6,7 @@
 #    By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2025/01/05 13:37:57 by mel-akar         ###   ########.fr        #
+#    Updated: 2025/01/07 12:00:44 by mel-akar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CMP		=	cc
 PFILES	=	ft_free.c malloc.c get_next_line.c					\
 			get_next_line_utils.c ft_split.c ft_utils_I.c		\
 			map_check.c ft_utils_II.c ft_utils_III.c bool_map.c	\
-			ft_boolean_exp.c
+			ft_boolean_exp.c ft_utils_IV.c
 
 RFILES	=	game.c
 

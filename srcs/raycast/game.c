@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:53:26 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/07 09:03:51 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:02:37 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,10 @@ void	hooks(mlx_key_data_t key, void *p)
 		render_squares(player->img, player->data);
 		mlx_put_pixel(player->img, player->p_x, player->p_y, 0x0000FFFF);			
 	} else if (key.key == MLX_KEY_ESCAPE)
+	{
+		ft_free_all();
 		exit(0);
+	}
 }
 
 void	find_horinter(t_ray *ray, double *hx, double *hy, double *inter_x, double *inter_y)
