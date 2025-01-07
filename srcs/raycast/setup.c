@@ -6,33 +6,29 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:38:41 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/26 14:57:23 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:14:18 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	init_all(t_data *data, t_mlx *mlx);
 static void	init_player(t_mlx *mlx);
+static void	init_bg(t_mlx *mlx);
 
-void	setup(t_data *data)
+void	setup(t_mlx *mlx, t_data *data)
 {
-	t_mlx	mlx;
-
-	init_all(data, &mlx);
-	mlx_key_hook(mlx.mlxi, key_press, &mlx);
-	mlx_loop_hook(mlx.mlxi, game_loop, &mlx);
-	mlx_loop(mlx.mlxi);
-	ft_exit(&mlx);
-}
-
-static void	init_all(t_data *data, t_mlx *mlx)
-{
-	get_monitor_size(mlx);
 	mlx->data = data;
-	mlx->mlxi = salloc(mlx_init(mlx->win_w, mlx->win_h, data->title, 1), 1);
+	mlx->mlxi = salloc(mlx_init(W_WIDTH, W_HEIGHT, data->title, 0), 1);
 	mlx->player = salloc(ft_malloc(sizeof(t_player)), 0);
+	mlx->width = W_WIDTH;
+	mlx->height = W_HEIGHT;
+	mlx->nrays = mlx->width / RAY_SIZE;
+	mlx->rays = ft_malloc(sizeof(t_ray) * mlx->nrays);
+	mlx->lastframe = 0;
+	mlx_set_window_pos(mlx->mlxi, 600, 300);
 	init_player(mlx);
+	mlx->bg = mlx_new_image(mlx->mlxi, W_WIDTH, W_HEIGHT);
+	init_bg(mlx);
 }
 
 static void	init_player(t_mlx *mlx)
@@ -48,7 +44,28 @@ static void	init_player(t_mlx *mlx)
 		mlx->player->angle = M_PI;
 	else if (c == 'N')
 		mlx->player->angle = 3 * M_PI / 2;
-	mlx->player->x = (mlx->data->px * TSIZE_SCALE) + TSIZE_SCALE / 2;
-	mlx->player->y = (mlx->data->py * TSIZE_SCALE) + TSIZE_SCALE / 2;
-	mlx->player->fov = FOV * M_PI / 180;
+	mlx->player->x = mlx->data->px * TSIZE + (TSIZE / 2);
+	mlx->player->y = mlx->data->py * TSIZE + (TSIZE / 2);
+	mlx->player->radius = 6;
+	mlx->player->turndir = 0;
+	mlx->player->walkdir = 0;
+	mlx->player->strafe = 0;
+	mlx->player->walksp = 4 * TSIZE;
+	mlx->player->turnsp = (3 * TSIZE) * (M_PI / 180);
+}
+
+static void	init_bg(t_mlx *mlx)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < W_HEIGHT)
+	{
+		x = -1;
+		while (++x < W_WIDTH)
+			mlx_put_pixel(mlx->bg, x, y, get_rgba(255, 255, 255, 128));
+	}
+	render_minimap(mlx->bg);
+	mlx_image_to_window(mlx->mlxi, mlx->bg, 0, 0);
 }

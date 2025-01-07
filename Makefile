@@ -6,7 +6,7 @@
 #    By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2024/12/26 15:24:28 by ael-amma         ###   ########.fr        #
+#    Updated: 2025/01/07 09:28:27 by ael-amma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ PFILES	=	ft_free.c malloc.c get_next_line.c					\
 			map_check.c ft_utils_II.c ft_utils_III.c bool_map.c	\
 			ft_boolean_exp.c
 
-RFILES	=	game.c cleaner.c utils.c render.c setup.c keyhooks.c
+RFILES	=	cleaner.c draw.c game.c hooks.c raycast.c render.c	\
+			setup.c update.c utils.c
 
 SRCS	=	srcs/main.c
 
@@ -45,7 +46,7 @@ NAME	=	cub3D
 
 CFLAGS	=	#-Wall -Wextra #-Werror
 
-DFLAGS	=	-Ofast #-O3 -g3 -fsanitize=address,undefined
+DFLAGS	=	-Ofast -O3 -g3 -fsanitize=address,undefined
 
 FLAGS	=	$(CFLAGS) $(DFLAGS) -Iincs -IMLX42/include/MLX42
 

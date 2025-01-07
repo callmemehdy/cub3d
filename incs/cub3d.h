@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/26 15:25:25 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/07 17:52:52 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,10 @@
 /*********raycast*********/
 
 //	Field of view
-# define FOV (60 *( M_PI / 180))
-
-// Rotation Speed
-# define ROT_SP 0.045
-
-// Player Speed
-# define PL_SP 4
+# define FOV (60 * ( M_PI / 180))
 
 //	Size of tiles
-# define TSIZE	64
+# define TSIZE	32
 
 //	Minimap Scale Factor
 # define SCALE 1
@@ -70,54 +64,29 @@
 //	Size of tiles multiplied by the scale factor
 # define TSIZE_SCALE (TSIZE * SCALE)
 
+//	Two PI
+# define T_PI (M_PI * 2)
+
+//	Window width
+# define W_WIDTH 1920
+
+//	Window Height
+# define W_HEIGHT 1056
+
+//	Width of the ray
+# define RAY_SIZE	1
+
 //	Frame Per Second
 # define FPS 30
 
 //	Frame Time Length in ms
 # define FTL (1000 / FPS)
 
-//	Two PI
-# define T_PI (M_PI * 2)
-
 typedef unsigned char	t_byte;
-
-// resolution
-
-# define W_WIDTH 2000
-# define W_HEIGHT 1000
-
-// RAYCASTING DIRECTIVES
-
-# define FOV 60 // player field of view
-# define T_SIZE 30 // tile size
-# define PI 3.14159265 //
-# define P_SPEED  3 // movement speed of the player
-# define RAYS_NUM (FOV / (double)W_WIDTH)
 
 
 // typedefing
 typedef struct s_data t_data;
-
-typedef struct		s_player
-{
-	int			p_x; // x coordinate of the player
-	int			p_y; // y coordinate of the player
-	double		p_angle; // player angle 
-	double		fov; // field of view in radian
-	t_data		*data; // data matrice
-	mlx_image_t	*img; // img pointer
-}					t_player;
-
-typedef	struct		s_ray
-{
-	double		r_angle;
-	double		r_distance;
-}					t_ray;
-
-
-
-
-
 
 // parse shit
 
@@ -184,34 +153,106 @@ typedef struct s_check
 
 /*********raycast*********/
 
-typedef struct s_rect
+typedef struct s_player t_player;
+typedef struct s_ray	t_ray;
+
+typedef struct s_mlx
+{
+	mlx_t		*mlxi;
+	mlx_image_t	*bg;
+	mlx_image_t	*img;
+	t_player	*player;
+	t_data		*data;
+	t_ray		*rays;
+	int			width;
+	int			height;
+	int			nrays;
+	int			lastframe;
+}				t_mlx;
+
+struct s_player
+{
+	float	x;
+	float	y;
+	int		radius;
+	int		turndir;
+	int		walkdir;
+	int		strafe;
+	float	angle;
+	float	walksp;
+	float	turnsp;
+};
+
+typedef struct	s_rect
 {
 	int	x;
 	int	y;
 	int width;
 	int height;
+	int	fillclr;
+	int	edgeclr;
 }				t_rect;
 
-typedef struct s_player
+typedef struct	s_circle
 {
-	float	x;
-	float	y;
-	int		turn;
-	int		walk;
-	float	rot;
-	float	angle;
-	float	fov;
-}				t_player;
+	int	cx;
+	int	cy;
+	int	radius;
+	int	color;
+}				t_circle;
 
-typedef struct s_mlx
+typedef struct	s_lin
 {
-	mlx_t		*mlxi;
-	mlx_image_t	*img;
-	t_player	*player;
-	t_data		*data;
-	int			win_w;
-	int			win_h;
-}				t_mlx;
+	int	x0;
+	int	y0;
+	int	x1;
+	int	y1;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+}				t_lin;
+
+struct	s_ray
+{
+	float	angle;
+	float	wallx;
+	float	wally;
+	float	dist;
+	bool	wallvert;
+	bool	up;
+	bool	down;
+	bool	left;
+	bool	right;
+	int		wallcontent;
+};
+
+typedef struct	s_raydata
+{
+	float	fx;
+	float	fy;
+	float	dx;
+	float	dy;
+	float	nextx;
+	float	nexty;
+	bool	up;
+	bool	down;
+	bool	left;
+	bool	right;
+}				t_rdata;
+
+typedef struct	s_raydif
+{
+	float	horzx;
+	float	horzy;
+	float	vertx;
+	float	verty;
+	float	angle;
+	int		horzcont;
+	int		vertcont;
+	bool	horzflag;
+	bool	vertflag;
+}				t_rdif;
 
 // some useful utils
 char			**ft_split(char const *str, char c);
@@ -244,32 +285,47 @@ bool			outsiders(char c);
 bool			check_char(char **map, int *pl, int i, int j);
 
 // global struct
-t_data			**get_data(void);
+t_data	**get_data(void);
+t_mlx	**get_mlx(void);
 
 /*********raycast*********/
-
-// game.c
-void	game(void);
-
-// utils.c
-void	get_monitor_size(t_mlx *mlx);
-int		get_rgba(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
-void	drawrect(mlx_image_t *img, t_rect tile, uint32_t color);
 
 // cleaner.c
 void	*salloc(void *ptr, bool mlx);
 void	ft_mlxerror(void);
 void	ft_exit(t_mlx *mlx);
 
+//	draw.c
+void	drawrect(mlx_image_t *img, t_rect tile);
+void	drawcircle(t_mlx *mlx, t_circle circle);
+void	drawline(t_mlx *mlx, t_lin line, uint32_t color);
+
+// game.c
+void	game(void);
+
+// hooks.c
+void	key_press(mlx_key_data_t keydata, void *vmlx);
+
+//	raycast.c
+void	horz_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
+void	vert_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
+void	load_rays(t_mlx *mlx, t_player *p, t_rdif dif, int id);
+
+
 // render.c
-void	render_minimap(t_mlx *mlx);
-void	render_player(t_mlx *mlx);
+void	render(t_mlx *mlx);
+void	render_minimap(mlx_image_t *img);
 
 // setup.c
-void	setup(t_data *data);
+void	setup(t_mlx *mlx, t_data *data);
 
-// keyhooks.c
-void	game_loop(void *vmlx);
-void	key_press(mlx_key_data_t keydata, void *vmlx);
+// update.c
+void	update(t_mlx *mlx);
+
+// utils.c
+int		get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
+bool	wallhit(float x, float y);
+float	norm_angle(float angle);
+float	linelen(float x1, float y1, float x2, float y2);
 
 #endif

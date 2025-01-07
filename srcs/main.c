@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/25 08:28:16 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/04 18:20:14 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,13 @@ t_data	**get_data(void)
 	static t_data	*data;
 
 	return (&data);
+}
+
+t_mlx	**get_mlx(void)
+{
+	static t_mlx	*mlx;
+
+	return (&mlx);
 }
 
 int	main(int ac, char **av)

@@ -6,37 +6,41 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:34:54 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/25 15:03:06 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:33:42 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	get_monitor_size(t_mlx *mlx)
-{
-	void	*tmp;
-
-	tmp = salloc(mlx_init(1, 1, "", 0), 1);
-	mlx_get_monitor_size(0, &mlx->win_w, &mlx->win_h);
-	mlx_close_window(tmp);
-	mlx_terminate(tmp);
-}
-
-int	get_rgba(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+int	get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-void	drawrect(mlx_image_t *img, t_rect tile, uint32_t color)
+bool	wallhit(float x, float y)
 {
-	int	i;
-	int	j;
+	int		mapx;
+	int		mapy;
+	t_data	*data;
 
-	i = -1;
-	while (++i < tile.height)
-	{
-		j = -1;
-		while (++j < tile.width)
-			mlx_put_pixel(img, tile.x + j, tile.y + i, color);
-	}
+	data = *get_data();
+	if (x < 0 || x > data->x * TSIZE_SCALE || y < 0 || y > data->y * TSIZE_SCALE)
+		return (1);
+	mapx = floor(x / TSIZE_SCALE);
+	mapy = floor(y / TSIZE_SCALE);
+	return (!(data->map[mapy][mapx] == '0' \
+		|| is_player(data->map[mapy][mapx])));
+}
+
+float	norm_angle(float angle)
+{
+	angle = remainder(angle, T_PI);
+	if (angle < 0)
+		angle = T_PI + angle;
+	return (angle);
+}
+
+float	linelen(float x1, float y1, float x2, float y2)
+{
+	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
