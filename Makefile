@@ -6,7 +6,7 @@
 #    By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2024/12/26 14:23:55 by mel-akar         ###   ########.fr        #
+#    Updated: 2025/01/05 13:37:57 by mel-akar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ OBJS	+=	$(addprefix objs/, $(RFILES:.c=.o))
 
 NAME	=	cub3D
 
-CFLAGS	=	-Iincs -IMLX42/include/MLX42 -g3 #-Wall -Wextra -Werror -O3
+CFLAGS	=	-Iincs -IMLX42/include/MLX42 -g3 -fsanitize=address #-Wall -Wextra -Werror -O3
 
 MLXF	=	$(MLXLIB) -lglfw3 -lm -L/home/mel-akar/glfw/src/
 

@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/02 14:29:46 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:59:09 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 // map content errors
 # define MAP_ERR "invalid map content"
 # define MAP_STT 1
+# define PI M_PI //
 
 // enumslike string
 # define EA "EA"
@@ -60,14 +61,14 @@ typedef unsigned char	t_byte;
 // DIRECTION ANGLES
 # define N 3 * PI / 2
 # define S PI / 2
-# define E PI
-# define W 2 * PI	
+# define W PI
+# define E 0
 # define ROTA 0.04
 # define FACT  2
 
 # define FOV 60 // player field of view
 # define T_SIZE (30 * FACT) // tile size
-# define PI 3.14159265 //
+// # define PI 3.14159265 //
 # define P_SPEED  3 // movement speed of the player
 # define RAYS_NUM W_WIDTH
 
@@ -105,6 +106,8 @@ typedef	struct		s_ray
 	int			w_hity;		// wall intersection y coor
 	t_r_l		is_up;	// ray direction: right or left 
 	t_u_d		is_right;	// ray direction: up or down
+	bool		hit;
+	t_player	*player;
 }					t_ray;
 
 
