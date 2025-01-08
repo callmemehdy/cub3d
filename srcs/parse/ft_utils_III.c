@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:23:32 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/07 18:55:21 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:03:18 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,20 @@ bool	onlynl(char *s)
 	{
 		if (s[i] == '\n' || s[i] == ' ')
 			continue ;
-		else {
-			printf("%s\n", s);	
+		else
 			return (false);
-		}
 	}
 	return (true);
 }
 
 bool	ft_preprocess(t_line *lines)
 {
-	while (lines && !is_map(lines->s))
-		lines = lines->next;
-	while (lines && onlynl(lines->s))
+	while (lines && !is_map_first(lines->s))
 		lines = lines->next;
 	while (lines)
 	{
 		if (onlynl(lines->s))
-			return (printf("line->s: [%s]\n", lines->s), false);
+			return (false);
 		lines = lines->next;
 	}
 	return (true);

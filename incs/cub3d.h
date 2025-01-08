@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/07 12:00:17 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/08 09:29:24 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,7 @@ bool			is_player(char c);
 bool			outsiders(char c);
 bool			check_char(char **map, int *pl, int i, int j);
 bool			outtabound(int y, int x);
+bool			is_map_first(char *s);
 
 // global struct
 t_data			**get_data(void);

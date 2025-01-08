@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/07 18:51:49 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:01:07 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ char	**get_map(t_data *data)
 			break ;
 	}
 	s = ft_split(buff, '\n');
-	if (!ft_preprocess(data->lines) && printf("sona ya sonson\n"))
+	if (!ft_preprocess(data->lines))
 		ft_error(MAP_ERR, MAP_STT);
 	'L' && (free_lines(data->lines), data->lines = 0);
 	return (free(buff), close(data->map_fd), s);
