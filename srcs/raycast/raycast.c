@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 08:36:15 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/07 18:50:54 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:38:48 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ void	horz_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif)
 		data->fy += TSIZE;
 	data->fx = p->x + (data->fy - p->y) / tan(dif->angle);
 	data->dy = TSIZE;
-	if (data->up)
+	if (!data->down)
 		data->dy *= -1;
 	data->dx = TSIZE / tan(dif->angle);
-	if (data->left && data->dx > 0)
+	if (!data->right && data->dx > 0)
 		data->dx *= -1;
 	if (data->right && data->dx < 0)
 		data->dx *= -1;
 	data->nextx = data->fx;
 	data->nexty = data->fy;
-	while (data->nextx >= 0 && data->nextx <= m->data->x * TSIZE \
-		&& data->nexty >= 0 && data->nexty <= m->data->y * TSIZE)
+	while (data->nextx > 0 && data->nextx < m->data->x * TSIZE \
+		&& data->nexty > 0 && data->nexty < m->data->y * TSIZE)
 		if (horzloop(m, data, dif))
 			break ;
 }
@@ -48,7 +48,7 @@ static bool	horzloop(t_mlx *m, t_rdata *data, t_rdif *dif)
 
 	x = data->nextx;
 	y = data->nexty;
-	if (data->up)
+	if (!data->down)
 		y--;
 	if (wallhit(x, y))
 	{
@@ -78,17 +78,17 @@ void	vert_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif)
 		data->fx += TSIZE;
 	data->fy = p->y + (data->fx - p->x) * tan(dif->angle);
 	data->dx = TSIZE;
-	if (data->left)
+	if (!data->right)
 		data->dx *= -1;
 	data->dy = TSIZE * tan(dif->angle);
-	if (data->up && data->dy > 0)
+	if (!data->down && data->dy > 0)
 		data->dy *= -1;
 	if (data->down && data->dy < 0)
 		data->dy *= -1;
 	data->nextx = data->fx;
 	data->nexty = data->fy;
-	while (data->nextx >= 0 && data->nextx <= m->data->x * TSIZE \
-		&& data->nexty >= 0 && data->nexty <= m->data->y * TSIZE)
+	while (data->nextx > 0 && data->nextx < m->data->x * TSIZE \
+		&& data->nexty > 0 && data->nexty < m->data->y * TSIZE)
 		if (vertloop(m, data, dif))
 			break ;
 }
@@ -99,7 +99,7 @@ static bool	vertloop(t_mlx *m, t_rdata *data, t_rdif *dif)
 	float	y;
 
 	x = data->nextx;
-	if (data->left)
+	if (!data->right)
 		x--;
 	y = data->nexty;
 	if (wallhit(x, y))

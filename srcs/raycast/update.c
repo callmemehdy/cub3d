@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:18:57 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/07 18:24:17 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/08 10:01:27 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,7 @@ static void	castray(t_player *p, float angle, int id)
 
 	angle = norm_angle(angle);
 	data.down = (angle > 0 && angle < M_PI);
-	data.up = !data.down;
 	data.right = (angle < M_PI_2 || angle > M_PI * 1.5);
-	data.left = !data.right;
 	dif.angle = angle;
 	mlx = *get_mlx();
 	horz_intersect(mlx, p, &data, &dif);
@@ -79,7 +77,5 @@ static void	castray(t_player *p, float angle, int id)
 	load_rays(mlx, p, dif, id);
 	mlx->rays[id].angle = angle;
 	mlx->rays[id].down = data.down;
-	mlx->rays[id].up = data.up;
-	mlx->rays[id].left = data.left;
 	mlx->rays[id].right = data.right;
 }

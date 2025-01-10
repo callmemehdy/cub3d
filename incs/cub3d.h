@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/07 17:52:52 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:30:45 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,9 +220,7 @@ struct	s_ray
 	float	wally;
 	float	dist;
 	bool	wallvert;
-	bool	up;
 	bool	down;
-	bool	left;
 	bool	right;
 	int		wallcontent;
 };
@@ -235,9 +233,7 @@ typedef struct	s_raydata
 	float	dy;
 	float	nextx;
 	float	nexty;
-	bool	up;
 	bool	down;
-	bool	left;
 	bool	right;
 }				t_rdata;
 

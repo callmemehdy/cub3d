@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/07 18:51:49 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/08 08:36:37 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,16 @@ void	render_minimap(mlx_image_t *img)
 static void	render_player(t_mlx *mlx)
 {
 	// ################################
-	t_lin	line;
-	line.x0 = mlx->player->x * SCALE;
-	line.y0 = mlx->player->y * SCALE;
-	line.x1 = line.x0 + cos(mlx->player->angle) * 32 * SCALE;
-	line.y1 = line.y0 + sin(mlx->player->angle) * 32 * SCALE;
-	line.dx = abs(line.x1 - line.x0);
-	line.dy = abs(line.y1 - line.y0);
-	line.sx = -1;
-	line.sy = -1;
-	drawline(mlx, line, get_rgba(255, 0, 0, 255));
+	// t_lin	line;
+	// line.x0 = mlx->player->x * SCALE;
+	// line.y0 = mlx->player->y * SCALE;
+	// line.x1 = line.x0 + cos(mlx->player->angle) * 32 * SCALE;
+	// line.y1 = line.y0 + sin(mlx->player->angle) * 32 * SCALE;
+	// line.dx = abs(line.x1 - line.x0);
+	// line.dy = abs(line.y1 - line.y0);
+	// line.sx = -1;
+	// line.sy = -1;
+	// drawline(mlx, line, get_rgba(255, 0, 0, 255));
 	// ################################
 
 	t_circle	circle;

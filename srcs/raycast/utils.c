@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:34:54 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/07 18:33:42 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/08 10:01:45 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ bool	wallhit(float x, float y)
 	t_data	*data;
 
 	data = *get_data();
-	if (x < 0 || x > data->x * TSIZE_SCALE || y < 0 || y > data->y * TSIZE_SCALE)
-		return (1);
-	mapx = floor(x / TSIZE_SCALE);
-	mapy = floor(y / TSIZE_SCALE);
-	return (!(data->map[mapy][mapx] == '0' \
-		|| is_player(data->map[mapy][mapx])));
+	if (x < 0 || x >= data->x * TSIZE || y < 0 || y >= data->y * TSIZE)
+		return (true);
+	mapx = floor(x / TSIZE);
+	mapy = floor(y / TSIZE);
+	return (data->map[mapy][mapx] != '0' \
+		&& !is_player(data->map[mapy][mapx]));
 }
 
 float	norm_angle(float angle)
