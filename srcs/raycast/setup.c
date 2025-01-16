@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:38:41 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/16 12:00:27 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:43:00 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ static void	init_bg(t_mlx *mlx)
 		while (++x < W_WIDTH)
 			mlx_put_pixel(mlx->bg, x, y, get_rgba(255, 255, 255, 128));
 	}
-	render_minimap(mlx, BG);
+	// render_minimap(mlx, BG);
 	mlx_image_to_window(mlx->mlxi, mlx->bg, 0, 0);
 }

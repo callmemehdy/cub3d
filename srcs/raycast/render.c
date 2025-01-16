@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/16 16:56:32 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/16 17:43:09 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	*ft_fill_line(char *s, t_data *data, t_player *player, int index)
 	int		i;
 	int		j;
 
+	s = 0;
 	i = (int)(player->y / TSIZE_SCALE) - 4 + index;
 	j = (int)(player->x / TSIZE_SCALE) - 4;
 	if (i >= 0 && i < data->y)
@@ -60,20 +61,46 @@ char	**kernel_masking(t_data *data, t_player *player)
 }
 
 
+void	mini_map_testing(t_mlx *mlx, int img)
+{
+	char 		**map;
+	t_rect		tile;
+	int			x;
+	int			y;
+	int			height = 9, width = 9;
+
+	y = -1;
+	map = kernel_masking(*get_data(), mlx->player);
+	while (++y < height)
+	{
+		x = -1;
+		while (++x < width)
+		{
+			tile.x = x;
+			tile.y = y;
+			tile.width = TSIZE_SCALE;
+			tile.height = TSIZE_SCALE;
+			tile.fillclr = get_rgba(0, 0, 0, 255);
+			if (map[y][x] == '0' || is_player(map[y][x]))
+				tile.fillclr = get_rgba(255, 255, 255, 255);
+			tile.edgeclr = tile.fillclr;
+			if (img == IMG)
+				drawrect(mlx->img, tile);
+			else
+				drawrect(mlx->bg, tile);
+		}
+	}
+}
+
 void	render(t_mlx *mlx)
 {
 	mlx_delete_image(mlx->mlxi, mlx->img);
 	mlx->img = mlx_new_image(mlx->mlxi, W_WIDTH, W_HEIGHT);
 	// render_buffer(mlx);
 	// clearbuffer(get_rgba(0, 0, 0, 255));
-	char **s = kernel_masking(*get_data(), mlx->player);
-	for (int i = 0; s[i]; i++) {
-		printf("%s\n", s[i]);
-	}
-	// exit(0);
-	render_minimap(mlx, IMG);
-	render_rays(mlx);
-	render_player(mlx);
+	mini_map_testing(mlx, IMG);
+	// render_rays(mlx);
+	// render_player(mlx);
 	mlx_image_to_window(mlx->mlxi, mlx->img, 0, 0);
 }
 
