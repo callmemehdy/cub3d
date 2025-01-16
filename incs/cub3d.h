@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/16 13:29:35 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 17:49:53 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@
 # define W_HEIGHT 1056
 
 //	Width of the ray
-# define RAY_SIZE	1
+# define NUM_RAYS	W_WIDTH
 
 //	Frame Per Second
-# define FPS 30
+# define FPS 60
 
 //	Frame Time Length in ms
 # define FTL (1000 / FPS)
@@ -165,7 +165,6 @@ typedef struct s_mlx
 	t_ray			*rays;
 	int				width;
 	int				height;
-	int				nrays;
 	int				lastframe;
 }				t_mlx;
 
@@ -247,6 +246,16 @@ typedef struct	s_raydif
 	bool	vertflag;
 }				t_rdif;
 
+typedef struct	s_wall
+{
+	int		x;
+	int		y;
+	int		height;
+	int		top;
+	int		bot;
+	int		color;
+}				t_wall;
+
 // some useful utils
 char			**ft_split(char const *str, char c);
 void			ft_bzero(void *buffer, size_t n);
@@ -319,6 +328,7 @@ void	update(t_mlx *mlx);
 
 // utils.c
 int		get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
+int		rgbtoa(uint32_t rgb);
 bool	wallhit(float x, float y);
 float	norm_angle(float angle);
 float	linelen(float x1, float y1, float x2, float y2);

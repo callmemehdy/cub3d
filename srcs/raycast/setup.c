@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:38:41 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/16 13:15:45 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 15:11:39 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	setup(t_mlx *mlx, t_data *data)
 	mlx->player = salloc(ft_malloc(sizeof(t_player)), 0);
 	mlx->width = data->x * TSIZE;
 	mlx->height = data->y * TSIZE;
-	mlx->nrays = W_WIDTH / RAY_SIZE;
-	mlx->rays = ft_malloc(sizeof(t_ray) * mlx->nrays);
+	mlx->rays = ft_malloc(sizeof(t_ray) * NUM_RAYS);
 	mlx->lastframe = 0;
 	mlx->img = NULL;
 	mlx_set_window_pos(mlx->mlxi, 600, 300);

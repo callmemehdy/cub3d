@@ -6,48 +6,59 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/16 13:28:56 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:09:02 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	render_projplane(t_mlx *mlx);
 static void	render_player(t_mlx *mlx);
 static void	render_rays(t_mlx *mlx);
-
-void	render_walls(t_mlx *mlx)
-{
-	int	i;
-
-	i = -1;
-	while (++i < mlx->nrays)
-	{
-		float	prodist = (W_WIDTH / 2) / tan(FOV / 2);
-		int		prowallheight = (TSIZE / mlx->rays[i].dist) * prodist;
-		int		walltop = (W_HEIGHT / 2) - (prowallheight / 2);
-		if (walltop < 0)
-			walltop = 0;
-		int		wallbot = (W_HEIGHT / 2) + (prowallheight / 2);
-		if (wallbot > W_HEIGHT)
-			wallbot = W_HEIGHT;
-		int	y = walltop;
-		while (y < wallbot)
-		{
-			mlx_put_pixel(mlx->img, i, y, get_rgba(0, 51, 102, 255));
-			y++;
-		}
-	}
-}
 
 void	render(t_mlx *mlx)
 {
 	mlx_delete_image(mlx->mlxi, mlx->img);
 	mlx->img = mlx_new_image(mlx->mlxi, W_WIDTH, W_HEIGHT);
-	render_walls(mlx);
+	render_projplane(mlx);
 	render_minimap(mlx->img);
 	render_rays(mlx);
 	render_player(mlx);
 	mlx_image_to_window(mlx->mlxi, mlx->img, 0, 0);
+}
+
+static void	render_projplane(t_mlx *mlx)
+{
+	t_wall	wall;
+	float	proj_dist;
+	float	perp_dist;
+
+	wall.x = -1;
+	while (++wall.x < NUM_RAYS)
+	{
+		perp_dist = mlx->rays[wall.x].dist * \
+					cos(mlx->rays[wall.x].angle - mlx->player->angle);
+		proj_dist = (W_WIDTH / 2) / tan(FOV / 2);
+		wall.height = (TSIZE / perp_dist) * proj_dist;
+		wall.top = (W_HEIGHT / 2) - (wall.height / 2);
+		if (wall.top < 0)
+			wall.top = 0;
+		wall.bot = (W_HEIGHT / 2) + (wall.height / 2);
+		if (wall.bot > W_HEIGHT)
+			wall.bot = W_HEIGHT;
+		wall.color = get_rgba(0, 51, 102, 200);
+		if (mlx->rays[wall.x].wallvert)
+			wall.color = get_rgba(0, 51, 102, 255);
+		wall.y = -1;
+		while (++wall.y < wall.top)
+			mlx_put_pixel(mlx->img, wall.x, wall.y, rgbtoa(mlx->data->crgb));
+		wall.y = wall.top - 1;
+		while (++wall.y < wall.bot)
+			mlx_put_pixel(mlx->img, wall.x, wall.y, wall.color);
+		wall.y = wall.bot - 1;
+		while (++wall.y < W_HEIGHT)
+			mlx_put_pixel(mlx->img, wall.x, wall.y, rgbtoa(mlx->data->frgb));
+	}
 }
 
 void	render_minimap(mlx_image_t *img)
@@ -94,7 +105,7 @@ static void	render_rays(t_mlx *mlx)
 	t_line	line;
 
 	i = -1;
-	while (++i < mlx->nrays)
+	while (++i < NUM_RAYS)
 	{
 		line.x0 = mlx->player->x * SCALE;
 		line.y0 = mlx->player->y * SCALE;
