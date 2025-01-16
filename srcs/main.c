@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/16 11:05:51 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:12:08 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,5 @@ int	main(int ac, char **av)
 	load_and_parse(av[0], av[1]);
 	game();
 	ft_free_all();
-	(void)av;
 	return (0);
 }
