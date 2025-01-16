@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/16 11:01:41 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 12:17:29 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@
 
 //	Frame Time Length in ms
 # define FTL (1000 / FPS)
+
+# define BG 1
+# define IMG 0
 
 // typedefing
 typedef struct s_data t_data;
@@ -186,12 +189,13 @@ struct s_player
 
 typedef struct	s_rect
 {
-	int	x;
-	int	y;
-	int width;
-	int height;
-	int	fillclr;
-	int	edgeclr;
+	int			x;
+	int			y;
+	int 		width;
+	int 		height;
+	int			fillclr;
+	int			edgeclr;
+	t_player	player;
 }				t_rect;
 
 typedef struct	s_circle
@@ -311,7 +315,7 @@ void	load_rays(t_mlx *mlx, t_player *p, t_rdif dif, int id);
 
 // render.c
 void	render(t_mlx *mlx);
-void	render_minimap(mlx_image_t *img);
+void	render_minimap(t_mlx *mlx, int img);
 
 // setup.c
 void	setup(t_mlx *mlx, t_data *data);

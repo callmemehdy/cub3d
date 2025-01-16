@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/16 10:46:23 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:56:32 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,63 @@
 static void	render_player(t_mlx *mlx);
 static void	render_rays(t_mlx *mlx);
 
+char	*ft_fill_line(char *s, t_data *data, t_player *player, int index)
+{
+	char 	*tmp;
+	int		i;
+	int		j;
+
+	i = (int)(player->y / TSIZE_SCALE) - 4 + index;
+	j = (int)(player->x / TSIZE_SCALE) - 4;
+	if (i >= 0 && i < data->y)
+	{
+		s = ft_malloc(sizeof(char) * 10);
+		tmp = s;
+		while (j <= (player->x / TSIZE_SCALE) + 4)
+		{
+			if (j >= 0 && j < data->x)
+				*s = data->map[i][j];
+			else
+				*s = '1';
+			s++;
+			j++;
+		}
+		*s = 0;
+		return (tmp);
+	}
+	else
+		s = ft_strdup("111111111");
+	return (s);
+}
+
+char	**kernel_masking(t_data *data, t_player *player)
+{
+	char	**kernel;
+	int		i;
+
+	i = -1;
+	kernel = ft_malloc(sizeof(char *) * (size_t)10);
+	if (!kernel)
+		ft_error(ALLOC_ERR, ALLOC_STT);
+	while (++i < 9)
+		kernel[i] = ft_fill_line(0, data, player, i);
+	kernel[i] = 0;
+	return (kernel);
+}
+
+
 void	render(t_mlx *mlx)
 {
 	mlx_delete_image(mlx->mlxi, mlx->img);
 	mlx->img = mlx_new_image(mlx->mlxi, W_WIDTH, W_HEIGHT);
 	// render_buffer(mlx);
 	// clearbuffer(get_rgba(0, 0, 0, 255));
-	render_minimap(mlx->img);
+	char **s = kernel_masking(*get_data(), mlx->player);
+	for (int i = 0; s[i]; i++) {
+		printf("%s\n", s[i]);
+	}
+	// exit(0);
+	render_minimap(mlx, IMG);
 	render_rays(mlx);
 	render_player(mlx);
 	mlx_image_to_window(mlx->mlxi, mlx->img, 0, 0);
@@ -32,12 +82,15 @@ void	render_buffer(t_mlx *mlx)
 	mlx_texture_to_image(mlx->mlxi, mlx->texture);
 }
 
-void	render_minimap(mlx_image_t *img)
+/*
+	ive replaced img arg in the above func with mlx struct.
+*/
+void	render_minimap(t_mlx *mlx, int img)
 {
-	int		x;
-	int		y;
-	t_rect	tile;
-	t_data	*data;
+	t_data		*data;
+	t_rect		tile;
+	int			x;
+	int			y;
 
 	y = -1;
 	data = *get_data();
@@ -46,15 +99,18 @@ void	render_minimap(mlx_image_t *img)
 		x = -1;
 		while (++x < data->x)
 		{
-			tile.x = x * TSIZE_SCALE;
-			tile.y = y * TSIZE_SCALE;
+			tile.x = x;
+			tile.y = y;
 			tile.width = TSIZE_SCALE;
 			tile.height = TSIZE_SCALE;
 			tile.fillclr = get_rgba(0, 0, 0, 255);
 			if (data->map[y][x] == '0' || is_player(data->map[y][x]))
 				tile.fillclr = get_rgba(255, 255, 255, 255);
 			tile.edgeclr = tile.fillclr;
-			drawrect(img, tile);
+			if (img == IMG)
+				drawrect(mlx->img, tile);
+			else
+				drawrect(mlx->bg, tile);
 		}
 	}
 }
