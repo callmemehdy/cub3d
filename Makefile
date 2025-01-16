@@ -6,7 +6,7 @@
 #    By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2025/01/07 09:28:27 by ael-amma         ###   ########.fr        #
+#    Updated: 2025/01/16 11:07:12 by ael-amma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CMP		=	cc
 PFILES	=	ft_free.c malloc.c get_next_line.c					\
 			get_next_line_utils.c ft_split.c ft_utils_I.c		\
 			map_check.c ft_utils_II.c ft_utils_III.c bool_map.c	\
-			ft_boolean_exp.c
+			ft_boolean_exp.c ft_utils_IV.c
 
 RFILES	=	cleaner.c draw.c game.c hooks.c raycast.c render.c	\
 			setup.c update.c utils.c

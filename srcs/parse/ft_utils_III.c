@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:23:32 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/16 09:55:23 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:05:17 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ bool	onlynl(char *s)
 
 bool	ft_preprocess(t_linegnl *lines)
 {
-	while (lines && !is_map(lines->s))
-		lines = lines->next;
-	while (lines && onlynl(lines->s))
+	while (lines && !is_map_first(lines->s))
 		lines = lines->next;
 	while (lines)
 	{

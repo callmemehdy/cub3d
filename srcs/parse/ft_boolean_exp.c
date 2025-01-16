@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 10:23:58 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/12/26 15:26:03 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:04:55 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,17 @@ bool	check_char(char **map, int *pl, int i, int j)
 	t_data	*data;
 
 	data = (*get_data());
-	if (map[i][j] == '0' && (!is_safe(map[i][j - 1], i, j - 1) || \
-		!is_safe(map[1 + i][j], 1 + i, j) || \
-		!is_safe(map[i - 1][j], i - 1, j) || \
-		!is_safe(map[i][1 + j], i, 1 + j)))
+	if (map[i][j] == '0' && \
+		(outtabound(i, j - 1) && !is_safe(map[i][j - 1], i, j - 1) || \
+		(outtabound(1 + i, j) || !is_safe(map[1 + i][j], 1 + i, j)) || \
+		(outtabound(i - 1, j) || !is_safe(map[i - 1][j], i - 1, j)) || \
+		(outtabound(i, 1 + j) || !is_safe(map[i][1 + j], i, 1 + j))))
 		return (1);
 	else if (is_player(map[i][j]) && ++*(pl) && \
-		(!is_safe(map[i][j - 1], i, j - 1) && \
-		!is_safe(map[1 + i][j], 1 + i, j) && \
-		!is_safe(map[i - 1][j], i - 1, j) && \
-		!is_safe(map[i][1 + j], i, 1 + j)))
+		(outtabound(i, j - 1) || !is_safe(map[i][j - 1], i, j - 1)) && \
+		(outtabound(1 + i, j) || !is_safe(map[1 + i][j], 1 + i, j)) && \
+		(outtabound(i - 1, j) || !is_safe(map[i - 1][j], i - 1, j)) && \
+		(outtabound(i, j + 1) || !is_safe(map[i][1 + j], i, 1 + j)))
 		return (1);
 	else if (outsiders(map[i][j]))
 		return (1);

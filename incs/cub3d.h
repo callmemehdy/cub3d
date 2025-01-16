@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/16 10:48:39 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:01:41 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 // map content errors
 # define MAP_ERR "invalid map content"
 # define MAP_STT 1
+# define PI M_PI //
 
 // enumslike string
 # define EA "EA"
@@ -82,11 +83,9 @@
 //	Frame Time Length in ms
 # define FTL (1000 / FPS)
 
-typedef unsigned char	t_byte;
-
-
 // typedefing
 typedef struct s_data t_data;
+typedef unsigned char	t_byte;
 
 // parse shit
 
@@ -279,6 +278,8 @@ bool			is_safe(char c, int i, int j);
 bool			is_player(char c);
 bool			outsiders(char c);
 bool			check_char(char **map, int *pl, int i, int j);
+bool			outtabound(int y, int x);
+bool			is_map_first(char *s);
 
 // global struct
 t_data	**get_data(void);

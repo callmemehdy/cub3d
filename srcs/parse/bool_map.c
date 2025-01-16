@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:06:41 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/11/20 10:32:32 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/07 10:51:42 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ char	*sp_padding(char *s, int maxlen)
 			buff[maxlen] = s[--slen];
 		--maxlen;
 	}
-	ft_free(s);
 	buff[len] = 0;
+	ft_free(s);
 	return (buff);
 }
 
