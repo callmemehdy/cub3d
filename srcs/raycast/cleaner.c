@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:35:32 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/12/25 14:52:07 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 09:36:13 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_mlxerror(void)
 {
 	char	*str;
 
-	str = mlx_strerror(mlx_errno);
+	str = (char *)mlx_strerror(mlx_errno);
 	while (str)
 	{
 		write(2, &str, 1);

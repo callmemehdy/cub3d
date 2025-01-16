@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/08 08:36:37 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:46:23 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,19 @@ static void	render_rays(t_mlx *mlx);
 
 void	render(t_mlx *mlx)
 {
+	mlx_delete_image(mlx->mlxi, mlx->img);
+	mlx->img = mlx_new_image(mlx->mlxi, W_WIDTH, W_HEIGHT);
+	// render_buffer(mlx);
+	// clearbuffer(get_rgba(0, 0, 0, 255));
 	render_minimap(mlx->img);
 	render_rays(mlx);
 	render_player(mlx);
+	mlx_image_to_window(mlx->mlxi, mlx->img, 0, 0);
+}
+
+void	render_buffer(t_mlx *mlx)
+{
+	mlx_texture_to_image(mlx->mlxi, mlx->texture);
 }
 
 void	render_minimap(mlx_image_t *img)
@@ -51,19 +61,6 @@ void	render_minimap(mlx_image_t *img)
 
 static void	render_player(t_mlx *mlx)
 {
-	// ################################
-	// t_lin	line;
-	// line.x0 = mlx->player->x * SCALE;
-	// line.y0 = mlx->player->y * SCALE;
-	// line.x1 = line.x0 + cos(mlx->player->angle) * 32 * SCALE;
-	// line.y1 = line.y0 + sin(mlx->player->angle) * 32 * SCALE;
-	// line.dx = abs(line.x1 - line.x0);
-	// line.dy = abs(line.y1 - line.y0);
-	// line.sx = -1;
-	// line.sy = -1;
-	// drawline(mlx, line, get_rgba(255, 0, 0, 255));
-	// ################################
-
 	t_circle	circle;
 
 	circle.cx = mlx->player->x * SCALE;
@@ -76,7 +73,7 @@ static void	render_player(t_mlx *mlx)
 static void	render_rays(t_mlx *mlx)
 {
 	int		i;
-	t_lin	line;
+	t_line	line;
 
 	i = -1;
 	while (++i < mlx->nrays)
@@ -85,10 +82,6 @@ static void	render_rays(t_mlx *mlx)
 		line.y0 = mlx->player->y * SCALE;
 		line.x1 = mlx->rays[i].wallx * SCALE;
 		line.y1 = mlx->rays[i].wally * SCALE;
-		line.dx = abs(line.x1 - line.x0);
-		line.dy = abs(line.y1 - line.y0);
-		line.sx = -1;
-		line.sy = -1;
 		drawline(mlx, line, get_rgba(102, 102, 255, 100));
 	}
 }

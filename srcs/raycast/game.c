@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:35:24 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/07 18:15:11 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/10 19:46:41 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ static void	game_loop(void *vmlx)
 	if (wait > 0 && wait <= FTL)
 		usleep(wait * 1000);
 	mlx->lastframe = mlx_get_time() * 1000;
-	mlx_delete_image(mlx->mlxi, mlx->img);
-	mlx->img = mlx_new_image(mlx->mlxi, mlx->width, mlx->height);
 	update(mlx);
 	render(mlx);
-	mlx_image_to_window(mlx->mlxi, mlx->img, 0, 0);
 }

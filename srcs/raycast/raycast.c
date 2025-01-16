@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 08:36:15 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/10 17:38:48 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 09:40:50 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	horz_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif)
 		data->dx *= -1;
 	data->nextx = data->fx;
 	data->nexty = data->fy;
-	while (data->nextx > 0 && data->nextx < m->data->x * TSIZE \
-		&& data->nexty > 0 && data->nexty < m->data->y * TSIZE)
+	while (data->nextx > 0 && data->nextx < m->width \
+		&& data->nexty > 0 && data->nexty < m->height)
 		if (horzloop(m, data, dif))
 			break ;
 }
@@ -87,8 +87,8 @@ void	vert_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif)
 		data->dy *= -1;
 	data->nextx = data->fx;
 	data->nexty = data->fy;
-	while (data->nextx > 0 && data->nextx < m->data->x * TSIZE \
-		&& data->nexty > 0 && data->nexty < m->data->y * TSIZE)
+	while (data->nextx > 0 && data->nextx < m->width \
+		&& data->nexty > 0 && data->nexty < m->height)
 		if (vertloop(m, data, dif))
 			break ;
 }
@@ -121,8 +121,8 @@ static bool	vertloop(t_mlx *m, t_rdata *data, t_rdif *dif)
 
 void	load_rays(t_mlx *mlx, t_player *p, t_rdif dif, int id)
 {
-	float	horzdist;
-	float	vertdist;
+	double	horzdist;
+	double	vertdist;
 
 	horzdist = INT32_MAX;
 	vertdist = INT32_MAX;

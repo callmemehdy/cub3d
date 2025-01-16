@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils_II.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:33:26 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/11/20 10:24:52 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/16 09:55:19 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void	slicemap(t_data *data)
 	data -> confsize = i;
 }
 
-void	line2list(t_line **list, char *s)
+void	line2list(t_linegnl **list, char *s)
 {
-	t_line		*node;
-	t_line		*tmp;
+	t_linegnl	*node;
+	t_linegnl	*tmp;
 
 	if (!list)
 		return ;
-	node = ft_malloc(sizeof(t_line));
+	node = ft_malloc(sizeof(t_linegnl));
 	if (!node)
 		ft_error(ALLOC_ERR, ALLOC_STT);
 	if (list && !*list)

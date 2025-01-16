@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:54:38 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/11/20 10:32:53 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/16 09:55:02 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	ft_free_all(void)
 	list = NULL;
 }
 
-void	free_lines(t_line *lines)
+void	free_lines(t_linegnl *lines)
 {
-	t_line	*tmp;
+	t_linegnl	*tmp;
 
 	while (lines)
 	{

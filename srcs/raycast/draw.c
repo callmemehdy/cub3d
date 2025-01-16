@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 17:53:20 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/07 11:19:23 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:51:39 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,31 +46,25 @@ void	drawcircle(t_mlx *mlx, t_circle circ)
 	}
 }
 
-void	drawline(t_mlx *mlx, t_lin line, uint32_t color)
+void	drawline(t_mlx *mlx, t_line line, uint32_t color)
 {
-	int	err;
-	int	err2;
+	int		i;
+	float	step;
+	double	xstep;
+	double	ystep;
 
-	if (line.x0 < line.x1)
-		line.sx = 1;
-	if (line.y0 < line.y1)
-		line.sy = 1;
-	err = line.dx - line.dy;
-	while (1)
+	line.dx = line.x1 - line.x0;
+	line.dy = line.y1 - line.y0;
+	step = abs(line.dy);
+	if (abs(line.dx) > abs(line.dy))
+		step = abs(line.dx);
+	xstep = line.dx / step;
+	ystep = line.dy / step;
+	i = -1;
+	while (++i <= step)
 	{
-		mlx_put_pixel(mlx->img, line.x0, line.y0, color);
-		if (line.x0 == line.x1 && line.y0 == line.y1)
-			break ;
-		err2 = 2 * err;
-		if (err2 > -line.dx)
-		{
-			err -= line.dy;
-			line.x0 += line.sx;
-		}
-		if (err2 < line.dy)
-		{
-			err += line.dx;
-			line.y0 += line.sy;
-		}
+		mlx_put_pixel(mlx->img, round(line.x0), round(line.y0), color);
+		line.x0 += xstep;
+		line.y0 += ystep;
 	}
 }

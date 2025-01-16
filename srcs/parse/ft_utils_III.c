@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils_III.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:23:32 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/11/20 10:29:30 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/16 09:55:23 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	onlynl(char *s)
 	return (true);
 }
 
-bool	ft_preprocess(t_line *lines)
+bool	ft_preprocess(t_linegnl *lines)
 {
 	while (lines && !is_map(lines->s))
 		lines = lines->next;

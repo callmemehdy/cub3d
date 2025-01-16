@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/10 17:30:45 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:48:39 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,11 @@ typedef struct s_addr
 	struct s_addr	*next;
 }				t_addr;
 
-typedef struct s_line
+typedef struct s_linegnl
 {
-	char			*s;
-	struct s_line	*next;
-}				t_line;
+	char				*s;
+	struct s_linegnl	*next;
+}				t_linegnl;
 
 // memory management shit ...
 void			ft_free(void *add);
@@ -119,7 +119,7 @@ struct s_data
 {
 	char			*title;
 	int				map_fd;
-	t_line			*lines;
+	t_linegnl		*lines;
 	// boolean map things
 	char			**map;
 	int				x;			// map width
@@ -158,16 +158,18 @@ typedef struct s_ray	t_ray;
 
 typedef struct s_mlx
 {
-	mlx_t		*mlxi;
-	mlx_image_t	*bg;
-	mlx_image_t	*img;
-	t_player	*player;
-	t_data		*data;
-	t_ray		*rays;
-	int			width;
-	int			height;
-	int			nrays;
-	int			lastframe;
+	mlx_t			*mlxi;
+	mlx_image_t		*bg;
+	mlx_image_t		*img;
+	mlx_texture_t	*texture;
+	t_player		*player;
+	t_data			*data;
+	t_ray			*rays;
+	int				*buffer;
+	int				width;
+	int				height;
+	int				nrays;
+	int				lastframe;
 }				t_mlx;
 
 struct s_player
@@ -201,17 +203,15 @@ typedef struct	s_circle
 	int	color;
 }				t_circle;
 
-typedef struct	s_lin
+typedef struct	s_line
 {
-	int	x0;
-	int	y0;
-	int	x1;
-	int	y1;
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-}				t_lin;
+	float	x0;
+	float	y0;
+	float	x1;
+	float	y1;
+	int		dx;
+	int		dy;
+}				t_line;
 
 struct	s_ray
 {
@@ -261,13 +261,13 @@ bool			ft_isspace(char c);
 // size_t	ft_strlen(char *s);
 // map parsing utils too
 char			*line2path(char *s);
-void			line2list(t_line **list, char *s);
+void			line2list(t_linegnl **list, char *s);
 bool			onlynl(char *s);
 char			*skip(char *s);
 char			*revskip(char *s);
 bool			_edgelines(char *s);
-void			free_lines(t_line *lines);
-bool			ft_preprocess(t_line *lines);
+void			free_lines(t_linegnl *lines);
+bool			ft_preprocess(t_linegnl *lines);
 t_byte			atob(char *s);
 
 unsigned int	rgbshifter(char *s, int level);
@@ -294,7 +294,7 @@ void	ft_exit(t_mlx *mlx);
 //	draw.c
 void	drawrect(mlx_image_t *img, t_rect tile);
 void	drawcircle(t_mlx *mlx, t_circle circle);
-void	drawline(t_mlx *mlx, t_lin line, uint32_t color);
+void	drawline(t_mlx *mlx, t_line line, uint32_t color);
 
 // game.c
 void	game(void);
@@ -323,5 +323,6 @@ int		get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 bool	wallhit(float x, float y);
 float	norm_angle(float angle);
 float	linelen(float x1, float y1, float x2, float y2);
+void	clearbuffer(int color);
 
 #endif
