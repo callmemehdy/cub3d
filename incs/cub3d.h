@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/16 11:01:41 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:29:35 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,11 +160,9 @@ typedef struct s_mlx
 	mlx_t			*mlxi;
 	mlx_image_t		*bg;
 	mlx_image_t		*img;
-	mlx_texture_t	*texture;
 	t_player		*player;
 	t_data			*data;
 	t_ray			*rays;
-	int				*buffer;
 	int				width;
 	int				height;
 	int				nrays;
@@ -324,6 +322,5 @@ int		get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 bool	wallhit(float x, float y);
 float	norm_angle(float angle);
 float	linelen(float x1, float y1, float x2, float y2);
-void	clearbuffer(int color);
 
 #endif

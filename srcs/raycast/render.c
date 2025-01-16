@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/16 10:46:23 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:28:56 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,39 @@
 static void	render_player(t_mlx *mlx);
 static void	render_rays(t_mlx *mlx);
 
+void	render_walls(t_mlx *mlx)
+{
+	int	i;
+
+	i = -1;
+	while (++i < mlx->nrays)
+	{
+		float	prodist = (W_WIDTH / 2) / tan(FOV / 2);
+		int		prowallheight = (TSIZE / mlx->rays[i].dist) * prodist;
+		int		walltop = (W_HEIGHT / 2) - (prowallheight / 2);
+		if (walltop < 0)
+			walltop = 0;
+		int		wallbot = (W_HEIGHT / 2) + (prowallheight / 2);
+		if (wallbot > W_HEIGHT)
+			wallbot = W_HEIGHT;
+		int	y = walltop;
+		while (y < wallbot)
+		{
+			mlx_put_pixel(mlx->img, i, y, get_rgba(0, 51, 102, 255));
+			y++;
+		}
+	}
+}
+
 void	render(t_mlx *mlx)
 {
 	mlx_delete_image(mlx->mlxi, mlx->img);
 	mlx->img = mlx_new_image(mlx->mlxi, W_WIDTH, W_HEIGHT);
-	// render_buffer(mlx);
-	// clearbuffer(get_rgba(0, 0, 0, 255));
+	render_walls(mlx);
 	render_minimap(mlx->img);
 	render_rays(mlx);
 	render_player(mlx);
 	mlx_image_to_window(mlx->mlxi, mlx->img, 0, 0);
-}
-
-void	render_buffer(t_mlx *mlx)
-{
-	mlx_texture_to_image(mlx->mlxi, mlx->texture);
 }
 
 void	render_minimap(mlx_image_t *img)

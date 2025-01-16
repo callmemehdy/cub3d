@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:34:54 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/16 08:35:23 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:16:46 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,4 @@ float	norm_angle(float angle)
 float	linelen(float x1, float y1, float x2, float y2)
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
-}
-
-void	clearbuffer(int color)
-{
-	int		x;
-	int		y;
-	t_mlx	*mlx;
-
-	mlx = *get_mlx();
-	x = -1;
-	while (++x < W_WIDTH)
-	{
-		y = -1;
-		while (++y < W_HEIGHT)
-			mlx->buffer[(W_WIDTH * y) + x] = color;
-	}
 }
