@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:38:41 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/16 18:43:00 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/17 00:03:32 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	init_player(t_mlx *mlx)
 	mlx->player->turndir = 0;
 	mlx->player->walkdir = 0;
 	mlx->player->strafe = 0;
-	mlx->player->walksp = 4 * TSIZE;
+	mlx->player->walksp = 4 * TSIZE_SCALE;
 	mlx->player->turnsp = (3 * TSIZE) * (M_PI / 180);
 }
 

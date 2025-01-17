@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/16 12:17:29 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/17 00:03:08 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@
 # define SCALE 1
 
 //	Size of tiles multiplied by the scale factor
-# define TSIZE_SCALE (TSIZE * SCALE)
+# define TSIZE_SCALE (int)(TSIZE * SCALE)
 
 //	Two PI
 # define T_PI (M_PI * 2)

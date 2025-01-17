@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/16 17:43:09 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/17 01:28:17 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_fill_line(char *s, t_data *data, t_player *player, int index)
 	{
 		s = ft_malloc(sizeof(char) * 10);
 		tmp = s;
-		while (j <= (player->x / TSIZE_SCALE) + 4)
+		while (j <= (int)(player->x / TSIZE_SCALE + 4))
 		{
 			if (j >= 0 && j < data->x)
 				*s = data->map[i][j];
@@ -70,17 +70,19 @@ void	mini_map_testing(t_mlx *mlx, int img)
 	int			height = 9, width = 9;
 
 	y = -1;
+	int offset_x = fmod(mlx->player->x, TSIZE_SCALE);
+	int offset_y = fmod(mlx->player->y, TSIZE_SCALE);
 	map = kernel_masking(*get_data(), mlx->player);
 	while (++y < height)
 	{
 		x = -1;
 		while (++x < width)
 		{
-			tile.x = x;
-			tile.y = y;
+			tile.x = (x * TSIZE_SCALE) + (x ? -offset_x : 0);
+			tile.y = (y * TSIZE_SCALE) + (y ? -offset_y : 0);
 			tile.width = TSIZE_SCALE;
 			tile.height = TSIZE_SCALE;
-			tile.fillclr = get_rgba(0, 0, 0, 255);
+			tile.fillclr = get_rgba(0, 0, 0, 200);
 			if (map[y][x] == '0' || is_player(map[y][x]))
 				tile.fillclr = get_rgba(255, 255, 255, 255);
 			tile.edgeclr = tile.fillclr;
@@ -100,7 +102,7 @@ void	render(t_mlx *mlx)
 	// clearbuffer(get_rgba(0, 0, 0, 255));
 	mini_map_testing(mlx, IMG);
 	// render_rays(mlx);
-	// render_player(mlx);
+	render_player(mlx);
 	mlx_image_to_window(mlx->mlxi, mlx->img, 0, 0);
 }
 
@@ -126,8 +128,8 @@ void	render_minimap(t_mlx *mlx, int img)
 		x = -1;
 		while (++x < data->x)
 		{
-			tile.x = x;
-			tile.y = y;
+			tile.x = x * TSIZE_SCALE;
+			tile.y = y * TSIZE_SCALE;
 			tile.width = TSIZE_SCALE;
 			tile.height = TSIZE_SCALE;
 			tile.fillclr = get_rgba(0, 0, 0, 255);
@@ -146,10 +148,10 @@ static void	render_player(t_mlx *mlx)
 {
 	t_circle	circle;
 
-	circle.cx = mlx->player->x * SCALE;
-	circle.cy = mlx->player->y * SCALE;
-	circle.radius = mlx->player->radius * SCALE;
-	circle.color = get_rgba(0, 0, 255, 255);
+	circle.cx = round(4 * TSIZE_SCALE + TSIZE_SCALE / 2);
+	circle.cy = round(4 * TSIZE_SCALE + TSIZE_SCALE / 2);
+	circle.radius = mlx->player->radius * 1;
+	circle.color = get_rgba(0, 255, 150, 150);
 	drawcircle(mlx, circle);
 }
 

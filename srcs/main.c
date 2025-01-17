@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/16 11:12:08 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:18:29 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_mlx	**get_mlx(void)
 
 int	main(int ac, char **av)
 {
+	// gotta parse the file extension
 	if (ac != 2)
 		ft_error(ARG_ERR, ARG_STT);
 	load_and_parse(av[0], av[1]);
