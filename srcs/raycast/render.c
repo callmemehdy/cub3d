@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/17 20:06:18 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:16:58 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ char	*ft_fill_line(char *s, t_data *data, t_player *player, int index)
 	int		j;
 
 	s = 0;
-	i = (int)(player->y / TSIZE_SCALE) - 4 + index;
-	j = (int)(player->x / TSIZE_SCALE) - 4;
+	i = (int)(player->y / TSIZE_SCALE) - 7 + index;
+	j = (int)(player->x / TSIZE_SCALE) - 7;
 	if (i >= 0 && i < data->y)
 	{
-		s = ft_malloc(sizeof(char) * 10);
+		s = ft_malloc(sizeof(char) * 16);
 		tmp = s;
-		while (j <= (int)(player->x / TSIZE_SCALE + 4))
+		while (j <= (int)(player->x / TSIZE_SCALE + 7))
 		{
 			if (j >= 0 && j < data->x)
 				*s = data->map[i][j];
@@ -41,7 +41,7 @@ char	*ft_fill_line(char *s, t_data *data, t_player *player, int index)
 		return (tmp);
 	}
 	else
-		s = ft_strdup("111111111");
+		s = ft_strdup("111111111111111");
 	return (s);
 }
 
@@ -51,10 +51,10 @@ char	**kernel_masking(t_data *data, t_player *player)
 	int		i;
 
 	i = -1;
-	kernel = ft_malloc(sizeof(char *) * (size_t)10);
+	kernel = ft_malloc(sizeof(char *) * (size_t)16);
 	if (!kernel)
 		ft_error(ALLOC_ERR, ALLOC_STT);
-	while (++i < 9)
+	while (++i < 15)
 		kernel[i] = ft_fill_line(0, data, player, i);
 	kernel[i] = 0;
 	return (kernel);
@@ -67,7 +67,7 @@ void	mini_map_testing(t_mlx *mlx, int img)
 	t_rect		tile;
 	int			x;
 	int			y;
-	int			height = 9, width = 9;
+	int			height = 15, width = 15;
 
 	y = -1;
 	int offset_x = (int)(mlx->player->x) % TSIZE_SCALE;
@@ -146,8 +146,8 @@ static void	render_player(t_mlx *mlx)
 {
 	t_circle	circle;
 
-	circle.cx = round(4 * TSIZE_SCALE + (TSIZE_SCALE / 2));
-	circle.cy = round(4 * TSIZE_SCALE + (TSIZE_SCALE / 2));
+	circle.cx = round(7 * TSIZE_SCALE + (TSIZE_SCALE / 2));
+	circle.cy = round(7 * TSIZE_SCALE + (TSIZE_SCALE / 2));
 	circle.radius = mlx->player->radius * 1;
 	circle.color = get_rgba(0, 255, 150, 150);
 	drawcircle(mlx, circle);
