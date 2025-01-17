@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/17 23:39:04 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/17 23:41:35 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void	render_player(t_mlx *mlx)
 	int			pos;
 	t_circle	circle;
 
-	pos = W_WIDTH / 4 / TSIZE / 2;
+	pos = 7;
 
 
 	/*************************************************/
