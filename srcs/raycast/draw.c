@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 17:53:20 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/17 00:42:38 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:05:16 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,7 @@ void	drawrect(mlx_image_t *img, t_rect tile)
 	{
 		j = -1;
 		while (++j < tile.width)
-		{
-			// if (!(i % TSIZE_SCALE) || !(j % TSIZE_SCALE))
-			// 	mlx_put_pixel(img, (tile.x * TSIZE_SCALE) + j, (tile.y * TSIZE_SCALE) + i, 0xffffffff);
-			// else
 				mlx_put_pixel(img, tile.x + j, tile.y + i, tile.fillclr);
-		}
 	}
 }
 

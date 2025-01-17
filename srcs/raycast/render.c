@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/17 01:28:17 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:55:57 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,22 @@ void	mini_map_testing(t_mlx *mlx, int img)
 	int			height = 9, width = 9;
 
 	y = -1;
-	int offset_x = fmod(mlx->player->x, TSIZE_SCALE);
-	int offset_y = fmod(mlx->player->y, TSIZE_SCALE);
+	int offset_x = (int)(mlx->player->x) % TSIZE_SCALE;
+	int offset_y = (int)(mlx->player->y) % TSIZE_SCALE;
+	// printf("x:%d_y:%d\n", offset_x, offset_y);
 	map = kernel_masking(*get_data(), mlx->player);
 	while (++y < height)
 	{
 		x = -1;
 		while (++x < width)
 		{
-			tile.x = (x * TSIZE_SCALE) + (x ? -offset_x : 0);
-			tile.y = (y * TSIZE_SCALE) + (y ? -offset_y : 0);
+			tile.x = (x * TSIZE_SCALE);
+			tile.y = (y * TSIZE_SCALE);
 			tile.width = TSIZE_SCALE;
 			tile.height = TSIZE_SCALE;
 			tile.fillclr = get_rgba(0, 0, 0, 200);
-			if (map[y][x] == '0' || is_player(map[y][x]))
-				tile.fillclr = get_rgba(255, 255, 255, 255);
+			if ((y < height && x < width) && (map[y][x] == '0' || is_player(map[y][x])))
+				tile.fillclr = get_rgba(255, 255, 255, 0);
 			tile.edgeclr = tile.fillclr;
 			if (img == IMG)
 				drawrect(mlx->img, tile);
@@ -148,8 +149,8 @@ static void	render_player(t_mlx *mlx)
 {
 	t_circle	circle;
 
-	circle.cx = round(4 * TSIZE_SCALE + TSIZE_SCALE / 2);
-	circle.cy = round(4 * TSIZE_SCALE + TSIZE_SCALE / 2);
+	circle.cx = round(4 * TSIZE_SCALE + (TSIZE_SCALE / 2));
+	circle.cy = round(4 * TSIZE_SCALE + (TSIZE_SCALE / 2));
 	circle.radius = mlx->player->radius * 1;
 	circle.color = get_rgba(0, 255, 150, 150);
 	drawcircle(mlx, circle);
