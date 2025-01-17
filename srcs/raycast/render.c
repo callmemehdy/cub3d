@@ -6,14 +6,14 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/17 19:55:57 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:06:18 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static void	render_player(t_mlx *mlx);
-static void	render_rays(t_mlx *mlx);
+// static void	render_rays(t_mlx *mlx);
 
 char	*ft_fill_line(char *s, t_data *data, t_player *player, int index)
 {
@@ -99,10 +99,7 @@ void	render(t_mlx *mlx)
 {
 	mlx_delete_image(mlx->mlxi, mlx->img);
 	mlx->img = mlx_new_image(mlx->mlxi, W_WIDTH, W_HEIGHT);
-	// render_buffer(mlx);
-	// clearbuffer(get_rgba(0, 0, 0, 255));
 	mini_map_testing(mlx, IMG);
-	// render_rays(mlx);
 	render_player(mlx);
 	mlx_image_to_window(mlx->mlxi, mlx->img, 0, 0);
 }
@@ -115,35 +112,35 @@ void	render_buffer(t_mlx *mlx)
 /*
 	ive replaced img arg in the above func with mlx struct.
 */
-void	render_minimap(t_mlx *mlx, int img)
-{
-	t_data		*data;
-	t_rect		tile;
-	int			x;
-	int			y;
+// void	render_minimap(t_mlx *mlx, int img)
+// {
+// 	t_data		*data;
+// 	t_rect		tile;
+// 	int			x;
+// 	int			y;
 
-	y = -1;
-	data = *get_data();
-	while (++y < data->y)
-	{
-		x = -1;
-		while (++x < data->x)
-		{
-			tile.x = x * TSIZE_SCALE;
-			tile.y = y * TSIZE_SCALE;
-			tile.width = TSIZE_SCALE;
-			tile.height = TSIZE_SCALE;
-			tile.fillclr = get_rgba(0, 0, 0, 255);
-			if (data->map[y][x] == '0' || is_player(data->map[y][x]))
-				tile.fillclr = get_rgba(255, 255, 255, 255);
-			tile.edgeclr = tile.fillclr;
-			if (img == IMG)
-				drawrect(mlx->img, tile);
-			else
-				drawrect(mlx->bg, tile);
-		}
-	}
-}
+// 	y = -1;
+// 	data = *get_data();
+// 	while (++y < data->y)
+// 	{
+// 		x = -1;
+// 		while (++x < data->x)
+// 		{
+// 			tile.x = x * TSIZE_SCALE;
+// 			tile.y = y * TSIZE_SCALE;
+// 			tile.width = TSIZE_SCALE;
+// 			tile.height = TSIZE_SCALE;
+// 			tile.fillclr = get_rgba(0, 0, 0, 255);
+// 			if (data->map[y][x] == '0' || is_player(data->map[y][x]))
+// 				tile.fillclr = get_rgba(255, 255, 255, 255);
+// 			tile.edgeclr = tile.fillclr;
+// 			if (img == IMG)
+// 				drawrect(mlx->img, tile);
+// 			else
+// 				drawrect(mlx->bg, tile);
+// 		}
+// 	}
+// }
 
 static void	render_player(t_mlx *mlx)
 {
@@ -156,18 +153,18 @@ static void	render_player(t_mlx *mlx)
 	drawcircle(mlx, circle);
 }
 
-static void	render_rays(t_mlx *mlx)
-{
-	int		i;
-	t_line	line;
+// static void	render_rays(t_mlx *mlx)
+// {
+// 	int		i;
+// 	t_line	line;
 
-	i = -1;
-	while (++i < mlx->nrays)
-	{
-		line.x0 = mlx->player->x * SCALE;
-		line.y0 = mlx->player->y * SCALE;
-		line.x1 = mlx->rays[i].wallx * SCALE;
-		line.y1 = mlx->rays[i].wally * SCALE;
-		drawline(mlx, line, get_rgba(102, 102, 255, 100));
-	}
-}
+// 	i = -1;
+// 	while (++i < mlx->nrays)
+// 	{
+// 		line.x0 = mlx->player->x * SCALE;
+// 		line.y0 = mlx->player->y * SCALE;
+// 		line.x1 = mlx->rays[i].wallx * SCALE;
+// 		line.y1 = mlx->rays[i].wally * SCALE;
+// 		drawline(mlx, line, get_rgba(102, 102, 255, 100));
+// 	}
+// }
