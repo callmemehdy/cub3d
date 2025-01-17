@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+         #
+#    By: c_noob <c_noob@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2025/01/16 12:22:13 by mel-akar         ###   ########.fr        #
+#    Updated: 2025/01/17 22:13:41 by c_noob           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ PFILES	=	ft_free.c malloc.c get_next_line.c					\
 			map_check.c ft_utils_II.c ft_utils_III.c bool_map.c	\
 			ft_boolean_exp.c ft_utils_IV.c
 
-RFILES	=	cleaner.c draw.c game.c hooks.c raycast.c render.c	\
-			setup.c update.c utils.c
+RFILES	=	cleaner.c draw.c game.c hooks.c raycast.c render_utils.c \
+			render.c setup.c update.c utils.c
 
 SRCS	=	srcs/main.c
 

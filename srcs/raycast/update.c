@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: c_noob <c_noob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:18:57 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/10 19:48:45 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:35:16 by c_noob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,14 @@ static void	move_player(t_mlx *mlx, t_player *p)
 static void	raycasting(t_player *p)
 {
 	int		id;
-	int		num_rays;
 	float	ray_angle;
 
 	id = -1;
-	num_rays = (*get_mlx())->nrays;
 	ray_angle = p->angle - (FOV / 2);
-	while (++id < num_rays)
+	while (++id < NUM_RAYS)
 	{
 		castray(p, ray_angle, id);
-		ray_angle += FOV / num_rays;
+		ray_angle += FOV / NUM_RAYS;
 	}
 }
 

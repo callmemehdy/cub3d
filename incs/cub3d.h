@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: c_noob <c_noob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/17 20:12:11 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:34:54 by c_noob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,19 @@
 # define T_PI (M_PI * 2)
 
 //	Window width
-# define W_WIDTH 1920
+# define W_WIDTH 1920	// 2048
 
 //	Window Height
-# define W_HEIGHT 1056
+# define W_HEIGHT 1056	//	1280
 
 //	Width of the ray
-# define RAY_SIZE	1
+# define NUM_RAYS	W_WIDTH
 
 //	Frame Per Second
-# define FPS 30
+# define FPS 60
 
 //	Frame Time Length in ms
 # define FTL (1000 / FPS)
-
-# define BG 1
-# define IMG 0
 
 // typedefing
 typedef struct s_data t_data;
@@ -161,16 +158,13 @@ typedef struct s_ray	t_ray;
 typedef struct s_mlx
 {
 	mlx_t			*mlxi;
-	mlx_image_t		*bg;
 	mlx_image_t		*img;
-	mlx_texture_t	*texture;
+	mlx_image_t		*bg;
 	t_player		*player;
 	t_data			*data;
 	t_ray			*rays;
-	int				*buffer;
 	int				width;
 	int				height;
-	int				nrays;
 	int				lastframe;
 }				t_mlx;
 
@@ -291,7 +285,7 @@ t_mlx	**get_mlx(void);
 
 /*********raycast*********/
 
-// cleaner.c
+//	cleaner.c
 void	*salloc(void *ptr, bool mlx);
 void	ft_mlxerror(void);
 void	ft_exit(t_mlx *mlx);
@@ -301,10 +295,10 @@ void	drawrect(mlx_image_t *img, t_rect tile);
 void	drawcircle(t_mlx *mlx, t_circle circle);
 void	drawline(t_mlx *mlx, t_line line, uint32_t color);
 
-// game.c
+//	game.c
 void	game(void);
 
-// hooks.c
+//	hooks.c
 void	key_press(mlx_key_data_t keydata, void *vmlx);
 
 //	raycast.c
@@ -312,18 +306,21 @@ void	horz_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
 void	vert_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
 void	load_rays(t_mlx *mlx, t_player *p, t_rdif dif, int id);
 
+//	render_utils.c
+char	**map_mask(t_data *data, t_player *player);
+char	*fill_line(char *s, t_data *data, t_player *player, int index);
 
-// render.c
+//	render.c
 void	render(t_mlx *mlx);
-void	render_minimap(t_mlx *mlx, int img);
+void	render_map(t_mlx *mlx);
 
-// setup.c
+//	setup.c
 void	setup(t_mlx *mlx, t_data *data);
 
-// update.c
+//	update.c
 void	update(t_mlx *mlx);
 
-// utils.c
+//	utils.c
 int		get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 bool	wallhit(float x, float y);
 float	norm_angle(float angle);

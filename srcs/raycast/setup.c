@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: c_noob <c_noob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:38:41 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/17 00:03:32 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:32:59 by c_noob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ void	setup(t_mlx *mlx, t_data *data)
 	mlx->player = salloc(ft_malloc(sizeof(t_player)), 0);
 	mlx->width = data->x * TSIZE;
 	mlx->height = data->y * TSIZE;
-	mlx->nrays = W_WIDTH / RAY_SIZE;
-	mlx->rays = ft_malloc(sizeof(t_ray) * mlx->nrays);
+	mlx->rays = ft_malloc(sizeof(t_ray) * NUM_RAYS);
 	mlx->lastframe = 0;
-	mlx->buffer = ft_malloc(sizeof(int) * W_WIDTH * W_HEIGHT);
 	mlx->img = NULL;
 	mlx_set_window_pos(mlx->mlxi, 600, 300);
 	init_player(mlx);
@@ -68,6 +66,5 @@ static void	init_bg(t_mlx *mlx)
 		while (++x < W_WIDTH)
 			mlx_put_pixel(mlx->bg, x, y, get_rgba(255, 255, 255, 128));
 	}
-	// render_minimap(mlx, BG);
 	mlx_image_to_window(mlx->mlxi, mlx->bg, 0, 0);
 }
