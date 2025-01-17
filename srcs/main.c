@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: c_noob <c_noob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/17 22:54:57 by c_noob           ###   ########.fr       */
+/*   Updated: 2025/01/17 23:18:44 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,22 @@ t_mlx	**get_mlx(void)
 	return (&mlx);
 }
 
+bool	_extension(char *s)
+{
+	int		len;
+
+	if (NULL == s)
+		return (false);
+	len = ft_strlen(s) - 4;
+	if (len >= 0 && !ft_strncmp(s + len, ".cub", 4))
+		return (true);
+	return (false);
+}
+
 int	main(int ac, char **av)
 {
 	// gotta parse the file extension
-	if (ac != 2)
+	if (ac != 2 || !_extension(av[1]))
 		ft_error(ARG_ERR, ARG_STT);
 	load_and_parse(av[0], av[1]);
 	game();

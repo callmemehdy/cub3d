@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: c_noob <c_noob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/17 22:59:44 by c_noob           ###   ########.fr       */
+/*   Updated: 2025/01/17 23:19:42 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@
 # define T_PI (M_PI * 2)
 
 //	Window width
-# define W_WIDTH 1920	// 2048
+# define W_WIDTH 2048	// 2048
 
 //	Window Height
-# define W_HEIGHT 1056	//	1280
+# define W_HEIGHT 1280	//	1280
 
 //	Width of the ray
 # define NUM_RAYS W_WIDTH

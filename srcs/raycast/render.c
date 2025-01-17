@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: c_noob <c_noob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/17 23:09:43 by c_noob           ###   ########.fr       */
+/*   Updated: 2025/01/17 23:39:04 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,9 @@ void	render_map(t_mlx *mlx)
 	int			y;
 	char 		**map;
 	t_rect		tile;
-	int			height = floor(W_WIDTH / 4 / TSIZE), width = floor(W_WIDTH / 4 / TSIZE);
+	int			height = 15, width = 15;
 
 	y = -1;
-	int offset_x = (int)(mlx->player->x) % TSIZE_SCALE;
-	int offset_y = (int)(mlx->player->y) % TSIZE_SCALE;
 	map = map_mask(*get_data(), mlx->player);
 	while (++y < height)
 	{
