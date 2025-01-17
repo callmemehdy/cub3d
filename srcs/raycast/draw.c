@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: c_noob <c_noob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/27 17:53:20 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/17 18:05:16 by mel-akar         ###   ########.fr       */
+/*   Created: 2025/01/17 22:47:14 by c_noob            #+#    #+#             */
+/*   Updated: 2025/01/17 23:00:06 by c_noob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	drawrect(mlx_image_t *img, t_rect tile)
 	{
 		j = -1;
 		while (++j < tile.width)
-				mlx_put_pixel(img, tile.x + j, tile.y + i, tile.fillclr);
+			mlx_put_pixel(img, tile.x + j, tile.y + i, tile.color);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: c_noob <c_noob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/17 22:34:54 by c_noob           ###   ########.fr       */
+/*   Updated: 2025/01/17 22:59:44 by c_noob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@
 # define W_HEIGHT 1056	//	1280
 
 //	Width of the ray
-# define NUM_RAYS	W_WIDTH
+# define NUM_RAYS W_WIDTH
 
 //	Frame Per Second
 # define FPS 60
@@ -187,8 +187,7 @@ typedef struct	s_rect
 	int			y;
 	int 		width;
 	int 		height;
-	int			fillclr;
-	int			edgeclr;
+	int			color;
 	t_player	player;
 }				t_rect;
 
@@ -246,6 +245,16 @@ typedef struct	s_raydif
 	bool	horzflag;
 	bool	vertflag;
 }				t_rdif;
+
+typedef struct	s_wall
+{
+	int		x;
+	int		y;
+	int		height;
+	int		top;
+	int		bot;
+	int		color;
+}				t_wall;
 
 // some useful utils
 char			**ft_split(char const *str, char c);
@@ -322,9 +331,9 @@ void	update(t_mlx *mlx);
 
 //	utils.c
 int		get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
+int		rgbtoa(uint32_t rgb);
 bool	wallhit(float x, float y);
 float	norm_angle(float angle);
 float	linelen(float x1, float y1, float x2, float y2);
-void	clearbuffer(int color);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: c_noob <c_noob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:34:54 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/17 22:35:28 by c_noob           ###   ########.fr       */
+/*   Updated: 2025/01/17 22:54:39 by c_noob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 int	get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+int	rgbtoa(uint32_t rgb)
+{
+	return (rgb << 24 | ((rgb >> 8) & 255) << 16 | ((rgb >> 16) & 255) << 8 | 255);
 }
 
 bool	wallhit(float x, float y)
