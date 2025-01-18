@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: c_noob <c_noob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:38:41 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/17 22:53:54 by c_noob           ###   ########.fr       */
+/*   Updated: 2025/01/18 15:53:52 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void	setup(t_mlx *mlx, t_data *data)
 	mlx->rays = ft_malloc(sizeof(t_ray) * NUM_RAYS);
 	mlx->lastframe = 0;
 	mlx->img = NULL;
+	mlx->no = mlx_load_png(mlx->data->no_path);
+	mlx->so = mlx_load_png(mlx->data->so_path);
+	mlx->we = mlx_load_png(mlx->data->we_path);
+	mlx->ea = mlx_load_png(mlx->data->ea_path);
 	mlx_set_window_pos(mlx->mlxi, 600, 300);
 	init_player(mlx);
 	mlx->bg = mlx_new_image(mlx->mlxi, W_WIDTH, W_HEIGHT);

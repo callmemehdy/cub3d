@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/17 23:49:44 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/18 16:28:48 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,24 @@ static void	render_projplane(t_mlx *mlx)
 		wall.y = -1;
 		while (++wall.y < wall.top)
 			mlx_put_pixel(mlx->img, wall.x, wall.y, rgbtoa(mlx->data->crgb));
+		// int	offx;
+		// if (mlx->rays[wall.x].wallvert)
+		// 	offx = (int)mlx->rays[wall.x].wally % TSIZE;
+		// else
+		// 	offx = (int)mlx->rays[wall.x].wallx % TSIZE;
 		wall.y = wall.top - 1;
 		while (++wall.y < wall.bot)
+		{
+			wall.color = mlx->no->pixels[];
+			// int	dist_top = wall.y + (wall.height / 2) - (W_HEIGHT / 2);
+			// int	offy = dist_top * ((float)TSIZE / wall.height);
+
+			// wall.color = get_rgba(	mlx->no->pixels[(TSIZE * offy) + offx],
+			// 						mlx->no->pixels[(TSIZE * offy) + offx + 1],
+			// 						mlx->no->pixels[(TSIZE * offy) + offx + 2],
+			// 						mlx->no->pixels[(TSIZE * offy) + offx + 3]);
 			mlx_put_pixel(mlx->img, wall.x, wall.y, wall.color);
+		}
 		wall.y = wall.bot - 1;
 		while (++wall.y < W_HEIGHT)
 			mlx_put_pixel(mlx->img, wall.x, wall.y, rgbtoa(mlx->data->frgb));
@@ -75,8 +90,8 @@ void	render_map(t_mlx *mlx)
 		x = -1;
 		while (++x < width)
 		{
-			tile.x = (x * TSIZE_SCALE);
-			tile.y = (y * TSIZE_SCALE);
+			tile.x = x * TSIZE_SCALE;
+			tile.y = y * TSIZE_SCALE;
 			tile.width = TSIZE_SCALE;
 			tile.height = TSIZE_SCALE;
 			tile.color = get_rgba(255, 255, 255, 255);
