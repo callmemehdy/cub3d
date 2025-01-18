@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
+/*   map_check_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/08 11:01:07 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/18 09:12:12 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,21 +86,6 @@ void	content_parse(t_data *data)
 	if (!bool_map(data))
 		ft_error(MAP_ERR, MAP_STT);
 }
-
-// t_line	*fetch_map(t_data *data)
-// {
-// 	t_line *iter;
-
-// 	iter = NULL;
-// 	data && (iter = data->lines);
-// 	while (iter)
-// 	{
-// 		if (!is_map(iter->s))
-// 			return (iter);
-// 		iter = iter->next;
-// 	}
-// 	return (0);
-// }
 
 static
 char	**get_map(t_data *data)

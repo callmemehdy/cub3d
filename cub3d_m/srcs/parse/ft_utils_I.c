@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:12:11 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/11/20 10:24:42 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/18 09:11:54 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_bzero(void *buffer, size_t n)
 
 bool	ft_isspace(char c)
 {
-	return ((c >= 9 && c <= 13) || c == 32);
+	return (c == 32);
 }
 
 bool	ft_isdigit(char c)
