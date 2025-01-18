@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: c_noob <c_noob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:18:57 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/17 22:54:22 by c_noob           ###   ########.fr       */
+/*   Updated: 2025/01/18 08:38:32 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ static void	move_player(t_mlx *mlx, t_player *p)
 	mvstep = p->strafe * speed * mlx->mlxi->delta_time;
 	newpx += cos(p->angle + M_PI_2) * mvstep;
 	newpy += sin(p->angle + M_PI_2) * mvstep;
-	if (!wallhit(newpx, p->y))
+	if (!wallhit(newpx, newpy))
+	{
 		p->x = newpx;
-	if (!wallhit(p->x, newpy))
 		p->y = newpy;
+	}
 }
 
 static void	raycasting(t_player *p)
