@@ -6,7 +6,7 @@
 #    By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2025/01/18 00:02:54 by mel-akar         ###   ########.fr        #
+#    Updated: 2025/01/18 09:04:22 by mel-akar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,35 +14,29 @@ MLXLIB	=	MLX42/libmlx42.a
 
 CMP		=	cc
 
-PFILES	=	ft_free.c malloc.c get_next_line.c					\
-			get_next_line_utils.c ft_split.c ft_utils_I.c		\
-			map_check.c ft_utils_II.c ft_utils_III.c bool_map.c	\
-			ft_boolean_exp.c ft_utils_IV.c
+PFILES	=	ft_free_bonus.c malloc_bonus.c get_next_line_bonus.c			\
+			get_next_line_utils_bonus.c ft_split_bonus.c ft_utils_I_bonus.c		\
+			map_check_bonus.c ft_utils_II_bonus.c ft_utils_III_bonus.c bool_map_bonus.c	\
+			ft_boolean_exp_bonus.c ft_utils_IV_bonus.c
 
-RFILES	=	cleaner.c draw.c game.c hooks.c raycast.c render_utils.c \
-			render.c setup.c update.c utils.c
+RFILES	=	cleaner_bonus.c draw_bonus.c game_bonus.c hooks_bonus.c raycast_bonus.c render_utils_bonus.c \
+			render_bonus.c setup_bonus.c update_bonus.c utils_bonus.c
 
-SRCS	=	srcs/main.c
+SRCS	=	srcs/main_bonus.c
 
 SRCS	+=	$(addprefix srcs/parse/, $(PFILES))
 
 SRCS	+=	$(addprefix srcs/raycast/, $(RFILES))
 
-OBJS	=	objs/main.o
-
 OBJS	+=	$(addprefix objs/, $(PFILES:.c=.o))
 
 OBJS	+=	$(addprefix objs/, $(RFILES:.c=.o))
 
 SRCS	+=	$(addprefix srcs/raycast/, $(RFILES))
 
-OBJS	=	objs/main.o
+OBJS	+=	objs/main_bonus.o
 
-OBJS	+=	$(addprefix objs/, $(PFILES:.c=.o))
-
-OBJS	+=	$(addprefix objs/, $(RFILES:.c=.o))
-
-NAME	=	cub3D
+NAME	=	cub3D_bonus
 
 CFLAGS	=	#-Wall -Wextra #-Werror
 
@@ -61,15 +55,15 @@ $(MLXLIB):
 	cmake CMakeLists.txt -S MLX42/ -B MLX42/
 	make -C MLX42/
 
-objs/%.o:	srcs/raycast/%.c
+objs/%_bonus.o:	srcs/raycast/%_bonus.c
 	mkdir -p objs
 	$(CMP) -c $(FLAGS) $< -o $@ -MMD
 	
-objs/%.o:	srcs/parse/%.c
+objs/%_bonus.o:	srcs/parse/%_bonus.c
 	mkdir -p objs
 	$(CMP) -c $(FLAGS) $< -o $@ -MMD
 	
-objs/%.o:	srcs/%.c
+objs/%_bonus.o:	srcs/%_bonus.c
 	mkdir -p objs
 	$(CMP) -c $(FLAGS) $< -o $@ -MMD
 
@@ -79,7 +73,10 @@ clean:
 	@if [ -f MLX42/Makefile ]; then\
 		make clean -C MLX42 > /dev/null;\
 	fi 
-	rm -rf MLX42/cmake_install.cmake MLX42/CMakeCache.txt MLX42/Makefile MLX42/CMakeFiles
+	rm -rf MLX42/cmake_install.cmake\
+	MLX42/CMakeCache.txt \
+	MLX42/Makefile\
+	MLX42/CMakeFiles
 
 fclean: clean
 	rm -rf $(NAME)
