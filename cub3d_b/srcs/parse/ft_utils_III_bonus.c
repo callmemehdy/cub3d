@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils_III.c                                     :+:      :+:    :+:   */
+/*   ft_utils_III_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:23:32 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/16 11:05:17 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/18 09:18:14 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ bool	ft_preprocess(t_linegnl *lines)
 // make the real line2path _|[-_-]|_ i see u
 char	*line2path(char *s)
 {
+	if (!s)
+		return (0);
 	while (*s && ft_isspace(*s))
 		s++;
 	while (*s && !ft_isspace(*s))

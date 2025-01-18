@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_boolean_exp.c                                   :+:      :+:    :+:   */
+/*   ft_boolean_exp_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 10:23:58 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/16 11:04:55 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/18 09:20:16 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	is_player(char c)
 bool	outsiders(char c)
 {
 	return (c != 'N' && c != 'S' && c != 'W' && c != 'E' && \
-			c != ' ' && c != '0' && c != '1');
+			c != ' ' && c != '0' && c != '1' && c != 'D');
 }
 
 bool	check_char(char **map, int *pl, int i, int j)
@@ -57,6 +57,7 @@ bool	check_char(char **map, int *pl, int i, int j)
 		data->py = i;
 		data->px = j;
 	}
+	// check if the doors are surrounded by walls to make things more real
 	return (0);
 }
 
