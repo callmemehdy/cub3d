@@ -6,14 +6,13 @@
 /*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 11:24:00 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/19 11:24:02 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/19 15:29:41 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static void	init_player(t_mlx *mlx);
-static void	init_bg(t_mlx *mlx);
 
 void	setup(t_mlx *mlx, t_data *data)
 {
@@ -22,17 +21,15 @@ void	setup(t_mlx *mlx, t_data *data)
 	mlx->player = salloc(ft_malloc(sizeof(t_player)), 0);
 	mlx->width = data->x * TSIZE;
 	mlx->height = data->y * TSIZE;
-	mlx->rays = ft_malloc(sizeof(t_ray) * NUM_RAYS);
+	mlx->rays = salloc(ft_malloc(sizeof(t_ray) * NUM_RAYS), 0);
 	mlx->lastframe = 0;
 	mlx->img = NULL;
-	mlx->no = mlx_load_png(mlx->data->no_path);
-	mlx->so = mlx_load_png(mlx->data->so_path);
-	mlx->we = mlx_load_png(mlx->data->we_path);
-	mlx->ea = mlx_load_png(mlx->data->ea_path);
+	mlx->no = salloc(mlx_load_png(mlx->data->no_path), 1);
+	mlx->so = salloc(mlx_load_png(mlx->data->so_path), 1);
+	mlx->we = salloc(mlx_load_png(mlx->data->we_path), 1);
+	mlx->ea = salloc(mlx_load_png(mlx->data->ea_path), 1);
 	mlx_set_window_pos(mlx->mlxi, 600, 300);
 	init_player(mlx);
-	mlx->bg = mlx_new_image(mlx->mlxi, W_WIDTH, W_HEIGHT);
-	init_bg(mlx);
 }
 
 static void	init_player(t_mlx *mlx)
@@ -56,19 +53,4 @@ static void	init_player(t_mlx *mlx)
 	mlx->player->strafe = 0;
 	mlx->player->walksp = 4 * TSIZE_SCALE;
 	mlx->player->turnsp = (3 * TSIZE) * (M_PI / 180);
-}
-
-static void	init_bg(t_mlx *mlx)
-{
-	int	x;
-	int	y;
-
-	y = -1;
-	while (++y < W_HEIGHT)
-	{
-		x = -1;
-		while (++x < W_WIDTH)
-			mlx_put_pixel(mlx->bg, x, y, get_rgba(255, 255, 255, 128));
-	}
-	mlx_image_to_window(mlx->mlxi, mlx->bg, 0, 0);
 }

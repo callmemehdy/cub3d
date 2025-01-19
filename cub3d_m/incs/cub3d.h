@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/18 16:14:21 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/19 18:19:10 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,6 @@ typedef struct s_ray	t_ray;
 typedef struct s_mlx
 {
 	mlx_t			*mlxi;
-	mlx_image_t		*bg;
 	mlx_image_t		*img;
 	mlx_texture_t	*no;
 	mlx_texture_t	*so;
@@ -167,6 +166,7 @@ typedef struct s_mlx
 	t_player		*player;
 	t_data			*data;
 	t_ray			*rays;
+	uint8_t			*pixels;
 	int				width;
 	int				height;
 	int				lastframe;
@@ -322,6 +322,7 @@ void	load_rays(t_mlx *mlx, t_player *p, t_rdif dif, int id);
 //	render_utils.c
 char	**map_mask(t_data *data, t_player *player);
 char	*fill_line(char *s, t_data *data, t_player *player, int index);
+int		get_pixel(t_wall wall);
 
 //	render.c
 void	render(t_mlx *mlx);

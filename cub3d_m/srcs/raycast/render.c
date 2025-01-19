@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 11:23:44 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/19 11:24:39 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/19 18:47:52 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,30 +45,16 @@ static void	render_projplane(t_mlx *mlx)
 		wall.bot = (W_HEIGHT / 2) + (wall.height / 2);
 		if (wall.bot > W_HEIGHT)
 			wall.bot = W_HEIGHT;
-		wall.color = get_rgba(0, 51, 102, 200);
-		if (mlx->rays[wall.x].wallvert)
-			wall.color = get_rgba(0, 51, 102, 255);
 		wall.y = -1;
 		while (++wall.y < wall.top)
 			mlx_put_pixel(mlx->img, wall.x, wall.y, rgbtoa(mlx->data->crgb));
-		// int	offx;
+		// NORMAL WALLS
+		// wall.color = get_rgba(0, 51, 102, 200);
 		// if (mlx->rays[wall.x].wallvert)
-		// 	offx = (int)mlx->rays[wall.x].wally % TSIZE;
-		// else
-		// 	offx = (int)mlx->rays[wall.x].wallx % TSIZE;
+		// 	wall.color = get_rgba(0, 51, 102, 255);	
 		wall.y = wall.top - 1;
 		while (++wall.y < wall.bot)
-		{
-			// wall.color = mlx->no->pixels[];
-			// int	dist_top = wall.y + (wall.height / 2) - (W_HEIGHT / 2);
-			// int	offy = dist_top * ((float)TSIZE / wall.height);
-
-			// wall.color = get_rgba(	mlx->no->pixels[(TSIZE * offy) + offx],
-			// 						mlx->no->pixels[(TSIZE * offy) + offx + 1],
-			// 						mlx->no->pixels[(TSIZE * offy) + offx + 2],
-			// 						mlx->no->pixels[(TSIZE * offy) + offx + 3]);
-			mlx_put_pixel(mlx->img, wall.x, wall.y, wall.color);
-		}
+			mlx_put_pixel(mlx->img, wall.x, wall.y, get_pixel(wall));
 		wall.y = wall.bot - 1;
 		while (++wall.y < W_HEIGHT)
 			mlx_put_pixel(mlx->img, wall.x, wall.y, rgbtoa(mlx->data->frgb));
