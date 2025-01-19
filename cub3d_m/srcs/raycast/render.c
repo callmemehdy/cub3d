@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/18 16:28:48 by ael-amma         ###   ########.fr       */
+/*   Created: 2025/01/19 11:23:44 by ael-amma          #+#    #+#             */
+/*   Updated: 2025/01/19 11:24:39 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	render_projplane(t_mlx *mlx)
 		wall.y = wall.top - 1;
 		while (++wall.y < wall.bot)
 		{
-			wall.color = mlx->no->pixels[];
+			// wall.color = mlx->no->pixels[];
 			// int	dist_top = wall.y + (wall.height / 2) - (W_HEIGHT / 2);
 			// int	offy = dist_top * ((float)TSIZE / wall.height);
 
