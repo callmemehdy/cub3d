@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/20 18:15:53 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:26:41 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	overlay_images(mlx_image_t* base, mlx_image_t* overlay)
 		++y;
     }
 }
-
 
 void	render(t_mlx *mlx)
 {
