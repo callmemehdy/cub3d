@@ -17,9 +17,10 @@ int	get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-int	rgbtoa(uint32_t rgb)
+int	fetch_rgba(uint32_t rgb)
 {
-	return (rgb << 24 | ((rgb >> 8) & 255) << 16 | ((rgb >> 16) & 255) << 8 | 255);
+	return (rgb << 24 | ((rgb >> 8) & 255) << 16
+		| ((rgb >> 16) & 255) << 8 | 255);
 }
 
 bool	wallhit(float x, float y)
@@ -41,9 +42,9 @@ bool	wallhit(float x, float y)
 
 float	norm_angle(float angle)
 {
-	angle = remainder(angle, T_PI);
+	angle = remainder(angle, (M_PI * 2));
 	if (angle < 0)
-		angle = T_PI + angle;
+		angle = (M_PI * 2) + angle;
 	return (angle);
 }
 

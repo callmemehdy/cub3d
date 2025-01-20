@@ -41,7 +41,7 @@
 // map content errors
 # define MAP_ERR "invalid map content"
 # define MAP_STT 1
-# define PI M_PI //
+# define PI M_PI
 
 // enumslike string
 # define EA "EA"
@@ -54,25 +54,16 @@
 /*********raycast*********/
 
 //	Field of view
-# define FOV (60 * ( M_PI / 180))
+# define FOV 60
 
 //	Size of tiles
 # define TSIZE	32
 
-//	Minimap Scale Factor
-# define SCALE 1
-
-//	Size of tiles multiplied by the scale factor
-# define TSIZE_SCALE (int)(TSIZE * SCALE)
-
-//	Two PI
-# define T_PI (M_PI * 2)
-
 //	Window width
-# define W_WIDTH 1920	// 2048
+# define W_WIDTH 1920
 
 //	Window Height
-# define W_HEIGHT 1056	//	1280
+# define W_HEIGHT 1056
 
 //	Width of the ray
 # define NUM_RAYS W_WIDTH
@@ -80,11 +71,8 @@
 //	Frame Per Second
 # define FPS 120
 
-//	Frame Time Length in ms
-# define FTL (1000 / FPS)
-
 // typedefing
-typedef struct s_data t_data;
+typedef struct s_data	t_data;
 typedef unsigned char	t_byte;
 
 // parse shit
@@ -152,7 +140,7 @@ typedef struct s_check
 
 /*********raycast*********/
 
-typedef struct s_player t_player;
+typedef struct s_player	t_player;
 typedef struct s_ray	t_ray;
 
 typedef struct s_mlx
@@ -186,17 +174,17 @@ struct s_player
 	float	turnsp;
 };
 
-typedef struct	s_rect
+typedef struct s_rect
 {
 	int			x;
 	int			y;
-	int 		width;
-	int 		height;
+	int			width;
+	int			height;
 	int			color;
 	t_player	player;
 }				t_rect;
 
-typedef struct	s_circle
+typedef struct s_circle
 {
 	int	cx;
 	int	cy;
@@ -204,7 +192,7 @@ typedef struct	s_circle
 	int	color;
 }				t_circle;
 
-typedef struct	s_line
+typedef struct s_line
 {
 	float	x0;
 	float	y0;
@@ -226,7 +214,7 @@ struct	s_ray
 	int		wallcontent;
 };
 
-typedef struct	s_raydata
+typedef struct s_raydata
 {
 	float	fx;
 	float	fy;
@@ -238,7 +226,7 @@ typedef struct	s_raydata
 	bool	right;
 }				t_rdata;
 
-typedef struct	s_raydif
+typedef struct s_raydif
 {
 	float	horzx;
 	float	horzy;
@@ -251,7 +239,7 @@ typedef struct	s_raydif
 	bool	vertflag;
 }				t_rdif;
 
-typedef struct	s_wall
+typedef struct s_wall
 {
 	int		x;
 	int		y;
@@ -294,53 +282,43 @@ bool			outtabound(int y, int x);
 bool			is_map_first(char *s);
 
 // global struct
-t_data	**get_data(void);
-t_mlx	**get_mlx(void);
+t_data			**get_data(void);
+t_mlx			**get_mlx(void);
 
 /*********raycast*********/
 
 //	cleaner.c
-void	*salloc(void *ptr, bool mlx);
-void	ft_mlxerror(void);
-void	ft_exit(t_mlx *mlx);
-
-//	draw.c
-void	drawrect(mlx_image_t *img, t_rect tile);
-void	drawcircle(t_mlx *mlx, t_circle circle);
-void	drawline(t_mlx *mlx, t_line line, uint32_t color);
+void			*salloc(void *ptr, bool mlx);
+void			ft_mlxerror(void);
+void			ft_exit(t_mlx *mlx);
 
 //	game.c
-void	game(void);
+void			game(void);
 
 //	hooks.c
-void	key_press(mlx_key_data_t keydata, void *vmlx);
+void			key_press(mlx_key_data_t keydata, void *vmlx);
 
 //	raycast.c
-void	horz_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
-void	vert_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
-void	load_rays(t_mlx *mlx, t_player *p, t_rdif dif, int id);
-
-//	render_utils.c
-char			**map_mask(t_data *data, t_player *player);
-char			*fill_line(char *s, t_data *data, t_player *player, int index);
-int				get_pixel(t_mlx *mlx, t_wall wall, int offx);
-mlx_texture_t	*which_texture(t_mlx *mlx, int i);
+void			horz_intersect(t_mlx *m, t_player *p, \
+								t_rdata *data, t_rdif *dif);
+void			vert_intersect(t_mlx *m, t_player *p, \
+								t_rdata *data, t_rdif *dif);
+void			load_rays(t_mlx *mlx, t_player *p, t_rdif dif, int id);
 
 //	render.c
-void	render(t_mlx *mlx);
-void	render_map(t_mlx *mlx);
+void			render(t_mlx *mlx);
 
 //	setup.c
-void	setup(t_mlx *mlx, t_data *data);
+void			setup(t_mlx *mlx, t_data *data);
 
 //	update.c
-void	update(t_mlx *mlx);
+void			update(t_mlx *mlx);
 
 //	utils.c
-int		get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
-int		rgbtoa(uint32_t rgb);
-bool	wallhit(float x, float y);
-float	norm_angle(float angle);
-float	linelen(float x1, float y1, float x2, float y2);
+int				get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
+int				fetch_rgba(uint32_t rgb);
+bool			wallhit(float x, float y);
+float			norm_angle(float angle);
+float			linelen(float x1, float y1, float x2, float y2);
 
 #endif

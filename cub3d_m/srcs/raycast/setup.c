@@ -24,14 +24,10 @@ void	setup(t_mlx *mlx, t_data *data)
 	mlx->rays = salloc(ft_malloc(sizeof(t_ray) * NUM_RAYS), 0);
 	mlx->lastframe = 0;
 	mlx->img = NULL;
-	mlx->no = salloc(mlx_load_png("textures/compass.png"), 0);
-	mlx->so = salloc(mlx_load_png("textures/compass.png"), 0);
-	mlx->we = salloc(mlx_load_png("textures/compass.png"), 0);
-	mlx->ea = salloc(mlx_load_png("textures/compass.png"), 0);
-	// mlx->no = salloc(mlx_load_png(mlx->data->no_path), 0);
-	// mlx->so = salloc(mlx_load_png(mlx->data->so_path), 0);
-	// mlx->we = salloc(mlx_load_png(mlx->data->we_path), 0);
-	// mlx->ea = salloc(mlx_load_png(mlx->data->ea_path), 0);
+	mlx->no = salloc(mlx_load_png(mlx->data->no_path), 0);
+	mlx->so = salloc(mlx_load_png(mlx->data->so_path), 0);
+	mlx->we = salloc(mlx_load_png(mlx->data->we_path), 0);
+	mlx->ea = salloc(mlx_load_png(mlx->data->ea_path), 0);
 	mlx_set_window_pos(mlx->mlxi, 600, 300);
 	init_player(mlx);
 }
@@ -55,6 +51,6 @@ static void	init_player(t_mlx *mlx)
 	mlx->player->turndir = 0;
 	mlx->player->walkdir = 0;
 	mlx->player->strafe = 0;
-	mlx->player->walksp = 4 * TSIZE_SCALE;
+	mlx->player->walksp = 5 * TSIZE;
 	mlx->player->turnsp = (3 * TSIZE) * (M_PI / 180);
 }

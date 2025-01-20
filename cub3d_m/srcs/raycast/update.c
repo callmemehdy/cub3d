@@ -52,11 +52,11 @@ static void	raycasting(t_player *p)
 	float	ray_angle;
 
 	id = -1;
-	ray_angle = p->angle - (FOV / 2);
+	ray_angle = p->angle - ((FOV * (M_PI / 180)) / 2);
 	while (++id < NUM_RAYS)
 	{
 		castray(p, ray_angle, id);
-		ray_angle += FOV / NUM_RAYS;
+		ray_angle += (FOV * (M_PI / 180)) / NUM_RAYS;
 	}
 }
 

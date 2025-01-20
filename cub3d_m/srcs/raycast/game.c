@@ -29,11 +29,13 @@ void	game(void)
 static void	game_loop(void *vmlx)
 {
 	int		wait;
+	int		framtime;
 	t_mlx	*mlx;
 
 	mlx = vmlx;
-	wait = FTL - ((mlx_get_time() * 1000) - mlx->lastframe);
-	if (wait > 0 && wait <= FTL)
+	framtime = 1000 / FPS;
+	wait = framtime - ((mlx_get_time() * 1000) - mlx->lastframe);
+	if (wait > 0 && wait <= framtime)
 		usleep(wait * 1000);
 	mlx->lastframe = mlx_get_time() * 1000;
 	update(mlx);

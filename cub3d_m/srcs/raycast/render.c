@@ -12,24 +12,21 @@
 
 #include "cub3d.h"
 
-static void	render_projplane(t_mlx *mlx);
-static void	render_player(t_mlx *mlx);
-// static void	render_rays(t_mlx *mlx);
+static void				render_game(t_mlx *mlx);
+static void				paint_wall(t_mlx *mlx, t_wall wall);
+static int				get_pixel(t_mlx *mlx, t_wall wall, int offx);
+static mlx_texture_t	*which_texture(t_mlx *mlx, int i);
 
 void	render(t_mlx *mlx)
 {
 	mlx_delete_image(mlx->mlxi, mlx->img);
 	mlx->img = mlx_new_image(mlx->mlxi, W_WIDTH, W_HEIGHT);
-	render_projplane(mlx);
-	render_map(mlx);
-	// render_rays(mlx);
-	render_player(mlx);
+	render_game(mlx);
 	mlx_image_to_window(mlx->mlxi, mlx->img, 0, 0);
 }
 
-static void	render_projplane(t_mlx *mlx)
+static void	render_game(t_mlx *mlx)
 {
-	int		offx;
 	t_wall	wall;
 	float	proj_dist;
 	float	perp_dist;
@@ -40,7 +37,7 @@ static void	render_projplane(t_mlx *mlx)
 		mlx->texture = which_texture(mlx, wall.x);
 		perp_dist = mlx->rays[wall.x].dist * \
 					cos(mlx->rays[wall.x].angle - mlx->player->angle);
-		proj_dist = (W_WIDTH / 2) / tan(FOV / 2);
+		proj_dist = (W_WIDTH / 2) / tan((FOV * (M_PI / 180)) / 2);
 		wall.height = (TSIZE / perp_dist) * proj_dist;
 		wall.top = (W_HEIGHT / 2) - (wall.height / 2);
 		if (wall.top < 0)
@@ -48,85 +45,60 @@ static void	render_projplane(t_mlx *mlx)
 		wall.bot = (W_HEIGHT / 2) + (wall.height / 2);
 		if (wall.bot > W_HEIGHT)
 			wall.bot = W_HEIGHT;
-		wall.y = -1;
-		while (++wall.y < wall.top)
-			mlx_put_pixel(mlx->img, wall.x, wall.y, rgbtoa(mlx->data->crgb));
-		if (mlx->rays[wall.x].wallvert)
-			offx = (int)mlx->rays[wall.x].wally % TSIZE;
-		else
-			offx = (int)mlx->rays[wall.x].wallx % TSIZE;
-		wall.y = wall.top - 1;
-		while (++wall.y < wall.bot)
-			mlx_put_pixel(mlx->img, wall.x, wall.y, get_pixel(mlx, wall, offx));
-		wall.y = wall.bot - 1;
-		while (++wall.y < W_HEIGHT)
-			mlx_put_pixel(mlx->img, wall.x, wall.y, rgbtoa(mlx->data->frgb));
+		paint_wall(mlx, wall);
 	}
 }
 
-void	render_map(t_mlx *mlx)
+static void	paint_wall(t_mlx *mlx, t_wall wall)
 {
-	int			x;
-	int			y;
-	char 		**map;
-	t_rect		tile;
-	int			height = 15, width = 15;
+	int		offx;
 
-	y = -1;
-	map = map_mask(*get_data(), mlx->player);
-	while (++y < height)
+	wall.y = -1;
+	while (++wall.y < wall.top)
+		mlx_put_pixel(mlx->img, wall.x, wall.y, fetch_rgba(mlx->data->crgb));
+	if (mlx->rays[wall.x].wallvert)
+		offx = (int)mlx->rays[wall.x].wally % TSIZE;
+	else
+		offx = (int)mlx->rays[wall.x].wallx % TSIZE;
+	wall.y = wall.top - 1;
+	while (++wall.y < wall.bot)
+		mlx_put_pixel(mlx->img, wall.x, wall.y, get_pixel(mlx, wall, offx));
+	wall.y = wall.bot - 1;
+	while (++wall.y < W_HEIGHT)
+		mlx_put_pixel(mlx->img, wall.x, wall.y, fetch_rgba(mlx->data->frgb));
+}
+
+static int	get_pixel(t_mlx *mlx, t_wall wall, int offx)
+{
+	int				offy;
+	int				dist_top;
+	mlx_texture_t	*tx;
+
+	tx = mlx->texture;
+	dist_top = wall.y + (wall.height / 2) - (W_HEIGHT / 2);
+	offy = dist_top * ((float)TSIZE / wall.height);
+	if (tx == mlx->so || tx == mlx->we)
+		offx = TSIZE - 1 - offx;
+	return (tx->pixels[(TSIZE * offy + offx) * 4] << 24
+		| tx->pixels[(TSIZE * offy + offx) * 4 + 1] << 16
+		| tx->pixels[(TSIZE * offy + offx) * 4 + 2] << 8
+		| tx->pixels[(TSIZE * offy + offx) * 4 + 3]);
+}
+
+static mlx_texture_t	*which_texture(t_mlx *mlx, int i)
+{
+	if (mlx->rays[i].wallvert)
 	{
-		x = -1;
-		while (++x < width)
-		{
-			tile.x = x * TSIZE_SCALE;
-			tile.y = y * TSIZE_SCALE;
-			tile.width = TSIZE_SCALE;
-			tile.height = TSIZE_SCALE;
-			tile.color = get_rgba(255, 255, 255, 255);
-			if ((y < height && x < width) && (map[y][x] == '0' || is_player(map[y][x])))
-				continue ;
-			drawrect(mlx->img, tile);
-		}
+		if (mlx->rays[i].right)
+			return (mlx->ea);
+		else
+			return (mlx->we);
+	}
+	else
+	{
+		if (mlx->rays[i].down)
+			return (mlx->so);
+		else
+			return (mlx->no);
 	}
 }
-
-static void	render_player(t_mlx *mlx)
-{
-	int			pos;
-	t_circle	circle;
-
-	pos = 7;
-
-
-	/*************************************************/
-	t_line	penis;
-	penis.x0 = round(pos * TSIZE_SCALE + (TSIZE_SCALE / 2));
-	penis.y0 = round(pos * TSIZE_SCALE + (TSIZE_SCALE / 2));
-	penis.x1 = penis.x0 + cos(mlx->player->angle) * TSIZE_SCALE;
-	penis.y1 = penis.y0 + sin(mlx->player->angle) * TSIZE_SCALE;
-	drawline(mlx, penis, get_rgba(0, 0, 0, 255));
-	/*************************************************/
-
-
-	circle.cx = round(pos * TSIZE_SCALE + (TSIZE_SCALE / 2));
-	circle.cy = round(pos * TSIZE_SCALE + (TSIZE_SCALE / 2));
-	circle.radius = mlx->player->radius * 1;
-	circle.color = get_rgba(255, 255, 255, 255);
-	drawcircle(mlx, circle);
-}
-
-// static void	render_rays(t_mlx *mlx)
-// {
-// 	int		i;
-// 	t_line	line;
-// 	i = -1;
-// 	while (++i < NUM_RAYS)
-// 	{
-// 		line.x0 = mlx->player->x * SCALE;
-// 		line.y0 = mlx->player->y * SCALE;
-// 		line.x1 = mlx->rays[i].wallx * SCALE;
-// 		line.y1 = mlx->rays[i].wally * SCALE;
-// 		drawline(mlx, line, get_rgba(102, 102, 255, 100));
-// 	}
-// }

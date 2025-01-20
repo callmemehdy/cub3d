@@ -19,8 +19,8 @@ PFILES	=	ft_free.c malloc.c get_next_line.c					\
 			map_check.c ft_utils_II.c ft_utils_III.c bool_map.c	\
 			ft_boolean_exp.c ft_utils_IV.c
 
-RFILES	=	cleaner.c draw.c game.c hooks.c raycast.c render_utils.c \
-			render.c setup.c update.c utils.c
+RFILES	=	cleaner.c game.c hooks.c raycast.c render.c setup.c	\
+			update.c utils.c
 
 SRCS	=	srcs/main.c
 
