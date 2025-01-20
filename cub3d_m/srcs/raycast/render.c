@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 11:23:44 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/19 18:47:52 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/20 12:01:28 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	render(t_mlx *mlx)
 
 static void	render_projplane(t_mlx *mlx)
 {
+	int		offx;
 	t_wall	wall;
 	float	proj_dist;
 	float	perp_dist;
@@ -50,14 +51,13 @@ static void	render_projplane(t_mlx *mlx)
 		wall.y = -1;
 		while (++wall.y < wall.top)
 			mlx_put_pixel(mlx->img, wall.x, wall.y, rgbtoa(mlx->data->crgb));
-		// NORMAL WALLS
-		// wall.color = get_rgba(0, 51, 255, 128);
-		// if (mlx->rays[wall.x].wallvert)
-		// 	wall.color = get_rgba(0, 51, 102, 255);
-		int	x = (int)(wall.x * mlx->texture->width) % mlx->texture->width;
+		if (mlx->rays[wall.x].wallvert)
+			offx = (int)mlx->rays[wall.x].wally % TSIZE;
+		else
+			offx = (int)mlx->rays[wall.x].wallx % TSIZE;
 		wall.y = wall.top - 1;
 		while (++wall.y < wall.bot)
-			mlx_put_pixel(mlx->img, wall.x, wall.y, get_pixel(mlx, wall, x));
+			mlx_put_pixel(mlx->img, wall.x, wall.y, get_pixel(mlx, wall, offx));
 		wall.y = wall.bot - 1;
 		while (++wall.y < W_HEIGHT)
 			mlx_put_pixel(mlx->img, wall.x, wall.y, rgbtoa(mlx->data->frgb));

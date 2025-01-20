@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 11:24:00 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/19 15:29:41 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/20 12:17:38 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ void	setup(t_mlx *mlx, t_data *data)
 	mlx->rays = salloc(ft_malloc(sizeof(t_ray) * NUM_RAYS), 0);
 	mlx->lastframe = 0;
 	mlx->img = NULL;
-	mlx->no = salloc(mlx_load_png(mlx->data->no_path), 0);
-	mlx->so = salloc(mlx_load_png(mlx->data->so_path), 0);
-	mlx->we = salloc(mlx_load_png(mlx->data->we_path), 0);
-	mlx->ea = salloc(mlx_load_png(mlx->data->ea_path), 0);
+	mlx->no = salloc(mlx_load_png("textures/compass.png"), 0);
+	mlx->so = salloc(mlx_load_png("textures/compass.png"), 0);
+	mlx->we = salloc(mlx_load_png("textures/compass.png"), 0);
+	mlx->ea = salloc(mlx_load_png("textures/compass.png"), 0);
+	// mlx->no = salloc(mlx_load_png(mlx->data->no_path), 0);
+	// mlx->so = salloc(mlx_load_png(mlx->data->so_path), 0);
+	// mlx->we = salloc(mlx_load_png(mlx->data->we_path), 0);
+	// mlx->ea = salloc(mlx_load_png(mlx->data->ea_path), 0);
 	mlx_set_window_pos(mlx->mlxi, 600, 300);
 	init_player(mlx);
 }

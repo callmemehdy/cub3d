@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 11:23:35 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/19 18:20:08 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/20 12:17:50 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,38 @@ char	*fill_line(char *s, t_data *data, t_player *player, int index)
 	return (s);
 }
 
-int	get_pixel(t_mlx *mlx, t_wall wall, int x)
+int	get_pixel(t_mlx *mlx, t_wall wall, int offx)
 {
+	int				offy;
+	mlx_texture_t	*tx;
+
+	tx = mlx->texture;
+	offy = (wall.y - wall.top) * ((float)TSIZE / wall.height);
+	// if (mlx->texture == mlx->so)
+	// 	offy = TSIZE - 1 - offy;
+	// if (mlx->texture == mlx->we)
+	// 		offx = TSIZE - 1 - offx;
+	int	index = (TSIZE * offy + offx) * 4;
+	uint8_t		*pixels = mlx->texture->pixels;
+	uint32_t	pixel = pixels[index] << 24 |
+						pixels[index + 1] << 16 |
+						pixels[index + 2] << 8 |
+						pixels[index + 3];
+	return (pixel);
+}
+
 	// uint32_t		*pixels;
-	// pixels = ft_malloc(sizeof(uint32_t) * curr->width * curr->height);
-	// for (int i = 0; i < curr->width * curr->height; i++)
+	// pixels = ft_malloc(sizeof(uint32_t) * tx->width * tx->height);
+	// for (int i = 0; i < tx->width * tx->height; i++)
 	// {
-	// 	pixels[i] = (curr->pixels[i * 4] << 24) |
-	// 				(curr->pixels[i * 4 + 1] << 16) | 
-	// 				(curr->pixels[i * 4 + 2] << 8) | 
-	// 				(curr->pixels[i * 4 + 3]);
+	// 	pixels[i] = (tx->pixels[i * 4] << 24) |
+	// 				(tx->pixels[i * 4 + 1] << 16) | 
+	// 				(tx->pixels[i * 4 + 2] << 8) | 
+	// 				(tx->pixels[i * 4 + 3]);
 	// }
-	// for (int i = 0; i < curr->width * curr->height; i++)
+	// for (int i = 0; i < tx->width * tx->height; i++)
 	// {
-	// 	if (i % curr->width == 0)
+	// 	if (i % tx->width == 0)
 	// 		printf("\n");
 	// 	if (pixels[i] == UINT32_MAX)
 	// 		printf("### ");
@@ -79,16 +97,6 @@ int	get_pixel(t_mlx *mlx, t_wall wall, int x)
 	// }
 	// printf("\n");
 	// exit(1);
-
-	int	y = (int)(wall.y * mlx->texture->height) % mlx->texture->height;
-	int	index = y * mlx->texture->width + x;
-	uint8_t		*pixels = mlx->texture->pixels;
-	uint32_t	pixel = (uint32_t)pixels[index * 4] << 24 |
-					(uint32_t)pixels[index * 4 + 1] << 16 |
-					(uint32_t)pixels[index * 4 + 2] << 8 |
-					(uint32_t)pixels[index * 4 + 3];
-	return (pixel);
-}
 
 mlx_texture_t	*which_texture(t_mlx *mlx, int i)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/19 18:19:10 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:35:32 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -323,7 +323,7 @@ void	load_rays(t_mlx *mlx, t_player *p, t_rdif dif, int id);
 //	render_utils.c
 char			**map_mask(t_data *data, t_player *player);
 char			*fill_line(char *s, t_data *data, t_player *player, int index);
-int				get_pixel(t_mlx *mlx, t_wall wall, int x);
+int				get_pixel(t_mlx *mlx, t_wall wall, int offx);
 mlx_texture_t	*which_texture(t_mlx *mlx, int i);
 
 //	render.c
