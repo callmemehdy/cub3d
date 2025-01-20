@@ -64,37 +64,13 @@ int	get_pixel(t_mlx *mlx, t_wall wall, int offx)
 
 	tx = mlx->texture;
 	offy = (wall.y - wall.top) * ((float)TSIZE / wall.height);
-	if (mlx->texture == mlx->so || mlx->texture == mlx->we)
+	if (tx == mlx->so || tx == mlx->we)
 		offx = TSIZE - 1 - offx;
-	int	index = (TSIZE * offy + offx) * 4;
-	uint8_t		*pixels = mlx->texture->pixels;
-	uint32_t	pixel = pixels[index] << 24 |
-						pixels[index + 1] << 16 |
-						pixels[index + 2] << 8 |
-						pixels[index + 3];
-	return (pixel);
+	return (tx->pixels[(TSIZE * offy + offx) * 4] << 24 |
+			tx->pixels[(TSIZE * offy + offx) * 4 + 1] << 16 |
+			tx->pixels[(TSIZE * offy + offx) * 4 + 2] << 8 |
+			tx->pixels[(TSIZE * offy + offx) * 4 + 3]);
 }
-
-	// uint32_t		*pixels;
-	// pixels = ft_malloc(sizeof(uint32_t) * tx->width * tx->height);
-	// for (int i = 0; i < tx->width * tx->height; i++)
-	// {
-	// 	pixels[i] = (tx->pixels[i * 4] << 24) |
-	// 				(tx->pixels[i * 4 + 1] << 16) | 
-	// 				(tx->pixels[i * 4 + 2] << 8) | 
-	// 				(tx->pixels[i * 4 + 3]);
-	// }
-	// for (int i = 0; i < tx->width * tx->height; i++)
-	// {
-	// 	if (i % tx->width == 0)
-	// 		printf("\n");
-	// 	if (pixels[i] == UINT32_MAX)
-	// 		printf("### ");
-	// 	else
-	// 		printf("%3u ", pixels[i]);
-	// }
-	// printf("\n");
-	// exit(1);
 
 mlx_texture_t	*which_texture(t_mlx *mlx, int i)
 {
