@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/20 19:26:41 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:34:46 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,33 @@
 static void	render_projplane(t_mlx *mlx);
 static void	render_player(t_mlx *mlx);
 
-void	overlay_images(mlx_image_t* base, mlx_image_t* overlay)
+void	overlay_images(mlx_image_t *base, mlx_image_t *overlay)
 {
-    int x, y;
-    int base_index, overlay_index;
-    uint32_t* base_pixels;
-    uint32_t* overlay_pixels;
+	uint32_t	*base_pixels;
+	uint32_t	*overlay_pixels;
+	int			cxp[2]; // x,y coors
+	int			base_index;
+	int			overlay_index;
 
-	y = 0;
-	base_pixels = (uint32_t*)base->pixels;
+	1 && (cxp[0] = 0, base_pixels = (uint32_t*)base->pixels);
 	overlay_pixels = (uint32_t*)overlay->pixels;
-    while (y < overlay->height)
+	while (cxp[0] < overlay->height)
 	{
-		x = 0;
-        while (x < overlay->width)
+		cxp[1] = 0;
+		while (cxp[1] < overlay->width)
 		{
-            base_index = y * base->width + x;
-            overlay_index = y * overlay->width + x;
-            if (!((overlay_pixels[overlay_index] >> 24) & 0xFF) && ++x)
-                continue;
+			base_index = cxp[0] * base->width + cxp[1];
+			overlay_index = cxp[0] * overlay->width + cxp[1];
+			if (!((overlay_pixels[overlay_index] >> 24) & 0xFF) && ++cxp[1])
+				continue;
 			// use any color here to represent the frame color hh
-            base_pixels[base_index] = ((u_int32_t)140 << 24) |\
-									  ((uint32_t)200 << 16) |\
-									  ((uint32_t)0 << 8) | 0;
-			++x;
-        }
-		++y;
-    }
+			base_pixels[base_index] = ((u_int32_t)140 << 24) |\
+			((uint32_t)200 << 16) |\
+			((uint32_t)0 << 8) | 0;
+			++cxp[1];
+		}
+		++cxp[0];
+	}
 }
 
 void	render(t_mlx *mlx)
