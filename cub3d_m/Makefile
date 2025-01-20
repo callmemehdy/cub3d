@@ -46,7 +46,7 @@ NAME	=	cub3D
 
 CFLAGS	=	#-Wall -Wextra #-Werror
 
-DFLAGS	=	-Ofast -O3 -g3 -fsanitize=address,undefined
+DFLAGS	=	-Ofast -O3 -g3 #-fsanitize=address,undefined
 
 FLAGS	=	$(CFLAGS) $(DFLAGS) -Iincs -IMLX42/include/MLX42
 

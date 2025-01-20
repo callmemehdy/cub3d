@@ -12,8 +12,6 @@
 
 #include "cub3d.h"
 
-static mlx_texture_t	*which_texture(t_mlx *mlx, int i);
-
 char	**map_mask(t_data *data, t_player *player)
 {
 	int		i;
@@ -59,18 +57,40 @@ char	*fill_line(char *s, t_data *data, t_player *player, int index)
 	return (s);
 }
 
-int	get_pixel(t_wall wall)
+int	get_pixel(t_mlx *mlx, t_wall wall, int x)
 {
-	int				i;
-	t_mlx			*mlx;
-	mlx_texture_t	*curr;
+	// uint32_t		*pixels;
+	// pixels = ft_malloc(sizeof(uint32_t) * curr->width * curr->height);
+	// for (int i = 0; i < curr->width * curr->height; i++)
+	// {
+	// 	pixels[i] = (curr->pixels[i * 4] << 24) |
+	// 				(curr->pixels[i * 4 + 1] << 16) | 
+	// 				(curr->pixels[i * 4 + 2] << 8) | 
+	// 				(curr->pixels[i * 4 + 3]);
+	// }
+	// for (int i = 0; i < curr->width * curr->height; i++)
+	// {
+	// 	if (i % curr->width == 0)
+	// 		printf("\n");
+	// 	if (pixels[i] == UINT32_MAX)
+	// 		printf("### ");
+	// 	else
+	// 		printf("%3u ", pixels[i]);
+	// }
+	// printf("\n");
+	// exit(1);
 
-	mlx = *get_mlx();
-	curr = which_texture(mlx, wall.x);
-	return (get_rgba(0, 0, 0, 255));
+	int	y = (int)(wall.y * mlx->texture->height) % mlx->texture->height;
+	int	index = y * mlx->texture->width + x;
+	uint8_t		*pixels = mlx->texture->pixels;
+	uint32_t	pixel = (uint32_t)pixels[index * 4] << 24 |
+					(uint32_t)pixels[index * 4 + 1] << 16 |
+					(uint32_t)pixels[index * 4 + 2] << 8 |
+					(uint32_t)pixels[index * 4 + 3];
+	return (pixel);
 }
 
-static mlx_texture_t	*which_texture(t_mlx *mlx, int i)
+mlx_texture_t	*which_texture(t_mlx *mlx, int i)
 {
 	if (mlx->rays[i].wallvert)
 	{
@@ -85,5 +105,5 @@ static mlx_texture_t	*which_texture(t_mlx *mlx, int i)
 			return (mlx->so);
 		else
 			return (mlx->no);
-	}		
+	}
 }

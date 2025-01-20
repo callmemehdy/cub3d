@@ -67,7 +67,7 @@ static void	castray(t_player *p, float angle, int id)
 	t_rdata	data;
 
 	angle = norm_angle(angle);
-	data.down = (angle > 0 && angle < M_PI);
+	data.down = (angle >= 0 && angle <= M_PI);
 	data.right = (angle < M_PI_2 || angle > M_PI * 1.5);
 	dif.angle = angle;
 	mlx = *get_mlx();

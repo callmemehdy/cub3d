@@ -24,10 +24,10 @@ void	setup(t_mlx *mlx, t_data *data)
 	mlx->rays = salloc(ft_malloc(sizeof(t_ray) * NUM_RAYS), 0);
 	mlx->lastframe = 0;
 	mlx->img = NULL;
-	mlx->no = salloc(mlx_load_png(mlx->data->no_path), 1);
-	mlx->so = salloc(mlx_load_png(mlx->data->so_path), 1);
-	mlx->we = salloc(mlx_load_png(mlx->data->we_path), 1);
-	mlx->ea = salloc(mlx_load_png(mlx->data->ea_path), 1);
+	mlx->no = salloc(mlx_load_png(mlx->data->no_path), 0);
+	mlx->so = salloc(mlx_load_png(mlx->data->so_path), 0);
+	mlx->we = salloc(mlx_load_png(mlx->data->we_path), 0);
+	mlx->ea = salloc(mlx_load_png(mlx->data->ea_path), 0);
 	mlx_set_window_pos(mlx->mlxi, 600, 300);
 	init_player(mlx);
 }

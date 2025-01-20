@@ -14,6 +14,7 @@
 
 static void	render_projplane(t_mlx *mlx);
 static void	render_player(t_mlx *mlx);
+// static void	render_rays(t_mlx *mlx);
 
 void	render(t_mlx *mlx)
 {
@@ -35,6 +36,7 @@ static void	render_projplane(t_mlx *mlx)
 	wall.x = -1;
 	while (++wall.x < NUM_RAYS)
 	{
+		mlx->texture = which_texture(mlx, wall.x);
 		perp_dist = mlx->rays[wall.x].dist * \
 					cos(mlx->rays[wall.x].angle - mlx->player->angle);
 		proj_dist = (W_WIDTH / 2) / tan(FOV / 2);
@@ -49,12 +51,13 @@ static void	render_projplane(t_mlx *mlx)
 		while (++wall.y < wall.top)
 			mlx_put_pixel(mlx->img, wall.x, wall.y, rgbtoa(mlx->data->crgb));
 		// NORMAL WALLS
-		// wall.color = get_rgba(0, 51, 102, 200);
+		// wall.color = get_rgba(0, 51, 255, 128);
 		// if (mlx->rays[wall.x].wallvert)
-		// 	wall.color = get_rgba(0, 51, 102, 255);	
+		// 	wall.color = get_rgba(0, 51, 102, 255);
+		int	x = (int)(wall.x * mlx->texture->width) % mlx->texture->width;
 		wall.y = wall.top - 1;
 		while (++wall.y < wall.bot)
-			mlx_put_pixel(mlx->img, wall.x, wall.y, get_pixel(wall));
+			mlx_put_pixel(mlx->img, wall.x, wall.y, get_pixel(mlx, wall, x));
 		wall.y = wall.bot - 1;
 		while (++wall.y < W_HEIGHT)
 			mlx_put_pixel(mlx->img, wall.x, wall.y, rgbtoa(mlx->data->frgb));
@@ -118,7 +121,7 @@ static void	render_player(t_mlx *mlx)
 // 	int		i;
 // 	t_line	line;
 // 	i = -1;
-// 	while (++i < mlx->nrays)
+// 	while (++i < NUM_RAYS)
 // 	{
 // 		line.x0 = mlx->player->x * SCALE;
 // 		line.y0 = mlx->player->y * SCALE;

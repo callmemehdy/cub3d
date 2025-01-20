@@ -78,7 +78,7 @@
 # define NUM_RAYS W_WIDTH
 
 //	Frame Per Second
-# define FPS 60
+# define FPS 120
 
 //	Frame Time Length in ms
 # define FTL (1000 / FPS)
@@ -163,6 +163,7 @@ typedef struct s_mlx
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
+	mlx_texture_t	*texture;
 	t_player		*player;
 	t_data			*data;
 	t_ray			*rays;
@@ -320,9 +321,10 @@ void	vert_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
 void	load_rays(t_mlx *mlx, t_player *p, t_rdif dif, int id);
 
 //	render_utils.c
-char	**map_mask(t_data *data, t_player *player);
-char	*fill_line(char *s, t_data *data, t_player *player, int index);
-int		get_pixel(t_wall wall);
+char			**map_mask(t_data *data, t_player *player);
+char			*fill_line(char *s, t_data *data, t_player *player, int index);
+int				get_pixel(t_mlx *mlx, t_wall wall, int x);
+mlx_texture_t	*which_texture(t_mlx *mlx, int i);
 
 //	render.c
 void	render(t_mlx *mlx);
