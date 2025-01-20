@@ -60,10 +60,12 @@ char	*fill_line(char *s, t_data *data, t_player *player, int index)
 int	get_pixel(t_mlx *mlx, t_wall wall, int offx)
 {
 	int				offy;
+	int				dist_top;
 	mlx_texture_t	*tx;
 
 	tx = mlx->texture;
-	offy = (wall.y - wall.top) * ((float)TSIZE / wall.height);
+	dist_top = wall.y + (wall.height / 2) - (W_HEIGHT / 2);
+	offy = dist_top * ((float)TSIZE / wall.height);
 	if (tx == mlx->so || tx == mlx->we)
 		offx = TSIZE - 1 - offx;
 	return (tx->pixels[(TSIZE * offy + offx) * 4] << 24 |
