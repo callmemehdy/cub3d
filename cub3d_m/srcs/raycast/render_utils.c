@@ -64,10 +64,8 @@ int	get_pixel(t_mlx *mlx, t_wall wall, int offx)
 
 	tx = mlx->texture;
 	offy = (wall.y - wall.top) * ((float)TSIZE / wall.height);
-	// if (mlx->texture == mlx->so)
-	// 	offy = TSIZE - 1 - offy;
-	// if (mlx->texture == mlx->we)
-	// 		offx = TSIZE - 1 - offx;
+	if (mlx->texture == mlx->so || mlx->texture == mlx->we)
+		offx = TSIZE - 1 - offx;
 	int	index = (TSIZE * offy + offx) * 4;
 	uint8_t		*pixels = mlx->texture->pixels;
 	uint32_t	pixel = pixels[index] << 24 |
