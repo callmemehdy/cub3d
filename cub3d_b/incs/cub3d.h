@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/17 23:54:00 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:53:58 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ typedef struct s_mlx
 	mlx_t			*mlxi;
 	mlx_image_t		*img;
 	mlx_image_t		*bg;
+	mlx_image_t		*frame;
 	t_player		*player;
 	t_data			*data;
 	t_ray			*rays;

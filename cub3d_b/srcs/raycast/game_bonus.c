@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   game_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:35:24 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/16 17:36:39 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:58:40 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	game(void)
 
 	(*get_mlx()) = &mlx;
 	setup(&mlx, *get_data());
+	mlx_texture_t *frame = mlx_load_png("/home/mel-akar/Downloads/map_frame.png");
+	mlx.frame = mlx_texture_to_image((&mlx)->mlxi, frame);
 	mlx_key_hook(mlx.mlxi, key_press, &mlx);
 	mlx_loop_hook(mlx.mlxi, game_loop, &mlx);
 	mlx_loop(mlx.mlxi);

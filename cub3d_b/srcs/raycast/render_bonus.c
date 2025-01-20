@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/17 23:49:44 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/20 18:15:53 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,44 @@
 static void	render_projplane(t_mlx *mlx);
 static void	render_player(t_mlx *mlx);
 
+void	overlay_images(mlx_image_t* base, mlx_image_t* overlay)
+{
+    int x, y;
+    int base_index, overlay_index;
+    uint32_t* base_pixels;
+    uint32_t* overlay_pixels;
+
+	y = 0;
+	base_pixels = (uint32_t*)base->pixels;
+	overlay_pixels = (uint32_t*)overlay->pixels;
+    while (y < overlay->height)
+	{
+		x = 0;
+        while (x < overlay->width)
+		{
+            base_index = y * base->width + x;
+            overlay_index = y * overlay->width + x;
+            if (!((overlay_pixels[overlay_index] >> 24) & 0xFF) && ++x)
+                continue;
+			// use any color here to represent the frame color hh
+            base_pixels[base_index] = ((u_int32_t)140 << 24) |\
+									  ((uint32_t)200 << 16) |\
+									  ((uint32_t)0 << 8) | 0;
+			++x;
+        }
+		++y;
+    }
+}
+
+
 void	render(t_mlx *mlx)
 {
 	mlx_delete_image(mlx->mlxi, mlx->img);
 	mlx->img = mlx_new_image(mlx->mlxi, W_WIDTH, W_HEIGHT);
 	render_projplane(mlx);
 	render_map(mlx);
-	// render_rays(mlx);
 	render_player(mlx);
+	overlay_images(mlx->img, mlx->frame);
 	mlx_image_to_window(mlx->mlxi, mlx->img, 0, 0);
 }
 
