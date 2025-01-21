@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/20 10:35:32 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:27:45 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 # define FOV 60
 
 //	Size of tiles
-# define TSIZE	32
+# define TSIZE	64
 
 //	Window width
 # define W_WIDTH 1920

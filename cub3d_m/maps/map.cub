@@ -1,20 +1,19 @@
-NO ./path_to_the_north_texture
+NO ./textures/bunkerW.png
 
 
 
-SO ./path_to_the_south_texture
+SO ./textures/bunkerW.png
 
 
 
-WE ./path_to_the_west_texture
+WE ./textures/bunkerW.png
 
 
 
-EA ./path_to_the_east_texture
+EA ./textures/bunkerW.png
 
-
-F 255,100, 255 
-C 255,30,0
+F 103, 99, 94
+C 103, 99, 94
 
 111   11111111111111111111111111
 111111111000000001000000000000001

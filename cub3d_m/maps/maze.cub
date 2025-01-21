@@ -1,9 +1,10 @@
-NO textures/simonkraft/wet_sponge.xpm
-SO textures/simonkraft/wet_sponge.xpm
-WE textures/simonkraft/wet_sponge.xpm
-EA textures/simonkraft/wet_sponge.xpm
-F 164,169,20
-C 153,204,255
+NO ./textures/lbluew.png
+SO ./textures/bluew.png
+WE ./textures/lbluew.png
+EA ./textures/bluew.png
+
+F 0, 0, 0
+C 0, 0, 0
 
 111111111111111111111
 101000001000000000001
