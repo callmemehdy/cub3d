@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/20 19:34:46 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/21 00:21:55 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,18 +140,3 @@ static void	render_player(t_mlx *mlx)
 	circle.color = get_rgba(255, 255, 255, 255);
 	drawcircle(mlx, circle);
 }
-
-// static void	render_rays(t_mlx *mlx)
-// {
-// 	int		i;
-// 	t_line	line;
-// 	i = -1;
-// 	while (++i < mlx->nrays)
-// 	{
-// 		line.x0 = mlx->player->x * SCALE;
-// 		line.y0 = mlx->player->y * SCALE;
-// 		line.x1 = mlx->rays[i].wallx * SCALE;
-// 		line.y1 = mlx->rays[i].wally * SCALE;
-// 		drawline(mlx, line, get_rgba(102, 102, 255, 100));
-// 	}
-// }
