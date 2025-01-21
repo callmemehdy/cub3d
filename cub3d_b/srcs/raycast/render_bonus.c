@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/21 00:21:55 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/21 22:04:21 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	render_projplane(t_mlx *mlx);
 static void	render_player(t_mlx *mlx);
 
-void	overlay_images(mlx_image_t *base, mlx_image_t *overlay)
+void	overlay_images(mlx_image_t *base, mlx_image_t *overlay, int x_off, int y_off)
 {
 	uint32_t	*base_pixels;
 	uint32_t	*overlay_pixels;
@@ -30,18 +30,87 @@ void	overlay_images(mlx_image_t *base, mlx_image_t *overlay)
 		cxp[1] = 0;
 		while (cxp[1] < overlay->width)
 		{
-			base_index = cxp[0] * base->width + cxp[1];
+			base_index = (cxp[0] + y_off) * base->width + (cxp[1] + x_off);
 			overlay_index = cxp[0] * overlay->width + cxp[1];
 			if (!((overlay_pixels[overlay_index] >> 24) & 0xFF) && ++cxp[1])
 				continue;
 			// use any color here to represent the frame color hh
-			base_pixels[base_index] = ((u_int32_t)140 << 24) |\
-			((uint32_t)200 << 16) |\
-			((uint32_t)0 << 8) | 0;
+			// base_pixels[base_index] = ((u_int32_t)140 << 24) |\
+			// ((uint32_t)200 << 16) |\
+			// ((uint32_t)0 << 8) | 0;
+			base_pixels[base_index] = overlay_pixels[overlay_index];
 			++cxp[1];
 		}
 		++cxp[0];
 	}
+}
+//512_492
+
+
+
+t_frame	load_frames()
+{
+	t_frame		data;
+	t_mlx		*mlx;
+
+	mlx = *get_mlx();
+	data.gun_txt[0] = mlx_load_png("../../textures/1.png");
+	data.gun_txt[1] = mlx_load_png("../../textures/2.png");
+	data.gun_txt[2] = mlx_load_png("../../textures/3.png");
+	data.gun_txt[3] = mlx_load_png("../../textures/4.png");
+	data.gun_txt[4] = mlx_load_png("../../textures/5.png");
+	if (!data.gun_txt[0] || !data.gun_txt[1] || !data.gun_txt[2]\
+						 || !data.gun_txt[3] || !data.gun_txt[4])
+		ft_error(ALLOC_ERR, ALLOC_STT);
+	data.gun[0] = mlx_texture_to_image(mlx->mlxi, data->gun_txt[0]);	
+	data.gun[1] = mlx_texture_to_image(mlx->mlxi, data->gun_txt[1]);	
+	data.gun[2] = mlx_texture_to_image(mlx->mlxi, data->gun_txt[2]);	
+	data.gun[3] = mlx_texture_to_image(mlx->mlxi, data->gun_txt[3]);	
+	data.gun[4] = mlx_texture_to_image(mlx->mlxi, data->gun_txt[4]);	
+	if (!data.gun[0] || !data.gun[1] || !data.gun[2]\
+					 || !data.gun[3] || !data.gun[4])
+		ft_error(ALLOC_ERR, ALLOC_STT);
+	return (data);
+}
+
+void	shoot_down(t_mlx *mlx, t_frame *frm)
+{
+	int		times;
+
+	times = 0;
+	while (times < 5)
+	{
+		
+	}
+}
+
+void	render_sprite()
+{
+	t_mlx			*mlx;
+	mlx_image_t		*sprite;
+	mlx_texture_t	*text;
+
+	mlx = *get_mlx();
+	text = mlx_load_png("/home/mel-akar/1337CC/Cub3d/cub3d_b/textures/row-1-column-1.png");
+	sprite = mlx_texture_to_image(mlx->mlxi, text);
+	mlx_delete_texture(text);
+	overlay_images(mlx->img, sprite, (W_WIDTH / 2) - (SPRITE_W / 2), W_HEIGHT - SPRITE_H - 1);
+	mlx_delete_image(mlx->mlxi, sprite);
+}
+
+void	render_aim()
+{
+	t_mlx			*mlx;
+	mlx_image_t		*sprite;
+	mlx_texture_t	*text;
+
+	mlx = *get_mlx();
+	text = mlx_load_png("/home/mel-akar/1337CC/Cub3d/cub3d_b/textures/aim.png");
+	sprite = mlx_texture_to_image(mlx->mlxi, text);
+	mlx_delete_texture(text);
+	overlay_images(mlx->img, sprite, (W_WIDTH / 2) - (40 / 2), (W_HEIGHT / 2) - (40 / 2));
+	mlx_delete_image(mlx->mlxi, sprite);
+	
 }
 
 void	render(t_mlx *mlx)
@@ -50,8 +119,11 @@ void	render(t_mlx *mlx)
 	mlx->img = mlx_new_image(mlx->mlxi, W_WIDTH, W_HEIGHT);
 	render_projplane(mlx);
 	render_map(mlx);
+	// free the kernel ...
+	render_sprite();
 	render_player(mlx);
-	overlay_images(mlx->img, mlx->frame);
+	render_aim();
+	overlay_images(mlx->img, mlx->frame, 0, 0);
 	mlx_image_to_window(mlx->mlxi, mlx->img, 0, 0);
 }
 
