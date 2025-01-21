@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/21 21:57:16 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/21 22:39:10 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 # define SPRITE_H 300
 # define SPRITE_W 288
 
-typedef struct s_frames
+typedef struct s_frame
 {
 	mlx_texture_t	*gun_txt[5];
 	mlx_image_t		*gun[5];
-}			t_frames;
+}			t_frame;
 
 // cli arguments error
 # define ARG_ERR "invalid program input\nUsage: ./cub3d [map's path]"
@@ -345,5 +345,9 @@ int		rgbtoa(uint32_t rgb);
 bool	wallhit(float x, float y);
 float	norm_angle(float angle);
 float	linelen(float x1, float y1, float x2, float y2);
+
+// sprite animation
+
+void	shoot_down(t_mlx *mlx, t_frame *frm);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2025/01/18 09:04:22 by mel-akar         ###   ########.fr        #
+#    Updated: 2025/01/21 22:42:59 by mel-akar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ PFILES	=	ft_free_bonus.c malloc_bonus.c get_next_line_bonus.c			\
 			ft_boolean_exp_bonus.c ft_utils_IV_bonus.c
 
 RFILES	=	cleaner_bonus.c draw_bonus.c game_bonus.c hooks_bonus.c raycast_bonus.c render_utils_bonus.c \
-			render_bonus.c setup_bonus.c update_bonus.c utils_bonus.c
+			render_bonus.c setup_bonus.c update_bonus.c utils_bonus.c animation_bonus.c
 
 SRCS	=	srcs/main_bonus.c
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:54 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/21 19:04:58 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/21 22:25:22 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ bool	_extension(char *s)
 
 int	main(int ac, char **av)
 {
-	// all the header contain the old name, with no _bonus, plus the header file too
+	// all the header contain the old name, with no _bonus, plus the header file too: i kw hh
 	if (ac != 2 || !_extension(av[1]))
 		ft_error(ARG_ERR, ARG_STT);
 	load_and_parse(av[0], av[1]);
