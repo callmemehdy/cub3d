@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/21 15:27:45 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:45:31 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,27 @@
 # define FPS 120
 
 // typedefing
+/*
+	Description:	Information collected from parsing part.
+	title:			Title of the window.
+	map_fd:			Map file descriptor.
+	line:			Lines from map file.
+	map:			Map in two dimensional array.
+	x:				Map width.
+	y:				Map height.
+	px:				Player x.
+	py:				Player y.
+	config:			Config part of the map file.
+	confsize:		-
+	no_path:		Path of the north texture file.
+	so_path:		Path of the south texture file.
+	ea_path:		Path of the east texture file.
+	we_path:		Path of the west texture file.
+	c_path:			-
+	f_path:			-
+	frgb:			Floor color in BGR format.
+	crgb:			Ceiling color in BGR format.
+*/
 typedef struct s_data	t_data;
 typedef unsigned char	t_byte;
 
@@ -107,16 +128,13 @@ struct s_data
 	char			*title;
 	int				map_fd;
 	t_linegnl		*lines;
-	// boolean map things
 	char			**map;
-	int				x;			// map width
-	int				y;			// map height
-	int				px;			// player coordinates
-	int				py;			// player coordinates
-	// 1st half of the map
+	int				x;
+	int				y;
+	int				px;
+	int				py;
 	char			**config;
 	int				confsize;
-	// textures , colors things	
 	char			*no_path;
 	char			*so_path;
 	char			*ea_path;
