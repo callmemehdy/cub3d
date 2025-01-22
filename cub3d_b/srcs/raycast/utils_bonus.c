@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:34:54 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 09:26:15 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:51:01 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ bool	wallhit(float x, float y)
 
 float	norm_angle(float angle)
 {
-	angle = remainder(angle, T_PI);
+	angle = remainder(angle, M_PI * 2);
 	if (angle < 0)
-		angle = T_PI + angle;
+		angle = (M_PI * 2) + angle;
 	return (angle);
 }
 

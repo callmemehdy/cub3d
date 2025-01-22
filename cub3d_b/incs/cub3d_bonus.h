@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 09:29:08 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:52:37 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ typedef struct s_frame
 /*********raycast*********/
 
 //	Field of view
-# define FOV (60 * ( M_PI / 180))
+# define FOV 60
 
 //	Size of tiles
-# define TSIZE	32
+# define TSIZE	64
 
 //	Minimap Scale Factor
 # define SCALE 1
@@ -74,25 +74,17 @@ typedef struct s_frame
 //	Size of tiles multiplied by the scale factor
 # define TSIZE_SCALE (int)(TSIZE * SCALE)
 
-//	Two PI
-# define T_PI (M_PI * 2)
-
 //	Window width
-// # define W_WIDTH 1920	// 2048
-# define W_WIDTH 1400	// 2048
+# define W_WIDTH 1920
 
 //	Window Height
-// # define W_HEIGHT 1056	//	1280
-# define W_HEIGHT 600	//	1280
+# define W_HEIGHT 1056
 
 //	Width of the ray
 # define NUM_RAYS W_WIDTH
 
 //	Frame Per Second
 # define FPS 60
-
-//	Frame Time Length in ms
-# define FTL (1000 / FPS)
 
 // typedefing
 typedef struct s_data t_data;

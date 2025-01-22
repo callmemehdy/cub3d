@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:18:57 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 09:26:15 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:50:06 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ static void	raycasting(t_player *p)
 	float	ray_angle;
 
 	id = -1;
-	ray_angle = p->angle - (FOV / 2);
+	ray_angle = p->angle - ((FOV * (M_PI / 180)) / 2);
 	while (++id < NUM_RAYS)
 	{
 		castray(p, ray_angle, id);
-		ray_angle += FOV / NUM_RAYS;
+		ray_angle += (FOV * (M_PI / 180)) / NUM_RAYS;
 	}
 }
 

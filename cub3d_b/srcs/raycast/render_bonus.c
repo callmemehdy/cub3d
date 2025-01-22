@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 09:26:15 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:49:53 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static void	render_projplane(t_mlx *mlx)
 	{
 		perp_dist = mlx->rays[wall.x].dist * \
 					cos(mlx->rays[wall.x].angle - mlx->player->angle);
-		proj_dist = (W_WIDTH / 2) / tan(FOV / 2);
+		proj_dist = (W_WIDTH / 2) / tan((FOV * (M_PI / 180)) / 2);
 		wall.height = (TSIZE / perp_dist) * proj_dist;
 		wall.top = (W_HEIGHT / 2) - (wall.height / 2);
 		if (wall.top < 0)
