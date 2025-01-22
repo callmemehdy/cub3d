@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 01:30:04 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:12:39 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,11 @@ void	overlay_images(mlx_image_t *base, mlx_image_t *overlay, int x_off, int y_of
 	}
 }
 
-void	render_sprite()
+void	render_sprite(mlx_image_t *sprite)
 {
 	t_mlx			*mlx;
-	mlx_image_t		*sprite;
-	mlx_texture_t	*text;
 
 	mlx = *get_mlx();
-	text = mlx_load_png("/home/mel-akar/1337CC/Cub3d/cub3d_b/textures/1.png");
-	sprite = mlx_texture_to_image(mlx->mlxi, text);
-	mlx_delete_texture(text);
 	overlay_images(mlx->img, sprite, (W_WIDTH / 2) - (SPRITE_W / 2), W_HEIGHT - SPRITE_H);
 	mlx_delete_image(mlx->mlxi, sprite);
 }
@@ -81,7 +76,7 @@ void	render(t_mlx *mlx)
 	render_projplane(mlx);
 	render_map(mlx);
 	// free the kernel ...
-	render_sprite();
+	render_sprite(mlx->sprite);
 	render_player(mlx);
 	render_aim();
 	overlay_images(mlx->img, mlx->frame, 0, 0);
