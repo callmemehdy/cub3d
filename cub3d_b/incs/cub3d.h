@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/21 22:39:10 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/22 00:51:27 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,12 @@ typedef struct s_frame
 # define T_PI (M_PI * 2)
 
 //	Window width
-# define W_WIDTH 1920	// 2048
+// # define W_WIDTH 1920	// 2048
+# define W_WIDTH 1400	// 2048
 
 //	Window Height
-# define W_HEIGHT 1056	//	1280
+// # define W_HEIGHT 1056	//	1280
+# define W_HEIGHT 600	//	1280
 
 //	Width of the ray
 # define NUM_RAYS W_WIDTH
@@ -348,6 +350,8 @@ float	linelen(float x1, float y1, float x2, float y2);
 
 // sprite animation
 
-void	shoot_down(t_mlx *mlx, t_frame *frm);
+void		shoot_down(t_mlx *mlx, t_frame *frm);
+t_frame		load_frames();
+void		overlay_images(mlx_image_t *base, mlx_image_t *overlay, int x_off, int y_off);
 
 #endif

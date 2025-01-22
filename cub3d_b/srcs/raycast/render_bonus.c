@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/21 22:49:00 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/22 01:30:04 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	render_sprite()
 	text = mlx_load_png("/home/mel-akar/1337CC/Cub3d/cub3d_b/textures/1.png");
 	sprite = mlx_texture_to_image(mlx->mlxi, text);
 	mlx_delete_texture(text);
-	overlay_images(mlx->img, sprite, (W_WIDTH / 2) - (SPRITE_W / 2), W_HEIGHT - SPRITE_H - 1);
+	overlay_images(mlx->img, sprite, (W_WIDTH / 2) - (SPRITE_W / 2), W_HEIGHT - SPRITE_H);
 	mlx_delete_image(mlx->mlxi, sprite);
 }
 
