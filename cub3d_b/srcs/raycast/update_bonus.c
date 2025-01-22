@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   update_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:18:57 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/18 08:38:32 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:26:15 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	move_player(t_mlx *mlx, t_player *p);
 static void	raycasting(t_player *p);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 09:12:39 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:26:15 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	render_projplane(t_mlx *mlx);
 static void	render_player(t_mlx *mlx);

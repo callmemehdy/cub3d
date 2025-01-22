@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/18 09:12:12 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:25:47 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "cub3d_bonus.h"
 
 static
 bool	info_validity(t_data *data, t_check *c)

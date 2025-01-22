@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup.c                                            :+:      :+:    :+:   */
+/*   setup_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: c_noob <c_noob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:38:41 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/17 22:53:54 by c_noob           ###   ########.fr       */
+/*   Updated: 2025/01/22 09:26:15 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	init_player(t_mlx *mlx);
 static void	init_bg(t_mlx *mlx);

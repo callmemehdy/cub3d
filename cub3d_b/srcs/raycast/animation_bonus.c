@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   animation_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:13:41 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 08:58:53 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:25:47 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "cub3d_bonus.h"
 
 t_frame	load_frames()
 {

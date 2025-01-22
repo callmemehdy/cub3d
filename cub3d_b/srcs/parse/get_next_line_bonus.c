@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 06:08:04 by ael-amma          #+#    #+#             */
-/*   Updated: 2024/11/20 10:25:13 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:26:52 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <get_next_line.h>
+#include <get_next_line_bonus.h>
 
 static
 char	*ft_updaterest(char *rest)

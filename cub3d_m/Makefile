@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+         #
+#    By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2025/01/18 00:02:54 by mel-akar         ###   ########.fr        #
+#    Updated: 2025/01/22 09:29:57 by ael-amma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,10 @@ clean:
 	@if [ -f MLX42/Makefile ]; then\
 		make clean -C MLX42 > /dev/null;\
 	fi 
-	rm -rf MLX42/cmake_install.cmake MLX42/CMakeCache.txt MLX42/Makefile MLX42/CMakeFiles
+	rm -rf MLX42/cmake_install.cmake \
+	MLX42/CMakeCache.txt \
+	MLX42/Makefile \
+	MLX42/CMakeFiles \
 
 fclean: clean
 	rm -rf $(NAME)

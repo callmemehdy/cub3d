@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 09:12:29 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:29:08 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include <limits.h>
 # include <stdio.h>
@@ -21,7 +21,7 @@
 # include <stdbool.h>
 # include <math.h>
 # include <ctype.h>
-# include "get_next_line.h"
+# include "get_next_line_bonus.h"
 # include <MLX42.h>
 # include <errno.h>
 # include <string.h>
@@ -36,7 +36,7 @@ typedef struct s_frame
 }			t_frame;
 
 // cli arguments error
-# define ARG_ERR "invalid program input\nUsage: ./cub3d [map's path]"
+# define ARG_ERR "invalid program input\nUsage: ./cub3d_bonus [map's path]"
 # define ARG_STT 42
 
 // heap allocation errors

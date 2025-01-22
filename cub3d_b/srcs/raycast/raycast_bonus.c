@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 08:36:15 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/18 09:03:32 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:26:15 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static bool	vertloop(t_mlx *m, t_rdata *data, t_rdif *dif);
 static bool	horzloop(t_mlx *m, t_rdata *data, t_rdif *dif);

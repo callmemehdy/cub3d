@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:59:27 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 09:13:28 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:26:15 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	key_release(mlx_key_data_t keydata, t_mlx *mlx);
 

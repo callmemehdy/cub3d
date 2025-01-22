@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bool_map.c                                         :+:      :+:    :+:   */
+/*   bool_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:06:41 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/07 10:51:42 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:25:47 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "cub3d_bonus.h"
 
 static
 char	*sp_padding(char *s, int maxlen)
