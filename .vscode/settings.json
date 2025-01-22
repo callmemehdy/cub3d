@@ -1,10 +1,11 @@
 {
   "files.associations": {
-    "limits.h": "c",
-    "get_next_line.h": "c",
-    "vector": "cpp",
-    "cub3d.h": "c"
-  },
+	"limits.h": "c",
+	"get_next_line.h": "c",
+	"vector": "cpp",
+	"cub3d.h": "c",
+	"cub3d_bonus.h": "c"
+},
   "C_Cpp_Runner.cCompilerPath": "clang",
   "C_Cpp_Runner.cppCompilerPath": "clang++",
   "C_Cpp_Runner.debuggerPath": "lldb",
@@ -62,5 +63,6 @@
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
 "C_Cpp_Runner.msvcSecureNoWarnings": false,
-"C_Cpp.errorSquiggles": "disabled"
+"C_Cpp.errorSquiggles": "disabled",
+"cmake.sourceDirectory": "/home/mel-akar/1337CC/BONCUB/cub3d_b/MLX42"
 }

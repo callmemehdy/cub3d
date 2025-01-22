@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:38:41 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 11:49:20 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/22 22:24:15 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	setup(t_mlx *mlx, t_data *data)
 	mlx->player = salloc(ft_malloc(sizeof(t_player)), 0);
 	mlx->width = data->x * TSIZE;
 	mlx->height = data->y * TSIZE;
+	mlx->space = false;
+	mlx->frames = load_frames();
+	mlx->aim = salloc(mlx_load_png("textures/aim.png"), 1);
 	mlx->rays = ft_malloc(sizeof(t_ray) * NUM_RAYS);
 	mlx->lastframe = 0;
 	mlx->img = NULL;
@@ -29,9 +32,8 @@ void	setup(t_mlx *mlx, t_data *data)
 	mlx->so = salloc(mlx_load_png(mlx->data->so_path), 0);
 	mlx->we = salloc(mlx_load_png(mlx->data->we_path), 0);
 	mlx->ea = salloc(mlx_load_png(mlx->data->ea_path), 0);
-	mlx->frame = mlx_texture_to_image(mlx->mlxi, \
-				salloc(mlx_load_png("textures/mapframe.png"), 1));
-	mlx_set_window_pos(mlx->mlxi, 600, 300);
+	mlx->frame = salloc(mlx_load_png("textures/mapframe.png"), 1);
+	mlx_set_window_pos(mlx->mlxi, 0, 0);
 	init_player(mlx);
 }
 
@@ -54,6 +56,6 @@ static void	init_player(t_mlx *mlx)
 	mlx->player->turndir = 0;
 	mlx->player->walkdir = 0;
 	mlx->player->strafe = 0;
-	mlx->player->walksp = 4 * TSIZE_SCALE;
+	mlx->player->walksp = 8 * TSIZE_SCALE;
 	mlx->player->turnsp = (3 * TSIZE) * (M_PI / 180);
 }

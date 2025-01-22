@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 11:53:22 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/22 22:59:49 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <limits.h>
 # include <stdio.h>
+# include <sys/time.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -25,14 +26,17 @@
 # include <MLX42.h>
 # include <errno.h>
 # include <string.h>
+# include <strings.h>
 
-# define SPRITE_H 300
-# define SPRITE_W 288
+# define SPRITE_H 960
+# define SPRITE_W 720
+
+# define FRM_NO 50
 
 typedef struct s_frame
 {
-	mlx_texture_t	*gun_txt[5];
-	mlx_image_t		*gun[5];
+	mlx_texture_t	*gun_txt[50];
+	mlx_image_t		*gun[50];
 }			t_frame;
 
 // cli arguments error
@@ -84,7 +88,7 @@ typedef struct s_frame
 # define NUM_RAYS W_WIDTH
 
 //	Frame Per Second
-# define FPS 90
+# define FPS 60
 
 // typedefing
 /*
@@ -180,7 +184,9 @@ typedef struct s_mlx
 {
 	mlx_t			*mlxi;
 	mlx_image_t		*img;
-	mlx_image_t		*frame;
+	mlx_texture_t	*frame;
+	mlx_texture_t	*aim;
+	t_frame			frames;
 	mlx_texture_t	*no;
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
@@ -193,6 +199,7 @@ typedef struct s_mlx
 	int				width;
 	int				height;
 	int				lastframe;
+	bool			space;
 }				t_mlx;
 
 struct s_player
@@ -351,7 +358,6 @@ mlx_texture_t	*which_texture(t_mlx *mlx, int i);
 
 //	render.c
 void			render(t_mlx *mlx);
-void			render_map(t_mlx *mlx);
 
 //	setup.c
 void			setup(t_mlx *mlx, t_data *data);
@@ -368,8 +374,14 @@ float			linelen(float x1, float y1, float x2, float y2);
 
 // sprite animation
 
-void			shoot_down(t_mlx *mlx, t_frame *frm);
+void			shoot_down(t_mlx *mlx);
 t_frame			load_frames();
-void			overlay_images(mlx_image_t *base, mlx_image_t *overlay, int x_off, int y_off);
+void			overlay_images(mlx_image_t *base, mlx_texture_t *overlay, int x_off, int y_off);
+
+// rendering tools
+void			ft_usleep(long milliseconds);
+long			get_time(void);
+void			free_2d(char **matrix);
+char			*ft_itoa(int n);
 
 #endif

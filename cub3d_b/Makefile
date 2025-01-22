@@ -6,7 +6,7 @@
 #    By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2025/01/22 09:15:50 by mel-akar         ###   ########.fr        #
+#    Updated: 2025/01/22 22:46:04 by mel-akar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ PFILES	=	ft_free_bonus.c malloc_bonus.c get_next_line_bonus.c			\
 			ft_boolean_exp_bonus.c ft_utils_IV_bonus.c
 
 RFILES	=	cleaner_bonus.c draw_bonus.c game_bonus.c hooks_bonus.c raycast_bonus.c render_utils_bonus.c \
-			render_bonus.c setup_bonus.c update_bonus.c utils_bonus.c animation_bonus.c
+			render_bonus.c setup_bonus.c update_bonus.c utils_bonus.c animation_bonus.c render_tools_bonus.c \
+			
 
 SRCS	=	srcs/main_bonus.c
 
@@ -40,7 +41,7 @@ NAME	=	cub3D_bonus
 
 CFLAGS	=	#-Wall -Wextra #-Werror
 
-DFLAGS	=	-Ofast -O3 -g3 -fsanitize=address,undefined
+DFLAGS	=	#-Ofast -O3 -g3 -fsanitize=address,undefined
 
 FLAGS	=	$(CFLAGS) $(DFLAGS) -Iincs -IMLX42/include/MLX42
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 09:03:21 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 11:39:34 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:00:46 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ char	*fill_line(char *s, t_data *data, t_player *player, int index)
 	char 	*tmp;
 
 	s = 0;
-	i = (int)(player->y / TSIZE_SCALE) - 7 + index;
-	j = (int)(player->x / TSIZE_SCALE) - 7;
+	i = (int)((player->y * SCALE) / TSIZE_SCALE) - 7 + index;
+	j = (int)((player->x * SCALE) / TSIZE_SCALE) - 7;
 	if (i >= 0 && i < data->y)
 	{
 		s = ft_malloc(sizeof(char) * 16);
 		tmp = s;
-		while (j <= (int)(player->x / TSIZE_SCALE + 7))
+		while (j <= (int)((player->x / 2) / TSIZE_SCALE + 7))
 		{
 			if (j >= 0 && j < data->x)
 				*s = data->map[i][j];

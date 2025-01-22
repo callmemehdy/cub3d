@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:59:27 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 09:55:58 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/22 21:06:46 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,8 @@ void	key_press(mlx_key_data_t keydata, void *vmlx)
 			mlx->player->turndir = -1;
 		else if (keydata.key == MLX_KEY_RIGHT)
 			mlx->player->turndir = 1;
-		// else if (keydata.key == MLX_KEY_SPACE)
-		// {
-		// 	shoot_down(mlx, &dt);
-		// }
+		else if (keydata.key == MLX_KEY_SPACE)
+			mlx->space = true;	
 	}
 	key_release(keydata, mlx);
 }
