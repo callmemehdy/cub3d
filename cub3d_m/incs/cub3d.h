@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/21 18:45:31 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:33:17 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@
 # define NUM_RAYS W_WIDTH
 
 //	Frame Per Second
-# define FPS 120
+# define FPS 60
 
 // typedefing
 /*

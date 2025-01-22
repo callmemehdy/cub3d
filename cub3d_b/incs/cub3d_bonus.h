@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 09:52:37 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:53:22 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_frame
 # define TSIZE	64
 
 //	Minimap Scale Factor
-# define SCALE 1
+# define SCALE 0.5
 
 //	Size of tiles multiplied by the scale factor
 # define TSIZE_SCALE (int)(TSIZE * SCALE)
@@ -84,9 +84,30 @@ typedef struct s_frame
 # define NUM_RAYS W_WIDTH
 
 //	Frame Per Second
-# define FPS 60
+# define FPS 90
 
 // typedefing
+/*
+	Description:	Information collected from parsing part.
+	title:			Title of the window.
+	map_fd:			Map file descriptor.
+	line:			Lines from map file.
+	map:			Map in two dimensional array.
+	x:				Map width.
+	y:				Map height.
+	px:				Player x.
+	py:				Player y.
+	config:			Config part of the map file.
+	confsize:		-
+	no_path:		Path of the north texture file.
+	so_path:		Path of the south texture file.
+	ea_path:		Path of the east texture file.
+	we_path:		Path of the west texture file.
+	c_path:			-
+	f_path:			-
+	frgb:			Floor color in BGR format.
+	crgb:			Ceiling color in BGR format.
+*/
 typedef struct s_data t_data;
 typedef unsigned char	t_byte;
 
@@ -122,16 +143,13 @@ struct s_data
 	char			*title;
 	int				map_fd;
 	t_linegnl		*lines;
-	// boolean map things
 	char			**map;
-	int				x;			// map width
-	int				y;			// map height
-	int				px;			// player coordinates
-	int				py;			// player coordinates
-	// 1st half of the map
+	int				x;
+	int				y;
+	int				px;
+	int				py;
 	char			**config;
 	int				confsize;
-	// textures , colors things	
 	char			*no_path;
 	char			*so_path;
 	char			*ea_path;
@@ -162,12 +180,16 @@ typedef struct s_mlx
 {
 	mlx_t			*mlxi;
 	mlx_image_t		*img;
-	mlx_image_t		*bg;
 	mlx_image_t		*frame;
-	mlx_image_t		*sprite;
+	mlx_texture_t	*no;
+	mlx_texture_t	*so;
+	mlx_texture_t	*we;
+	mlx_texture_t	*ea;
+	mlx_texture_t	*texture;
 	t_player		*player;
 	t_data			*data;
 	t_ray			*rays;
+	uint8_t			*pixels;
 	int				width;
 	int				height;
 	int				lastframe;
@@ -294,57 +316,60 @@ bool			outtabound(int y, int x);
 bool			is_map_first(char *s);
 
 // global struct
-t_data	**get_data(void);
-t_mlx	**get_mlx(void);
+t_data			**get_data(void);
+t_mlx			**get_mlx(void);
 
 /*********raycast*********/
 
 //	cleaner.c
-void	*salloc(void *ptr, bool mlx);
-void	ft_mlxerror(void);
-void	ft_exit(t_mlx *mlx);
+void			*salloc(void *ptr, bool mlx);
+void			ft_mlxerror(void);
+void			ft_exit(t_mlx *mlx);
 
 //	draw.c
-void	drawrect(mlx_image_t *img, t_rect tile);
-void	drawcircle(t_mlx *mlx, t_circle circle);
-void	drawline(t_mlx *mlx, t_line line, uint32_t color);
+void			drawrect(mlx_image_t *img, t_rect tile);
+void			drawcircle(t_mlx *mlx, t_circle circle);
+void			drawline(t_mlx *mlx, t_line line, uint32_t color);
 
 //	game.c
-void	game(void);
+void			game(void);
 
 //	hooks.c
-void	key_press(mlx_key_data_t keydata, void *vmlx);
+void			key_press(mlx_key_data_t keydata, void *vmlx);
 
 //	raycast.c
-void	horz_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
-void	vert_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
-void	load_rays(t_mlx *mlx, t_player *p, t_rdif dif, int id);
+void			horz_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
+void			vert_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
+void			load_rays(t_mlx *mlx, t_player *p, t_rdif dif, int id);
 
 //	render_utils.c
-char	**map_mask(t_data *data, t_player *player);
-char	*fill_line(char *s, t_data *data, t_player *player, int index);
+char			**map_mask(t_data *data, t_player *player);
+char			*fill_line(char *s, t_data *data, t_player *player, int index);
+void			paint_wall(t_mlx *mlx, t_wall wall);
+int				get_pixel(t_mlx *mlx, t_wall wall, int offx);
+mlx_texture_t	*which_texture(t_mlx *mlx, int i);
 
 //	render.c
-void	render(t_mlx *mlx);
-void	render_map(t_mlx *mlx);
+void			render(t_mlx *mlx);
+void			render_map(t_mlx *mlx);
 
 //	setup.c
-void	setup(t_mlx *mlx, t_data *data);
+void			setup(t_mlx *mlx, t_data *data);
 
 //	update.c
-void	update(t_mlx *mlx);
+void			update(t_mlx *mlx);
 
 //	utils.c
-int		get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
-int		rgbtoa(uint32_t rgb);
-bool	wallhit(float x, float y);
-float	norm_angle(float angle);
-float	linelen(float x1, float y1, float x2, float y2);
+int				get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
+int				fetch_rgba(uint32_t rgb);
+bool			wallhit(float x, float y);
+float			norm_angle(float angle);
+float			linelen(float x1, float y1, float x2, float y2);
 
 // sprite animation
 
-void		shoot_down(t_mlx *mlx, t_frame *frm);
-t_frame		load_frames();
-void		overlay_images(mlx_image_t *base, mlx_image_t *overlay, int x_off, int y_off);
+void			shoot_down(t_mlx *mlx, t_frame *frm);
+t_frame			load_frames();
+void			overlay_images(mlx_image_t *base, mlx_image_t *overlay, int x_off, int y_off);
 
 #endif

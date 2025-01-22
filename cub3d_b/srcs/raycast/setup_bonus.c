@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:38:41 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 09:26:15 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:49:20 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,14 @@ void	setup(t_mlx *mlx, t_data *data)
 	mlx->rays = ft_malloc(sizeof(t_ray) * NUM_RAYS);
 	mlx->lastframe = 0;
 	mlx->img = NULL;
+	mlx->no = salloc(mlx_load_png(mlx->data->no_path), 0);
+	mlx->so = salloc(mlx_load_png(mlx->data->so_path), 0);
+	mlx->we = salloc(mlx_load_png(mlx->data->we_path), 0);
+	mlx->ea = salloc(mlx_load_png(mlx->data->ea_path), 0);
+	mlx->frame = mlx_texture_to_image(mlx->mlxi, \
+				salloc(mlx_load_png("textures/mapframe.png"), 1));
 	mlx_set_window_pos(mlx->mlxi, 600, 300);
 	init_player(mlx);
-	mlx->bg = mlx_new_image(mlx->mlxi, W_WIDTH, W_HEIGHT);
-	init_bg(mlx);
 }
 
 static void	init_player(t_mlx *mlx)
@@ -52,19 +56,4 @@ static void	init_player(t_mlx *mlx)
 	mlx->player->strafe = 0;
 	mlx->player->walksp = 4 * TSIZE_SCALE;
 	mlx->player->turnsp = (3 * TSIZE) * (M_PI / 180);
-}
-
-static void	init_bg(t_mlx *mlx)
-{
-	int	x;
-	int	y;
-
-	y = -1;
-	while (++y < W_HEIGHT)
-	{
-		x = -1;
-		while (++x < W_WIDTH)
-			mlx_put_pixel(mlx->bg, x, y, get_rgba(255, 255, 255, 128));
-	}
-	mlx_image_to_window(mlx->mlxi, mlx->bg, 0, 0);
 }
