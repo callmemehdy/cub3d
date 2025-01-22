@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:18:57 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 09:50:06 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/22 23:35:12 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	update(t_mlx *mlx)
 {
 	move_player(mlx, mlx->player);
 	raycasting(mlx->player);
+	// checks if door is open or close
 }
 
 static void	move_player(t_mlx *mlx, t_player *p)

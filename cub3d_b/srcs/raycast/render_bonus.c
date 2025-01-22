@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 22:59:10 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/22 23:27:52 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	render(t_mlx *mlx)
 		(W_WIDTH / 2) - (SPRITE_W / 2), W_HEIGHT - SPRITE_H);
 		if (frame_count % 50 == 49)
 			mlx->space = false;
-		ft_usleep(40);
+		ft_usleep(20);
 	}
 	overlay_images(mlx->img, mlx->aim, \
 	(W_WIDTH / 2) - (40 / 2), (W_HEIGHT / 2) - (40 / 2));
