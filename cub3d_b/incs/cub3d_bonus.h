@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 22:59:49 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:19:41 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -336,7 +336,6 @@ void			ft_exit(t_mlx *mlx);
 //	draw.c
 void			drawrect(mlx_image_t *img, t_rect tile);
 void			drawcircle(t_mlx *mlx, t_circle circle);
-void			drawline(t_mlx *mlx, t_line line, uint32_t color);
 
 //	game.c
 void			game(void);

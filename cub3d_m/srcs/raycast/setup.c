@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 11:24:00 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/21 17:27:31 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:16:37 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	setup(t_mlx *mlx, t_data *data)
 	mlx->so = salloc(mlx_load_png(mlx->data->so_path), 0);
 	mlx->we = salloc(mlx_load_png(mlx->data->we_path), 0);
 	mlx->ea = salloc(mlx_load_png(mlx->data->ea_path), 0);
-	mlx_set_window_pos(mlx->mlxi, 600, 300);
 	init_player(mlx);
 }
 

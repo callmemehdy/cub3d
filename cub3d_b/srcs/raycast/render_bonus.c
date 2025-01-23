@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 23:27:52 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:19:25 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,18 +129,6 @@ void	render_player(t_mlx *mlx)
 	t_circle	circle;
 
 	pos = 7;
-
-
-	/*************************************************/
-	t_line	penis;
-	penis.x0 = round(pos * TSIZE_SCALE + (TSIZE_SCALE / 2));
-	penis.y0 = round(pos * TSIZE_SCALE + (TSIZE_SCALE / 2));
-	penis.x1 = penis.x0 + cos(mlx->player->angle) * TSIZE_SCALE;
-	penis.y1 = penis.y0 + sin(mlx->player->angle) * TSIZE_SCALE;
-	drawline(mlx, penis, get_rgba(0, 0, 0, 255));
-	/*************************************************/
-
-
 	circle.cx = round(pos * TSIZE_SCALE + (TSIZE_SCALE / 2));
 	circle.cy = round(pos * TSIZE_SCALE + (TSIZE_SCALE / 2));
 	circle.radius = mlx->player->radius * 1;

@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   setup_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:38:41 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 22:24:15 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:18:52 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
 static void	init_player(t_mlx *mlx);
-static void	init_bg(t_mlx *mlx);
 
 void	setup(t_mlx *mlx, t_data *data)
 {
@@ -33,7 +32,6 @@ void	setup(t_mlx *mlx, t_data *data)
 	mlx->we = salloc(mlx_load_png(mlx->data->we_path), 0);
 	mlx->ea = salloc(mlx_load_png(mlx->data->ea_path), 0);
 	mlx->frame = salloc(mlx_load_png("textures/mapframe.png"), 1);
-	// mlx_set_window_pos(mlx->mlxi, 0, 0);
 	init_player(mlx);
 }
 

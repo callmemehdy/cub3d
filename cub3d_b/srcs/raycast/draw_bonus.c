@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:47:14 by c_noob            #+#    #+#             */
-/*   Updated: 2025/01/22 09:26:15 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:19:34 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,5 @@ void	drawcircle(t_mlx *mlx, t_circle circ)
 		while (++x <= circ.radius)
 			if (x * x + y * y <= circ.radius * circ.radius)
 				mlx_put_pixel(mlx->img, circ.cx + x, circ.cy + y, circ.color);
-	}
-}
-
-void	drawline(t_mlx *mlx, t_line line, uint32_t color)
-{
-	int		i;
-	float	step;
-	double	xstep;
-	double	ystep;
-
-	line.dx = line.x1 - line.x0;
-	line.dy = line.y1 - line.y0;
-	step = abs(line.dy);
-	if (abs(line.dx) > abs(line.dy))
-		step = abs(line.dx);
-	xstep = line.dx / step;
-	ystep = line.dy / step;
-	i = -1;
-	while (++i <= step)
-	{
-		mlx_put_pixel(mlx->img, round(line.x0), round(line.y0), color);
-		line.x0 += xstep;
-		line.y0 += ystep;
 	}
 }
