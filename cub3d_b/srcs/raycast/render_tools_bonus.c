@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_tools_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 22:42:25 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 23:01:34 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:31:40 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,31 +62,4 @@ char	*ft_join(char *s1, char *s2)
 	ft_memcpy(str + ft_strlen(s1), s2, ft_strlen(s2));
 	str[ft_strlen(s1) + ft_strlen(s2)] = 0;
 	return (str);
-}
-
-t_frame	load_frames()
-{
-	t_mlx		*mlx;
-	char 		*num;
-	char 		*name;
-	char 		*path;
-	int			i;
-	char		*prefix;
-
-	i = -1;
-	mlx = *get_mlx();
-	prefix = strdup("textures/dwn/");
-	while (++i < FRM_NO)
-	{
-		num = ft_itoa(i + 1);
-		name = ft_join(num, ".png");
-		path = ft_join(prefix, name);
-		mlx->frames.gun_txt[i] = mlx_load_png(path);
-		// gotta protect & make some cleaner function to get rid of this garbage pngs
-		free(num);
-		free(path);
-		free(name);
-	}
-	free(prefix);
-	return (mlx->frames);
 }
