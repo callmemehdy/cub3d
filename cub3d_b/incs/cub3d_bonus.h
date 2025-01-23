@@ -28,8 +28,8 @@
 # include <string.h>
 # include <strings.h>
 
-# define SPRITE_H 960
-# define SPRITE_W 720
+# define SPRITE_H 720
+# define SPRITE_W 960
 
 # define FRM_NO 50
 

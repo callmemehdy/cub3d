@@ -75,7 +75,7 @@ t_frame	load_frames()
 
 	i = -1;
 	mlx = *get_mlx();
-	prefix = strdup("/home/mel-akar/1337CC/BONCUB/cub3d_b/textures/dwn/");
+	prefix = strdup("textures/dwn/");
 	while (++i < FRM_NO)
 	{
 		num = ft_itoa(i + 1);

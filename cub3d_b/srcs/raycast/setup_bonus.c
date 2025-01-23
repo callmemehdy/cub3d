@@ -33,7 +33,7 @@ void	setup(t_mlx *mlx, t_data *data)
 	mlx->we = salloc(mlx_load_png(mlx->data->we_path), 0);
 	mlx->ea = salloc(mlx_load_png(mlx->data->ea_path), 0);
 	mlx->frame = salloc(mlx_load_png("textures/mapframe.png"), 1);
-	mlx_set_window_pos(mlx->mlxi, 0, 0);
+	// mlx_set_window_pos(mlx->mlxi, 0, 0);
 	init_player(mlx);
 }
 

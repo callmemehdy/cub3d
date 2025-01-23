@@ -44,6 +44,7 @@ void	overlay_images(mlx_image_t *base, mlx_texture_t *overlay, int x_off, int y_
 
 void	render(t_mlx *mlx)
 {
+	static int	i;
 	static int frame_count;
 
 	mlx_delete_image(mlx->mlxi, mlx->img);
@@ -53,11 +54,13 @@ void	render(t_mlx *mlx)
 	render_player(mlx);
 	if (mlx->space)
 	{
-		overlay_images(mlx->img, mlx->frames.gun_txt[frame_count++ % 50], \
+		i++;
+		overlay_images(mlx->img, mlx->frames.gun_txt[frame_count % 50], \
 		(W_WIDTH / 2) - (SPRITE_W / 2), W_HEIGHT - SPRITE_H);
+		if (!(i % 2))
+			frame_count++;
 		if (frame_count % 50 == 49)
-			mlx->space = false;
-		ft_usleep(20);
+			'M' && (i = 1, mlx->space = false);
 	}
 	overlay_images(mlx->img, mlx->aim, \
 	(W_WIDTH / 2) - (40 / 2), (W_HEIGHT / 2) - (40 / 2));
