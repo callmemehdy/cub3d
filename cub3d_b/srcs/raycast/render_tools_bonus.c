@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 22:42:25 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 23:01:34 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/24 19:01:08 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ t_frame	load_frames()
 	prefix = strdup("textures/dwn/");
 	while (++i < FRM_NO)
 	{
-		num = ft_itoa(i + 1);
-		name = ft_join(num, ".png");
-		path = ft_join(prefix, name);
-		mlx->frames.gun_txt[i] = mlx_load_png(path);
+		num = salloc(ft_itoa(i + 1), 0);
+		name = salloc(ft_join(num, ".png"), 0);
+		path = salloc(ft_join(prefix, name), 0);
+		mlx->frames.gun_txt[i] = salloc(mlx_load_png(path), 1);
 		// gotta protect & make some cleaner function to get rid of this garbage pngs
 		free(num);
 		free(path);

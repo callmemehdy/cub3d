@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/24 18:17:52 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:56:13 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 typedef struct s_frame
 {
 	mlx_texture_t	*gun_txt[50];
-	mlx_image_t		*gun[50];
 }			t_frame;
 
 // cli arguments error
@@ -144,6 +143,7 @@ void			*ft_malloc(size_t size);
 t_addr			**get_list(void);
 void			destroy_addr(t_addr *list);
 void			delete_node(t_addr **list, void *data);
+void			clean_frames();
 
 // file handling shit ...
 char			*get_next_line(int fd);
@@ -328,6 +328,7 @@ bool			is_safe(char c, int i, int j);
 bool			is_player(char c);
 bool			outsiders(char c);
 bool			check_char(char **map, int *pl, int i, int j);
+bool			check_door(char **map, int i, int j);
 bool			outtabound(int y, int x);
 bool			is_map_first(char *s);
 

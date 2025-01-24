@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:35:32 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 09:26:15 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/24 19:00:13 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_mlxerror(void)
 
 void	ft_exit(t_mlx *mlx)
 {
+	clean_frames();
 	mlx_delete_image(mlx->mlxi, mlx->img);
 	mlx_close_window(mlx->mlxi);
 	mlx_terminate(mlx->mlxi);

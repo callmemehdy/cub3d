@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:18:57 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/23 13:22:17 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:57:02 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	update(t_mlx *mlx)
 {
 	move_player(mlx, mlx->player);
 	raycasting(mlx->player);
-	// checks if door is open or close
 }
 
 static void	move_player(t_mlx *mlx, t_player *p)

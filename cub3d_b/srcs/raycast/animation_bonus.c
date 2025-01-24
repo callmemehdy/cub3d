@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:13:41 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 22:54:59 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:55:54 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,15 @@ char	*ft_itoa(int n)
 		return (NULL);
 	s = strfill(s, n);
 	return (s);
+}
+
+void	clean_frames()
+{
+	t_mlx	*mlx;
+	int		i;
+
+	mlx = *get_mlx();
+	i = -1;
+	while (++i < FRM_NO)
+		mlx_delete_texture(mlx->frames.gun_txt[i]);
 }
