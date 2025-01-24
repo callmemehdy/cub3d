@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_boolean_exp_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 10:23:58 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 09:25:47 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:36:50 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,12 @@ bool	check_char(char **map, int *pl, int i, int j)
 		(outtabound(i - 1, j) || !is_safe(map[i - 1][j], i - 1, j)) && \
 		(outtabound(i, j + 1) || !is_safe(map[i][1 + j], i, 1 + j)))
 		return (1);
+	else if (check_door(map, i, j))
+		return (1);
 	else if (outsiders(map[i][j]))
 		return (1);
 	if (is_player(map[i][j]))
-	{
-		data->py = i;
-		data->px = j;
-	}
-	// check if the doors are surrounded by walls to make things more real
+		'm' && (data->py = i, data->px = j);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:54:38 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 09:25:47 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:36:23 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,20 @@ void	free_lines(t_linegnl *lines)
 		ft_free(tmp->s);
 		ft_free(tmp);
 	}
+}
+
+bool	check_door(char **map, int i, int j)
+{
+	t_data	*data;
+
+	data = *get_data();
+	if (i < 0 || i >= data->y || j < 0 || j >= data->x)
+		return (1);
+	if (map[i][j] == 'D' && \
+			!((map[i][j - 1] == '0' && map[i][j + 1] == '0') && \
+			(map[i - 1][j] == '1' && map[i + 1][j] == '1') || \
+			(map[i][j - 1] == '1' && map[i][j + 1] == '1') && \
+			(map[i - 1][j] == '0' && map[i + 1][j] == '0')))
+		return (1);
+	return (0);
 }
