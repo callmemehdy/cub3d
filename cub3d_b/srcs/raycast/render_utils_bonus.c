@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 09:03:21 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 16:00:46 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:53:41 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,21 @@ int	get_pixel(t_mlx *mlx, t_wall wall, int offx)
 
 mlx_texture_t	*which_texture(t_mlx *mlx, int i)
 {
-	if (mlx->rays[i].wallvert)
+	if (mlx->rays[i].wallcontent == 49)
 	{
-		if (mlx->rays[i].right)
-			return (mlx->ea);
-		else
+		if (mlx->rays[i].wallvert)
+		{
+			if (mlx->rays[i].right)
+				return (mlx->ea);
 			return (mlx->we);
+		}
+		else
+		{
+			if (mlx->rays[i].down)
+				return (mlx->so);
+			return (mlx->no);
+		}
 	}
 	else
-	{
-		if (mlx->rays[i].down)
-			return (mlx->so);
-		else
-			return (mlx->no);
-	}
+		return (mlx->cdoor);
 }

@@ -6,11 +6,13 @@
 /*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 22:28:21 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/23 22:31:46 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:37:25 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+
+static char	*ft_join(char *s1, char *s2);
 
 t_frame	load_frames()
 {
@@ -63,4 +65,25 @@ void	overlay_images(mlx_image_t *base, mlx_texture_t *overlay, int x_off, int y_
 		}
 		++cxp[0];
 	}
+}
+
+static
+char	*ft_join(char *s1, char *s2)
+{
+	char	*str;
+
+	if (!s1)
+	{
+		s1 = malloc(1 * sizeof(char));
+		if (!s1)
+			return (NULL);
+		s1[0] = 0;
+	}
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!str)
+		return (free(s1), s1 = NULL, NULL);
+	ft_memcpy(str, s1, ft_strlen(s1));
+	ft_memcpy(str + ft_strlen(s1), s2, ft_strlen(s2));
+	str[ft_strlen(s1) + ft_strlen(s2)] = 0;
+	return (str);
 }

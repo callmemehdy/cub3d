@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/23 22:31:54 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:46:20 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,12 +186,14 @@ typedef struct s_mlx
 	mlx_image_t		*img;
 	mlx_texture_t	*frame;
 	mlx_texture_t	*aim;
-	t_frame			frames;
 	mlx_texture_t	*no;
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
+	mlx_texture_t	*cdoor;
+	mlx_texture_t	*odoor;
 	mlx_texture_t	*texture;
+	t_frame			frames;
 	t_player		*player;
 	t_data			*data;
 	t_ray			*rays;
@@ -200,6 +202,7 @@ typedef struct s_mlx
 	int				height;
 	int				lastframe;
 	bool			space;
+	bool			key;
 }				t_mlx;
 
 struct s_player

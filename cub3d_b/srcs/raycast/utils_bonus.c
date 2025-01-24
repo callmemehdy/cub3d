@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:34:54 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 11:47:58 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:54:26 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ bool	wallhit(float x, float y)
 	mapx = floor(x / TSIZE);
 	mapy = floor(y / TSIZE);
 	return (data->map[mapy][mapx] != '0' \
-		&& !is_player(data->map[mapy][mapx]));
+		&& !is_player(data->map[mapy][mapx]) \
+		&& data->map[mapy][mapx] != 'O');
 }
 
 float	norm_angle(float angle)

@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/23 22:32:37 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:36:57 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,11 @@ void	render_map(t_mlx *mlx)
 			tile.y = (y * TSIZE_SCALE);
 			tile.width = TSIZE_SCALE;
 			tile.height = TSIZE_SCALE;
-			tile.color = get_rgba(255, 255, 255, 255);
+			tile.color = get_rgba(64, 64, 64, 255);
 			if ((y < height && x < width) && (map[y][x] == '0' || is_player(map[y][x])))
-				continue ;
+				tile.color = get_rgba(0, 0, 0, 255);
+			else if (map[y][x] == 'O' || map[y][x] == 'D')
+				tile.color = get_rgba(128, 128, 128, 255);
 			drawrect(mlx->img, tile);
 		}
 	}
