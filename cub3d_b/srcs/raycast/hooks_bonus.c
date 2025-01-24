@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:59:27 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/24 03:07:09 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:09:03 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,39 @@
 
 static void	key_release(mlx_key_data_t keydata, t_mlx *mlx);
 
-int		curr_x;
-bool	first = false;
+void	init_mouse_pos(t_mlx *mlx, int mid_x, int mid_y)
+{
+	mlx_set_mouse_pos(mlx->mlxi, mid_x, mid_y);
+	mlx_set_cursor_mode(mlx->mlxi, MLX_MOUSE_HIDDEN);
+	mlx->first_mouse = true;	
+}
 
 void mouse_hdl(double x, double y, void* param)
 {
 	t_mlx			*mlx;
-	int				padder;
-	int				win_x;
+	t_dimension		dim;
+	int				mid_x;
+	int				mid_y;
 
-	// make some var for the center of the visible portion of the window
-	1 && (mlx = *get_mlx(), padder = 0);
-	if (!first)
-	{
-		mlx_set_mouse_pos(mlx->mlxi, W_WIDTH / 2, W_HEIGHT / 2);
-		mlx_set_cursor_mode(mlx->mlxi, MLX_MOUSE_HIDDEN);
-		first = true;
-	}
+	1 && (mid_x = W_WIDTH / 2, mid_y = W_HEIGHT / 2, mlx = *get_mlx());
+	if (!mlx->first_mouse)
+		init_mouse_pos(mlx, mid_x, mid_y);
 	else
 	{
-		mlx_get_window_pos(mlx->mlxi, &win_x, &padder);
-		if (curr_x > x)
+		mlx_get_monitor_size(0, &dim.mon_w, &dim.mon_h);
+		mlx_get_window_pos(mlx->mlxi, &dim.win_x, &dim.win_y);
+		if (dim.win_x < 0)
+			mid_x = ((W_WIDTH + dim.win_x) / 2) - dim.win_x;
+		else if (dim.win_x + W_WIDTH > dim.mon_w)
+			mid_x = (dim.mon_w - dim.win_x) / 2;
+		if (mid_x > x)
 			mlx->player->angle -= 0.04;
-		else if (curr_x < x)
+		else if (mid_x < x)
 			mlx->player->angle += 0.04;
-		curr_x = x;
-		if (x < W_WIDTH / 2 || x > W_WIDTH / 2 || win_x < 0)
-			mlx_set_mouse_pos(mlx->mlxi, W_WIDTH / 2, W_HEIGHT / 2);		
+		if (x < mid_x || x > mid_x)
+			mlx_set_mouse_pos(mlx->mlxi, mid_x, mid_y);		
 	}
 }
-
 
 void	key_press(mlx_key_data_t keydata, void *vmlx)
 {

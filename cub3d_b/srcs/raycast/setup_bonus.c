@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:38:41 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/23 22:18:52 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:17:23 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	setup(t_mlx *mlx, t_data *data)
 	mlx->width = data->x * TSIZE;
 	mlx->height = data->y * TSIZE;
 	mlx->space = false;
+	mlx->first_mouse = false;
 	mlx->frames = load_frames();
 	mlx->aim = salloc(mlx_load_png("textures/aim.png"), 1);
 	mlx->rays = ft_malloc(sizeof(t_ray) * NUM_RAYS);

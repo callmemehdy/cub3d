@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/23 22:19:41 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:57:45 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,14 @@ typedef unsigned char	t_byte;
 
 // parse shit
 
+typedef struct s_dimensions
+{
+	int		mon_w;
+	int		mon_h;
+	int		win_x;
+	int		win_y;
+}				t_dimension;
+
 typedef struct s_addr
 {
 	void			*addr;
@@ -200,6 +208,7 @@ typedef struct s_mlx
 	int				height;
 	int				lastframe;
 	bool			space;
+	bool			first_mouse;
 }				t_mlx;
 
 struct s_player
@@ -373,7 +382,6 @@ float			linelen(float x1, float y1, float x2, float y2);
 
 // sprite animation
 
-void			shoot_down(t_mlx *mlx);
 t_frame			load_frames();
 void			overlay_images(mlx_image_t *base, mlx_texture_t *overlay, int x_off, int y_off);
 
