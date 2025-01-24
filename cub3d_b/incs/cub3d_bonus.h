@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/24 17:57:45 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:17:52 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,6 +351,8 @@ void			game(void);
 
 //	hooks.c
 void			key_press(mlx_key_data_t keydata, void *vmlx);
+void			init_mouse_pos(t_mlx *mlx, int mid_x, int mid_y);
+void			mouse_hdl(double x, double y, void* param);
 
 //	raycast.c
 void			horz_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);

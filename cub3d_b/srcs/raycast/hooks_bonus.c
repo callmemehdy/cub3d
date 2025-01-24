@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:59:27 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/24 18:09:03 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:20:22 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void mouse_hdl(double x, double y, void* param)
 		else if (dim.win_x + W_WIDTH > dim.mon_w)
 			mid_x = (dim.mon_w - dim.win_x) / 2;
 		if (mid_x > x)
-			mlx->player->angle -= 0.04;
+			mlx->player->angle -= 0.009;
 		else if (mid_x < x)
-			mlx->player->angle += 0.04;
+			mlx->player->angle += 0.009;
 		if (x < mid_x || x > mid_x)
 			mlx_set_mouse_pos(mlx->mlxi, mid_x, mid_y);		
 	}
@@ -53,7 +53,6 @@ void	key_press(mlx_key_data_t keydata, void *vmlx)
 	t_mlx	*mlx;
 
 	mlx = vmlx;
-	mlx_cursor_hook(mlx->mlxi, mouse_hdl, NULL);
 	if (keydata.key == MLX_KEY_ESCAPE)
 		ft_exit(mlx);
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
