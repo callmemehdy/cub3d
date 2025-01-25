@@ -6,7 +6,7 @@
 #    By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2025/01/25 01:49:12 by ael-amma         ###   ########.fr        #
+#    Updated: 2025/01/25 02:10:19 by ael-amma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ NAME	=	cub3D_bonus
 
 CFLAGS	=	#-Wall -Wextra #-Werror
 
-DFLAGS	=	#-Ofast -O3 -g3 -fsanitize=address,undefined
+DFLAGS	=	-Ofast -O3 -g3 -fsanitize=leak
 
 FLAGS	=	$(CFLAGS) $(DFLAGS) -Iincs -IMLX42/include/MLX42
 

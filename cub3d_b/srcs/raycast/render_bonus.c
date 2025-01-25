@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/25 00:53:51 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 02:12:27 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	render_sprite(t_mlx *mlx)
 	{
 		i++;
 		overlay_images(mlx->img, mlx->frames.gun_txt[frame_count % 50], \
-		(W_WIDTH / 2) - (SPRITE_W / 2), W_HEIGHT - SPRITE_H);
+		(W_WIDTH - SPRITE_W), W_HEIGHT - SPRITE_H);
 		if (!(i % 2))
 			frame_count++;
 		if (frame_count % 50 == 49)
