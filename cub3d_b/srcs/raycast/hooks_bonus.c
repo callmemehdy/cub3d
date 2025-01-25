@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:59:27 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/25 02:25:08 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/25 02:29:36 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	key_press(mlx_key_data_t keydata, void *vmlx)
 
 	mlx = vmlx;
 	if (keydata.key == MLX_KEY_ESCAPE)
-		ft_exit(mlx, 0);
+		ft_exit(mlx, EXIT_SUCCESS);
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
 	{
 		if (keydata.key == MLX_KEY_W)
