@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:59:27 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/25 02:29:36 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/25 02:35:36 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	key_press(mlx_key_data_t keydata, void *vmlx)
 			mlx->player->strafe = -1;
 		else if (keydata.key == MLX_KEY_D)
 			mlx->player->strafe = 1;
+		else if (keydata.key == MLX_KEY_E)
+			mlx->key = true;
 		else if (keydata.key == MLX_KEY_LEFT)
 			mlx->player->turndir = -1;
 		else if (keydata.key == MLX_KEY_RIGHT)
