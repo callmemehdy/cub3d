@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:13:41 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/25 01:57:07 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/25 02:54:11 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,6 @@ void	clean_frames()
 	while (++i < FRM_NO)
 		mlx_delete_texture(mlx->frames.gun_txt[i]);
 	mlx_delete_texture(mlx->frame);
+	mlx_delete_texture(mlx->aim);
+	mlx_delete_texture(mlx->door);
 }

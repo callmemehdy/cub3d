@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:59:27 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/19 11:23:18 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 03:03:59 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	key_press(mlx_key_data_t keydata, void *vmlx)
 
 	mlx = vmlx;
 	if (keydata.key == MLX_KEY_ESCAPE)
-		ft_exit(mlx);
+		ft_exit(mlx, EXIT_SUCCESS);
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
 	{
 		if (keydata.key == MLX_KEY_W)

@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:35:32 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/25 01:57:30 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 03:05:28 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ void	*salloc(void *ptr)
 
 void	ft_exit(t_mlx *mlx, int	exit_stat)
 {
+	if (mlx->no)
+		mlx_delete_texture(mlx->no);
+	if (mlx->so)
+		mlx_delete_texture(mlx->so);
+	if (mlx->ea)
+		mlx_delete_texture(mlx->ea);
+	if (mlx->we)
+		mlx_delete_texture(mlx->we);
 	mlx_delete_image(mlx->mlxi, mlx->img);
 	mlx_close_window(mlx->mlxi);
 	mlx_terminate(mlx->mlxi);

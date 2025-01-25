@@ -1,7 +1,7 @@
 NO ./textures/lbluew.png
-SO ./textures/bluew.png
-WE ./textures/lbluew.png
-EA ./textures/bluew.png
+SO ./textures/ds.png
+WE ./textures/ds.png
+EA ./textures/ds.png
 
 F 0, 0, 0
 C 0, 0, 0

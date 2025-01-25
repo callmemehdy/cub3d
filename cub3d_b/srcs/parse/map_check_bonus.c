@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:12:53 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 09:25:47 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 04:18:42 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ bool	info_validity(t_data *data, t_check *c)
 	int		i;
 
 	'H' && (s = data -> c_path, i = 0x0);
-	boolean = c->c_c ^ 1 + c->ea_c ^ 1 + c->no_c ^ 1;
-	boolean += c->so_c ^ 1 + c->we_c ^ 1 + c->f_c ^ 1;
+	boolean = (c->c_c ^ 1) + (c->ea_c ^ 1) + (c->no_c ^ 1);
+	boolean += (c->so_c ^ 1) + (c->we_c ^ 1) + (c->f_c ^ 1);
 	while (s && *(s + i))
 	{
 		if (ft_isdigit(s[i]) && ++c->fields)

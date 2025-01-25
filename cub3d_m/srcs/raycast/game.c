@@ -3,27 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:35:24 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/19 11:23:14 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 03:12:36 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static void	game_loop(void *vmlx);
+static void	cleaner(void *vmlx);
 
 void	game(void)
 {
 	t_mlx	mlx;
 
+	mlx = (t_mlx){0};
 	(*get_mlx()) = &mlx;
 	setup(&mlx, *get_data());
 	mlx_key_hook(mlx.mlxi, key_press, &mlx);
 	mlx_loop_hook(mlx.mlxi, game_loop, &mlx);
+	mlx_close_hook(mlx.mlxi, cleaner, &mlx);
 	mlx_loop(mlx.mlxi);
-	ft_exit(&mlx);
+	ft_exit(&mlx, EXIT_SUCCESS);
 }
 
 static void	game_loop(void *vmlx)
@@ -40,4 +43,13 @@ static void	game_loop(void *vmlx)
 	mlx->lastframe = mlx_get_time() * 1000;
 	update(mlx);
 	render(mlx);
+}
+
+static
+void	cleaner(void *vmlx)
+{
+	t_mlx	*mlx;
+
+	mlx = vmlx;
+	ft_exit(mlx, EXIT_SUCCESS);
 }
