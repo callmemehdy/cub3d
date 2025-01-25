@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+         #
+#    By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2025/01/25 03:04:36 by ael-amma         ###   ########.fr        #
+#    Updated: 2025/01/25 18:00:10 by mel-akar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,13 +44,13 @@ OBJS	+=	$(addprefix objs/, $(RFILES:.c=.o))
 
 NAME	=	cub3D
 
-CFLAGS	=	#-Wall -Wextra #-Werror
+CFLAGS	=	-Wall -Wextra -Werror
 
-DFLAGS	=	-Ofast -O3 -g3 -fsanitize=address,undefined
+DFLAGS	=	-Ofast -O3 -g3 
 
 FLAGS	=	$(CFLAGS) $(DFLAGS) -Iincs -IMLX42/include/MLX42
 
-MLXF	=	$(MLXLIB) -ldl -lglfw -pthread -lm
+MLXF	=	$(MLXLIB) -L$(shell brew --prefix glfw)/lib -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
 all:		$(MLXLIB) $(NAME)
 

@@ -6,7 +6,7 @@
 #    By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2025/01/25 15:51:43 by mel-akar         ###   ########.fr        #
+#    Updated: 2025/01/25 18:00:34 by mel-akar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ DFLAGS	=	-Ofast -O3 -g3 #-fsanitize=address
 
 FLAGS	=	$(CFLAGS) $(DFLAGS) -Iincs -IMLX42/include/MLX42
 
-MLXF	=	$(MLXLIB) -L/Users/mel-akar/.brew/opt/glfw/lib/ -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit #-ldl -lglfw -pthread -lm
+MLXF	=	$(MLXLIB) -L$(shell brew --prefix glfw)/lib -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
 all:		$(MLXLIB) $(NAME)
 
