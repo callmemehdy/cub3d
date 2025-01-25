@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/24 12:46:20 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/24 22:07:04 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,9 +332,8 @@ t_mlx			**get_mlx(void);
 /*********raycast*********/
 
 //	cleaner_bonus.c
-void			*salloc(void *ptr, bool mlx);
-void			ft_mlxerror(void);
-void			ft_exit(t_mlx *mlx);
+void			*salloc(void *ptr);
+void			ft_exit(t_mlx *mlx, int exit_stat);
 
 //	draw_bonus.c
 void			drawrect(mlx_image_t *img, t_rect tile);

@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:35:24 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/22 11:44:02 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/24 22:06:40 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	game(void)
 	mlx_key_hook(mlx.mlxi, key_press, &mlx);
 	mlx_loop_hook(mlx.mlxi, game_loop, &mlx);
 	mlx_loop(mlx.mlxi);
-	ft_exit(&mlx);
+	ft_exit(&mlx, EXIT_SUCCESS);
 }
 
 static void	game_loop(void *vmlx)

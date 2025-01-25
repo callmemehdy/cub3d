@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/24 16:36:57 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 00:53:51 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	render_map(t_mlx *mlx)
 			tile.color = get_rgba(64, 64, 64, 255);
 			if ((y < height && x < width) && (map[y][x] == '0' || is_player(map[y][x])))
 				tile.color = get_rgba(0, 0, 0, 255);
-			else if (map[y][x] == 'O' || map[y][x] == 'D')
+			else if (map[y][x] == 'O')
 				tile.color = get_rgba(128, 128, 128, 255);
 			drawrect(mlx->img, tile);
 		}
