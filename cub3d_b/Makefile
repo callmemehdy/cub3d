@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+         #
+#    By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:41:19 by mel-akar          #+#    #+#              #
-#    Updated: 2025/01/25 04:16:10 by ael-amma         ###   ########.fr        #
+#    Updated: 2025/01/25 15:51:43 by mel-akar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,11 +41,11 @@ NAME	=	cub3D_bonus
 
 CFLAGS	=	-Wall -Wextra -Werror
 
-DFLAGS	=	-Ofast -O3 -g3 -fsanitize=address
+DFLAGS	=	-Ofast -O3 -g3 #-fsanitize=address
 
 FLAGS	=	$(CFLAGS) $(DFLAGS) -Iincs -IMLX42/include/MLX42
 
-MLXF	=	$(MLXLIB) -ldl -lglfw -pthread -lm
+MLXF	=	$(MLXLIB) -L/Users/mel-akar/.brew/opt/glfw/lib/ -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit #-ldl -lglfw -pthread -lm
 
 all:		$(MLXLIB) $(NAME)
 

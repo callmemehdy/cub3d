@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 22:28:21 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/25 01:59:53 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 04:31:02 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	overlay_images(mlx_image_t *base, mlx_texture_t *overlay, int x_off, int y_
 {
 	uint32_t	*base_pixels;
 	uint32_t	*overlay_pixels;
-	int			cxp[2];
+	u_int32_t	cxp[2];
 	int			base_index;
 	int			overlay_index;
 

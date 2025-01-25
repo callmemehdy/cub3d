@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:59:27 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/25 02:35:36 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/25 04:38:14 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	key_release(mlx_key_data_t keydata, t_mlx *mlx);
 
-void mouse_hdl(double x, double y, void* param)
+void mouse_hdl(double x, __attribute__((unused)) double y, __attribute__((unused)) void* param)
 {
 	t_mlx			*mlx;
 	t_dimension		dim;
@@ -31,9 +31,9 @@ void mouse_hdl(double x, double y, void* param)
 			else if (dim.win_x + W_WIDTH > dim.mon_w)
 				mid_x = (dim.mon_w - dim.win_x) / 2;
 			if (mid_x > x)
-				mlx->player->angle -= 0.009;
+				mlx->player->angle -= 0.04;
 			else if (mid_x < x)
-				mlx->player->angle += 0.009;
+				mlx->player->angle += 0.04;
 			if (x < mid_x || x > mid_x)
 				mlx_set_mouse_pos(mlx->mlxi, mid_x, mid_y);		
 	}
