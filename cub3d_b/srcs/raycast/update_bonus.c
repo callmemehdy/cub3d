@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   update_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:18:57 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/24 18:57:02 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/25 01:57:09 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
 static void	move_player(t_mlx *mlx, t_player *p);
+static void	door(t_mlx *mlx, t_player *p);
 static void	raycasting(t_player *p);
 static void	castray(t_player *p, float angle, int id);
 
 void	update(t_mlx *mlx)
 {
 	move_player(mlx, mlx->player);
+	door(mlx, mlx->player);
 	raycasting(mlx->player);
 }
 
@@ -43,6 +45,35 @@ static void	move_player(t_mlx *mlx, t_player *p)
 	{
 		p->x = newpx;
 		p->y = newpy;
+	}
+}
+
+static void	door(t_mlx *mlx, t_player *p)
+{
+	int		dx;
+	int		dy;
+
+	if (mlx->key)
+	{
+		1 && (dx = (int)p->x / TSIZE, dy = (int)p->y / TSIZE);
+		if (mlx->rays[(NUM_RAYS / 2) - 1].wallvert)
+		{
+			dx--;
+			if (mlx->rays[(NUM_RAYS / 2) - 1].right)
+				dx += 2;
+		}
+		else
+		{
+			dy--;
+			if (mlx->rays[(NUM_RAYS / 2) - 1].down)
+				dy += 2;
+		}
+		if ((dy > 0 && dy < mlx->data->y) && (dx > 0 && dx < mlx->data->x))
+			if (mlx->data->map[dy][dx] == 'D')
+				mlx->data->map[dy][dx] = 'O';
+			else if (mlx->data->map[dy][dx] == 'O')
+				mlx->data->map[dy][dx] = 'D';
+		mlx->key = false;
 	}
 }
 

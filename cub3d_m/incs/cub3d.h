@@ -6,7 +6,7 @@
 /*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 11:33:17 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/24 22:07:12 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,9 +306,8 @@ t_mlx			**get_mlx(void);
 /*********raycast*********/
 
 //	cleaner.c
-void			*salloc(void *ptr, bool mlx);
-void			ft_mlxerror(void);
-void			ft_exit(t_mlx *mlx);
+void			*salloc(void *ptr);
+void			ft_exit(t_mlx *mlx, int exit_stat);
 
 //	game.c
 void			game(void);

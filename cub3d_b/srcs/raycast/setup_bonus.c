@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:38:41 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/24 17:17:23 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/25 01:56:44 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,24 @@ static void	init_player(t_mlx *mlx);
 void	setup(t_mlx *mlx, t_data *data)
 {
 	mlx->data = data;
-	mlx->mlxi = salloc(mlx_init(W_WIDTH, W_HEIGHT, data->title, 0), 1);
-	mlx->player = salloc(ft_malloc(sizeof(t_player)), 0);
+	mlx->mlxi = salloc(mlx_init(W_WIDTH, W_HEIGHT, data->title, 0));
+	mlx->player = salloc(ft_malloc(sizeof(t_player)));
 	mlx->width = data->x * TSIZE;
 	mlx->height = data->y * TSIZE;
 	mlx->space = false;
 	mlx->first_mouse = false;
 	mlx->frames = load_frames();
-	mlx->aim = salloc(mlx_load_png("textures/aim.png"), 1);
 	mlx->rays = ft_malloc(sizeof(t_ray) * NUM_RAYS);
 	mlx->lastframe = 0;
 	mlx->img = NULL;
-	mlx->no = salloc(mlx_load_png(mlx->data->no_path), 0);
-	mlx->so = salloc(mlx_load_png(mlx->data->so_path), 0);
-	mlx->we = salloc(mlx_load_png(mlx->data->we_path), 0);
-	mlx->ea = salloc(mlx_load_png(mlx->data->ea_path), 0);
-	mlx->frame = salloc(mlx_load_png("textures/mapframe.png"), 1);
+	mlx->key = false;
+	mlx->no = salloc(mlx_load_png(mlx->data->no_path));
+	mlx->so = salloc(mlx_load_png(mlx->data->so_path));
+	mlx->we = salloc(mlx_load_png(mlx->data->we_path));
+	mlx->ea = salloc(mlx_load_png(mlx->data->ea_path));
+	mlx->aim = salloc(mlx_load_png("textures/aim.png"));
+	mlx->door = salloc(mlx_load_png("textures/bunkerD.png"));
+	mlx->frame = salloc(mlx_load_png("textures/frame.png"));
 	init_player(mlx);
 }
 
@@ -55,6 +57,6 @@ static void	init_player(t_mlx *mlx)
 	mlx->player->turndir = 0;
 	mlx->player->walkdir = 0;
 	mlx->player->strafe = 0;
-	mlx->player->walksp = 8 * TSIZE_SCALE;
-	mlx->player->turnsp = (3 * TSIZE) * (M_PI / 180);
+	mlx->player->walksp = 4 * TSIZE;
+	mlx->player->turnsp = (2 * TSIZE) * (M_PI / 180);
 }

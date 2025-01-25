@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:59:27 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/24 18:20:22 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 01:52:51 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	key_press(mlx_key_data_t keydata, void *vmlx)
 
 	mlx = vmlx;
 	if (keydata.key == MLX_KEY_ESCAPE)
-		ft_exit(mlx);
+		ft_exit(mlx, EXIT_SUCCESS);
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
 	{
 		if (keydata.key == MLX_KEY_W)
@@ -69,6 +69,8 @@ void	key_press(mlx_key_data_t keydata, void *vmlx)
 			mlx->player->turndir = -1;
 		else if (keydata.key == MLX_KEY_RIGHT)
 			mlx->player->turndir = 1;
+		else if (keydata.key == MLX_KEY_E)
+			mlx->key = true;
 		else if (keydata.key == MLX_KEY_SPACE)
 			mlx->space = true;	
 	}

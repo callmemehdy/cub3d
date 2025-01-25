@@ -3,68 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/23 22:19:25 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 00:53:51 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-static void			render_game(t_mlx *mlx);
-static void			render_player(t_mlx *mlx);
-static void			render_map(t_mlx *mlx);
-
-void	overlay_images(mlx_image_t *base, mlx_texture_t *overlay, int x_off, int y_off)
-{
-	uint32_t	*base_pixels;
-	uint32_t	*overlay_pixels;
-	int			cxp[2];
-	int			base_index;
-	int			overlay_index;
-
-	1 && (cxp[0] = 0, base_pixels = (uint32_t*)base->pixels);
-	overlay_pixels = (uint32_t*)overlay->pixels;
-	while (cxp[0] < overlay->height)
-	{
-		cxp[1] = 0;
-		while (cxp[1] < overlay->width)
-		{
-			base_index = (cxp[0] + y_off) * base->width + (cxp[1] + x_off);
-			overlay_index = cxp[0] * overlay->width + cxp[1];
-			if (!((overlay_pixels[overlay_index] >> 24) & 0xFF) && ++cxp[1])
-				continue;
-			base_pixels[base_index] = overlay_pixels[overlay_index];
-			++cxp[1];
-		}
-		++cxp[0];
-	}
-}
+static void	render_game(t_mlx *mlx);
+static void	render_player(t_mlx *mlx);
+static void	render_map(t_mlx *mlx);
+static void	render_sprite(t_mlx *mlx);
 
 void	render(t_mlx *mlx)
 {
-	static int	i;
-	static int frame_count;
-
 	mlx_delete_image(mlx->mlxi, mlx->img);
 	mlx->img = mlx_new_image(mlx->mlxi, W_WIDTH, W_HEIGHT);
 	render_game(mlx);
 	render_map(mlx);
 	render_player(mlx);
-	if (mlx->space)
-	{
-		i++;
-		overlay_images(mlx->img, mlx->frames.gun_txt[frame_count % 50], \
-		(W_WIDTH / 2) - (SPRITE_W / 2), W_HEIGHT - SPRITE_H);
-		if (!(i % 2))
-			frame_count++;
-		if (frame_count % 50 == 49)
-			'M' && (i = 1, mlx->space = false);
-	}
-	overlay_images(mlx->img, mlx->aim, \
-	(W_WIDTH / 2) - (40 / 2), (W_HEIGHT / 2) - (40 / 2));
-	overlay_images(mlx->img, mlx->frame, 0, 0);
+	render_sprite(mlx);
 	mlx_image_to_window(mlx->mlxi, mlx->img, 0, 0);
 }
 
@@ -113,9 +73,11 @@ void	render_map(t_mlx *mlx)
 			tile.y = (y * TSIZE_SCALE);
 			tile.width = TSIZE_SCALE;
 			tile.height = TSIZE_SCALE;
-			tile.color = get_rgba(255, 255, 255, 255);
+			tile.color = get_rgba(64, 64, 64, 255);
 			if ((y < height && x < width) && (map[y][x] == '0' || is_player(map[y][x])))
-				continue ;
+				tile.color = get_rgba(0, 0, 0, 255);
+			else if (map[y][x] == 'O')
+				tile.color = get_rgba(128, 128, 128, 255);
 			drawrect(mlx->img, tile);
 		}
 	}
@@ -134,4 +96,25 @@ void	render_player(t_mlx *mlx)
 	circle.radius = mlx->player->radius * 1;
 	circle.color = get_rgba(255, 255, 255, 255);
 	drawcircle(mlx, circle);
+}
+
+static
+void	render_sprite(t_mlx *mlx)
+{
+	static int	i;
+	static int frame_count;
+
+	if (mlx->space)
+	{
+		i++;
+		overlay_images(mlx->img, mlx->frames.gun_txt[frame_count % 50], \
+		(W_WIDTH / 2) - (SPRITE_W / 2), W_HEIGHT - SPRITE_H);
+		if (!(i % 2))
+			frame_count++;
+		if (frame_count % 50 == 49)
+			'M' && (i = 1, mlx->space = false);
+	}
+	overlay_images(mlx->img, mlx->aim, \
+	(W_WIDTH / 2) - (40 / 2), (W_HEIGHT / 2) - (40 / 2));
+	overlay_images(mlx->img, mlx->frame, 0, 0);
 }

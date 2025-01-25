@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/24 18:56:13 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/25 01:58:06 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,12 +194,13 @@ typedef struct s_mlx
 	mlx_image_t		*img;
 	mlx_texture_t	*frame;
 	mlx_texture_t	*aim;
-	t_frame			frames;
 	mlx_texture_t	*no;
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
+	mlx_texture_t	*door;
 	mlx_texture_t	*texture;
+	t_frame			frames;
 	t_player		*player;
 	t_data			*data;
 	t_ray			*rays;
@@ -208,6 +209,7 @@ typedef struct s_mlx
 	int				height;
 	int				lastframe;
 	bool			space;
+	bool			key;
 	bool			first_mouse;
 }				t_mlx;
 
@@ -338,60 +340,59 @@ t_mlx			**get_mlx(void);
 
 /*********raycast*********/
 
-//	cleaner.c
-void			*salloc(void *ptr, bool mlx);
-void			ft_mlxerror(void);
-void			ft_exit(t_mlx *mlx);
+//	cleaner_bonus.c
+void			*salloc(void *ptr);
+void			ft_exit(t_mlx *mlx, int exit_stat);
 
-//	draw.c
+//	draw_bonus.c
 void			drawrect(mlx_image_t *img, t_rect tile);
 void			drawcircle(t_mlx *mlx, t_circle circle);
 
-//	game.c
+//	game_bonus.c
 void			game(void);
 
-//	hooks.c
+//	hooks_bonus.c
 void			key_press(mlx_key_data_t keydata, void *vmlx);
 void			init_mouse_pos(t_mlx *mlx, int mid_x, int mid_y);
 void			mouse_hdl(double x, double y, void* param);
 
-//	raycast.c
+//	raycast_bonus.c
 void			horz_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
 void			vert_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
 void			load_rays(t_mlx *mlx, t_player *p, t_rdif dif, int id);
 
-//	render_utils.c
+//	render_utils_bonus.c
 char			**map_mask(t_data *data, t_player *player);
 char			*fill_line(char *s, t_data *data, t_player *player, int index);
 void			paint_wall(t_mlx *mlx, t_wall wall);
 int				get_pixel(t_mlx *mlx, t_wall wall, int offx);
 mlx_texture_t	*which_texture(t_mlx *mlx, int i);
 
-//	render.c
+// render_tools_bonus.c
+void			ft_usleep(long milliseconds);
+long			get_time(void);
+void			free_2d(char **matrix);
+char			*ft_itoa(int n);
+
+//	render_utils.c
 void			render(t_mlx *mlx);
 
-//	setup.c
+//	setup_utils.c
 void			setup(t_mlx *mlx, t_data *data);
 
-//	update.c
+//	update_utils.c
 void			update(t_mlx *mlx);
 
-//	utils.c
+//	utils_utils.c
 int				get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 int				fetch_rgba(uint32_t rgb);
 bool			wallhit(float x, float y);
 float			norm_angle(float angle);
 float			linelen(float x1, float y1, float x2, float y2);
 
-// sprite animation
-
+// sprite_bonus.c
 t_frame			load_frames();
 void			overlay_images(mlx_image_t *base, mlx_texture_t *overlay, int x_off, int y_off);
 
-// rendering tools
-void			ft_usleep(long milliseconds);
-long			get_time(void);
-void			free_2d(char **matrix);
-char			*ft_itoa(int n);
 
 #endif

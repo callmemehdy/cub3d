@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:35:24 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/24 18:18:10 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 01:52:36 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	game(void)
 	mlx_cursor_hook(mlx.mlxi, mouse_hdl, NULL);
 	mlx_loop_hook(mlx.mlxi, game_loop, &mlx);
 	mlx_loop(mlx.mlxi);
-	ft_exit(&mlx);
+	ft_exit(&mlx, EXIT_SUCCESS);
 }
 
 static void	game_loop(void *vmlx)

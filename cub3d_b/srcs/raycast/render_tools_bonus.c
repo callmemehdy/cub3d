@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_tools_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 22:42:25 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/24 19:01:08 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/25 01:54:42 by ael-amma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,52 +41,4 @@ void	ft_usleep(long milliseconds)
 	start = get_time();
 	while ((get_time() - start) < milliseconds)
 		usleep(500);
-}
-
-static
-char	*ft_join(char *s1, char *s2)
-{
-	char	*str;
-
-	if (!s1)
-	{
-		s1 = malloc(1 * sizeof(char));
-		if (!s1)
-			return (NULL);
-		s1[0] = 0;
-	}
-	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!str)
-		return (free(s1), s1 = NULL, NULL);
-	ft_memcpy(str, s1, ft_strlen(s1));
-	ft_memcpy(str + ft_strlen(s1), s2, ft_strlen(s2));
-	str[ft_strlen(s1) + ft_strlen(s2)] = 0;
-	return (str);
-}
-
-t_frame	load_frames()
-{
-	t_mlx		*mlx;
-	char 		*num;
-	char 		*name;
-	char 		*path;
-	int			i;
-	char		*prefix;
-
-	i = -1;
-	mlx = *get_mlx();
-	prefix = strdup("textures/dwn/");
-	while (++i < FRM_NO)
-	{
-		num = salloc(ft_itoa(i + 1), 0);
-		name = salloc(ft_join(num, ".png"), 0);
-		path = salloc(ft_join(prefix, name), 0);
-		mlx->frames.gun_txt[i] = salloc(mlx_load_png(path), 1);
-		// gotta protect & make some cleaner function to get rid of this garbage pngs
-		free(num);
-		free(path);
-		free(name);
-	}
-	free(prefix);
-	return (mlx->frames);
 }
