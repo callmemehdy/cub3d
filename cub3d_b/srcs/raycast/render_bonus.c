@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:16:07 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/25 02:12:27 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:28:11 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,30 +58,29 @@ void	render_map(t_mlx *mlx)
 {
 	int			x;
 	int			y;
-	char 		**map;
+	char		**m;
 	t_rect		tile;
-	int			height = 15, width = 15;
 
 	y = -1;
-	map = map_mask(*get_data(), mlx->player);
-	while (++y < height)
+	m = map_mask(*get_data(), mlx->player);
+	while (++y < 15)
 	{
 		x = -1;
-		while (++x < width)
+		while (++x < 15)
 		{
-			tile.x = (x * TSIZE_SCALE);
-			tile.y = (y * TSIZE_SCALE);
-			tile.width = TSIZE_SCALE;
-			tile.height = TSIZE_SCALE;
+			tile.x = (x * (TSIZE * SCALE));
+			tile.y = (y * (TSIZE * SCALE));
+			tile.width = (TSIZE * SCALE);
+			tile.height = (TSIZE * SCALE);
 			tile.color = get_rgba(64, 64, 64, 255);
-			if ((y < height && x < width) && (map[y][x] == '0' || is_player(map[y][x])))
+			if ((y < 15 && x < 15) && (m[y][x] == '0' || is_player(m[y][x])))
 				tile.color = get_rgba(0, 0, 0, 255);
-			else if (map[y][x] == 'O')
+			else if (m[y][x] == 'O')
 				tile.color = get_rgba(128, 128, 128, 255);
 			drawrect(mlx->img, tile);
 		}
 	}
-	free_2d(map);
+	free_2d(m);
 }
 
 static
@@ -91,8 +90,8 @@ void	render_player(t_mlx *mlx)
 	t_circle	circle;
 
 	pos = 7;
-	circle.cx = round(pos * TSIZE_SCALE + (TSIZE_SCALE / 2));
-	circle.cy = round(pos * TSIZE_SCALE + (TSIZE_SCALE / 2));
+	circle.cx = round(pos * (TSIZE * SCALE) + ((TSIZE * SCALE) / 2));
+	circle.cy = round(pos * (TSIZE * SCALE) + ((TSIZE * SCALE) / 2));
 	circle.radius = mlx->player->radius * 1;
 	circle.color = get_rgba(255, 255, 255, 255);
 	drawcircle(mlx, circle);
@@ -102,7 +101,7 @@ static
 void	render_sprite(t_mlx *mlx)
 {
 	static int	i;
-	static int frame_count;
+	static int	frame_count;
 
 	if (mlx->space)
 	{

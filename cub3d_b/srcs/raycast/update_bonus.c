@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:18:57 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/25 04:30:05 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:36:57 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,7 @@ static void	door(t_mlx *mlx, t_player *p)
 				dy += 2;
 		}
 		if ((dy > 0 && dy < mlx->data->y) && (dx > 0 && dx < mlx->data->x))
-		{	
-			if (mlx->data->map[dy][dx] == 'D')
-				mlx->data->map[dy][dx] = 'O';
-			else if (mlx->data->map[dy][dx] == 'O')
-				mlx->data->map[dy][dx] = 'D';
-		}
+			switch_door_state(mlx->data, dx, dy);
 		mlx->key = false;
 	}
 }

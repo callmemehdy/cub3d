@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/25 02:20:16 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:39:50 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ typedef struct s_frame
 
 /*********raycast*********/
 
+//	Window width
+# define W_WIDTH 1920
+
+//	Window Height
+# define W_HEIGHT 1056
+
 //	Field of view
 # define FOV 60
 
@@ -73,15 +79,6 @@ typedef struct s_frame
 
 //	Minimap Scale Factor
 # define SCALE 0.5
-
-//	Size of tiles multiplied by the scale factor
-# define TSIZE_SCALE (int)(TSIZE * SCALE)
-
-//	Window width
-# define W_WIDTH 1920
-
-//	Window Height
-# define W_HEIGHT 1056
 
 //	Width of the ray
 # define NUM_RAYS W_WIDTH
@@ -111,7 +108,7 @@ typedef struct s_frame
 	frgb:			Floor color in BGR format.
 	crgb:			Ceiling color in BGR format.
 */
-typedef struct s_data t_data;
+typedef struct s_data	t_data;
 typedef unsigned char	t_byte;
 
 // parse shit
@@ -143,7 +140,6 @@ void			*ft_malloc(size_t size);
 t_addr			**get_list(void);
 void			destroy_addr(t_addr *list);
 void			delete_node(t_addr **list, void *data);
-void			clean_frames();
 
 // file handling shit ...
 char			*get_next_line(int fd);
@@ -185,7 +181,7 @@ typedef struct s_check
 
 /*********raycast*********/
 
-typedef struct s_player t_player;
+typedef struct s_player	t_player;
 typedef struct s_ray	t_ray;
 
 typedef struct s_mlx
@@ -226,17 +222,17 @@ struct s_player
 	float	turnsp;
 };
 
-typedef struct	s_rect
+typedef struct s_rect
 {
 	int			x;
 	int			y;
-	int 		width;
-	int 		height;
+	int			width;
+	int			height;
 	int			color;
 	t_player	player;
 }				t_rect;
 
-typedef struct	s_circle
+typedef struct s_circle
 {
 	int	cx;
 	int	cy;
@@ -244,7 +240,7 @@ typedef struct	s_circle
 	int	color;
 }				t_circle;
 
-typedef struct	s_line
+typedef struct s_line
 {
 	float	x0;
 	float	y0;
@@ -266,7 +262,7 @@ struct	s_ray
 	int		wallcontent;
 };
 
-typedef struct	s_raydata
+typedef struct s_raydata
 {
 	float	fx;
 	float	fy;
@@ -278,7 +274,7 @@ typedef struct	s_raydata
 	bool	right;
 }				t_rdata;
 
-typedef struct	s_raydif
+typedef struct s_raydif
 {
 	float	horzx;
 	float	horzy;
@@ -291,7 +287,7 @@ typedef struct	s_raydif
 	bool	vertflag;
 }				t_rdif;
 
-typedef struct	s_wall
+typedef struct s_wall
 {
 	int		x;
 	int		y;
@@ -301,7 +297,7 @@ typedef struct	s_wall
 	int		color;
 }				t_wall;
 
-// some useful utils
+// Genereal Tools
 char			**ft_split(char const *str, char c);
 void			ft_bzero(void *buffer, size_t n);
 char			*ft_strdup(char *s);
@@ -309,8 +305,8 @@ int				ft_strncmp(const char *s1, const char *s2, size_t n);
 void			ft_error(char *message, int ex_stt);
 bool			ft_isdigit(char c);
 bool			ft_isspace(char c);
-// size_t	ft_strlen(char *s);
-// map parsing utils too
+
+// Map Parsing Tools
 char			*line2path(char *s);
 void			line2list(t_linegnl **list, char *s);
 bool			onlynl(char *s);
@@ -340,6 +336,10 @@ t_mlx			**get_mlx(void);
 
 /*********raycast*********/
 
+//	animation_bonus.c
+char			*ft_itoa(int n);
+void			clean_frames(void);
+
 //	cleaner_bonus.c
 void			*salloc(void *ptr);
 void			ft_exit(t_mlx *mlx, int exit_stat);
@@ -353,12 +353,13 @@ void			game(void);
 
 //	hooks_bonus.c
 void			key_press(mlx_key_data_t keydata, void *vmlx);
-void			init_mouse_pos(t_mlx *mlx, int mid_x, int mid_y);
-void			mouse_hdl(double x, double y, void* param);
+void			mouse_hdl(double x, double y, void *param);
 
 //	raycast_bonus.c
-void			horz_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
-void			vert_intersect(t_mlx *m, t_player *p, t_rdata *data, t_rdif *dif);
+void			horz_intersect(t_mlx *m, t_player *p, \
+								t_rdata *data, t_rdif *dif);
+void			vert_intersect(t_mlx *m, t_player *p, \
+								t_rdata *data, t_rdif *dif);
 void			load_rays(t_mlx *mlx, t_player *p, t_rdif dif, int id);
 
 //	render_utils_bonus.c
@@ -372,7 +373,7 @@ mlx_texture_t	*which_texture(t_mlx *mlx, int i);
 void			ft_usleep(long milliseconds);
 long			get_time(void);
 void			free_2d(char **matrix);
-char			*ft_itoa(int n);
+void			switch_door_state(t_data *data, int x, int y);
 
 //	render_utils.c
 void			render(t_mlx *mlx);
@@ -391,8 +392,8 @@ float			norm_angle(float angle);
 float			linelen(float x1, float y1, float x2, float y2);
 
 // sprite_bonus.c
-t_frame			load_frames();
-void			overlay_images(mlx_image_t *base, mlx_texture_t *overlay, int x_off, int y_off);
-
+t_frame			load_frames(void);
+void			overlay_images(mlx_image_t *base, mlx_texture_t *overlay, \
+								int x_off, int y_off);
 
 #endif

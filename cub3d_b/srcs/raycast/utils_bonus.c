@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:34:54 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/24 12:54:26 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:40:29 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ int	get_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
 
 int	fetch_rgba(uint32_t rgb)
 {
-	return (rgb << 24 | ((rgb >> 8) & 255) << 16 | ((rgb >> 16) & 255) << 8 | 255);
+	return (rgb << 24 | \
+			((rgb >> 8) & 255) << 16 | \
+			((rgb >> 16) & 255) << 8 | \
+			255);
 }
 
 bool	wallhit(float x, float y)

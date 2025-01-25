@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:05:16 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/22 09:25:47 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 16:15:56 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	namow(char **sehsid)
 	i = 0;
 	while (sehsid[i])
 	{
-		free(sehsid[i]);
+		ft_free(sehsid[i]);
 		i++;
 	}
-	free(sehsid);
+	ft_free(sehsid);
 }
 
 static

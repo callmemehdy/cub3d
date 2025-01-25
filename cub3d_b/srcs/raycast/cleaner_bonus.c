@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:35:32 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/25 03:06:33 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:17:09 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*salloc(void *ptr)
 	return (ptr);
 }
 
-void	ft_exit(t_mlx *mlx, int	exit_stat)
+void	ft_exit(t_mlx *mlx, int exit_stat)
 {
 	if (mlx->no)
 		mlx_delete_texture(mlx->no);

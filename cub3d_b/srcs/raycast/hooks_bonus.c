@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:59:27 by ael-amma          #+#    #+#             */
-/*   Updated: 2025/01/25 04:38:14 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:25:33 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void	key_release(mlx_key_data_t keydata, t_mlx *mlx);
 
-void mouse_hdl(double x, __attribute__((unused)) double y, __attribute__((unused)) void* param)
+void	mouse_hdl(double x, __attribute__((unused)) double y, \
+							__attribute__((unused)) void *param)
 {
 	t_mlx			*mlx;
 	t_dimension		dim;
@@ -24,34 +25,37 @@ void mouse_hdl(double x, __attribute__((unused)) double y, __attribute__((unused
 	1 && (mid_x = W_WIDTH / 2, mid_y = W_HEIGHT / 2, mlx = *get_mlx());
 	if (mlx->toggle)
 	{
-			mlx_get_monitor_size(0, &dim.mon_w, &dim.mon_h);
-			mlx_get_window_pos(mlx->mlxi, &dim.win_x, &dim.win_y);
-			if (dim.win_x < 0)
-				mid_x = ((W_WIDTH + dim.win_x) / 2) - dim.win_x;
-			else if (dim.win_x + W_WIDTH > dim.mon_w)
-				mid_x = (dim.mon_w - dim.win_x) / 2;
-			if (mid_x > x)
-				mlx->player->angle -= 0.04;
-			else if (mid_x < x)
-				mlx->player->angle += 0.04;
-			if (x < mid_x || x > mid_x)
-				mlx_set_mouse_pos(mlx->mlxi, mid_x, mid_y);		
+		mlx_get_monitor_size(0, &dim.mon_w, &dim.mon_h);
+		mlx_get_window_pos(mlx->mlxi, &dim.win_x, &dim.win_y);
+		if (dim.win_x < 0)
+			mid_x = ((W_WIDTH + dim.win_x) / 2) - dim.win_x;
+		else if (dim.win_x + W_WIDTH > dim.mon_w)
+			mid_x = (dim.mon_w - dim.win_x) / 2;
+		if (mid_x > x)
+			mlx->player->angle -= 0.04;
+		else if (mid_x < x)
+			mlx->player->angle += 0.04;
+		if (x < mid_x || x > mid_x)
+			mlx_set_mouse_pos(mlx->mlxi, mid_x, mid_y);
 	}
 }
 
 static
 void	mouse_toggling(mlx_key_data_t keydata, t_mlx *mlx)
 {
-	if (keydata.key == MLX_KEY_M && !mlx->toggle)
+	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
 	{
-		mlx_set_cursor_mode(mlx->mlxi, MLX_MOUSE_HIDDEN);
-		mlx->toggle = true;
+		if (keydata.key == MLX_KEY_M && !mlx->toggle)
+		{
+			mlx_set_cursor_mode(mlx->mlxi, MLX_MOUSE_HIDDEN);
+			mlx->toggle = true;
+		}
+		else if (keydata.key == MLX_KEY_M && mlx->toggle)
+		{
+			mlx->toggle = false;
+			mlx_set_cursor_mode(mlx->mlxi, MLX_MOUSE_NORMAL);
+		}
 	}
-	else if (keydata.key == MLX_KEY_M && mlx->toggle)
-	{
-		mlx->toggle = false;
-		mlx_set_cursor_mode(mlx->mlxi, MLX_MOUSE_NORMAL);
-	}	
 }
 
 void	key_press(mlx_key_data_t keydata, void *vmlx)
@@ -79,13 +83,13 @@ void	key_press(mlx_key_data_t keydata, void *vmlx)
 			mlx->player->turndir = 1;
 		else if (keydata.key == MLX_KEY_SPACE)
 			mlx->space = true;
-		mouse_toggling(keydata, mlx);
 	}
 	key_release(keydata, mlx);
 }
 
 static void	key_release(mlx_key_data_t keydata, t_mlx *mlx)
 {
+	mouse_toggling(keydata, mlx);
 	if (keydata.action == MLX_RELEASE)
 	{
 		if (keydata.key == MLX_KEY_W)

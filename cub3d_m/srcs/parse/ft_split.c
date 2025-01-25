@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:05:16 by mel-akar          #+#    #+#             */
-/*   Updated: 2024/11/20 10:24:35 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/25 16:19:10 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	namow(char **sehsid)
 	i = 0;
 	while (sehsid[i])
 	{
-		free(sehsid[i]);
+		ft_free(sehsid[i]);
 		i++;
 	}
-	free(sehsid);
+	ft_free(sehsid);
 }
 
 static

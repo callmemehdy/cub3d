@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:13:41 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/25 02:54:11 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:16:44 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ char	*ft_itoa(int n)
 	min = -2147483648;
 	if (n == min)
 		return (ft_strdup("-2147483648"));
-	s = malloc(counter(n) + 1);
+	s = ft_malloc(counter(n) + 1);
 	if (s == NULL)
 		return (NULL);
 	s = strfill(s, n);
 	return (s);
 }
 
-void	clean_frames()
+void	clean_frames(void)
 {
 	t_mlx	*mlx;
 	int		i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_tools_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 22:42:25 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/25 01:54:42 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:37:21 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,12 @@ void	ft_usleep(long milliseconds)
 	start = get_time();
 	while ((get_time() - start) < milliseconds)
 		usleep(500);
+}
+
+void	switch_door_state(t_data *data, int x, int y)
+{
+	if (data->map[y][x] == 'D')
+		data->map[y][x] = 'O';
+	else if (data->map[y][x] == 'O')
+		data->map[y][x] = 'D';
 }
