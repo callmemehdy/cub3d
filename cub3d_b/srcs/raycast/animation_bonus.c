@@ -6,7 +6,7 @@
 /*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:13:41 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/24 18:55:54 by mel-akar         ###   ########.fr       */
+/*   Updated: 2025/01/25 01:57:07 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,5 @@ void	clean_frames()
 	i = -1;
 	while (++i < FRM_NO)
 		mlx_delete_texture(mlx->frames.gun_txt[i]);
+	mlx_delete_texture(mlx->frame);
 }
