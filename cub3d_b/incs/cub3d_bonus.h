@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-amma <ael-amma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-akar <mel-akar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:38:20 by mel-akar          #+#    #+#             */
-/*   Updated: 2025/01/25 01:58:06 by ael-amma         ###   ########.fr       */
+/*   Updated: 2025/01/25 02:20:16 by mel-akar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,8 +209,8 @@ typedef struct s_mlx
 	int				height;
 	int				lastframe;
 	bool			space;
+	bool			toggle;
 	bool			key;
-	bool			first_mouse;
 }				t_mlx;
 
 struct s_player
